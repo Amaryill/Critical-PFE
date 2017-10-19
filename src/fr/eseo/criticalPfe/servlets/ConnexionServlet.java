@@ -45,6 +45,7 @@ public class ConnexionServlet extends HttpServlet {
 		    Class.forName( "com.mysql.jdbc.Driver" );
 		} catch ( ClassNotFoundException e ) {
 		    /* Gérer les éventuelles erreurs ici. */
+			System.out.println(e.toString());
 		}
 		
 		/* Connexion à la base de données */
@@ -58,8 +59,11 @@ public class ConnexionServlet extends HttpServlet {
 		String pseudo = (String) request.getParameter("pseudo");
 	    String mdp = (String) request.getParameter("mdp");
 		
+	    
 		Connection connexion = null;
 		boolean confirmation = false;
+		String mdpconfirme="";
+		
 		try {
 		    connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
 
@@ -68,21 +72,27 @@ public class ConnexionServlet extends HttpServlet {
 		    Statement statement = connexion.createStatement();
 		    
 		    //Requete sql
-			ResultSet resultat = statement.executeQuery( "select u.password from utilisateur u where u.login='test';");
-			
+			ResultSet resultat = statement.executeQuery( "select u.password from utilisateur u where u.login='"+pseudo+"';");
+		
 			/* Récupération des données du résulat de la requête de lecture*/
-			String mdpconfirme="";
+			
 			
 			while (resultat.next()) {
-				System.out.println("I'm in while");
-				mdpconfirme = resultat.getString("password");
+				mdpconfirme = resultat.getString(1);				
 			}
 			
 			/*traitement des données*/
-			if (mdpconfirme == mdp){
+			
+			System.out.println("Mdp reçu de la bdd : "+mdpconfirme);
+			System.out.println("Mdp entré : "+mdp);
+			//System.out.println("Confirmation : "+mdp.contentEquals(mdpconfirme));
+			
+			if (mdp.contentEquals(mdpconfirme)){
 				confirmation = true;
+				System.out.println(confirmation);
 			} else {
 				confirmation = false;
+				System.out.println(confirmation);
 			}
 			
 
@@ -94,7 +104,6 @@ public class ConnexionServlet extends HttpServlet {
 		    if ( connexion != null )
 		        try {
 		            /* Fermeture de la connexion */
-		        	System.out.println("connexion établie");
 		        	
 		            connexion.close();
 		        } catch ( SQLException ignore ) {
