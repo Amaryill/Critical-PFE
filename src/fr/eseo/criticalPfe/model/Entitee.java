@@ -2,6 +2,7 @@ package fr.eseo.criticalPfe.model;
 
 import java.util.List;
 
+import fr.eseo.criticalPfe.model.objet.Inventaire;
 import fr.eseo.criticalPfe.utils.Image;
 
 public abstract class Entitee {
