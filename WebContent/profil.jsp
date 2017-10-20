@@ -15,10 +15,11 @@
 		<script src="WebContent/assets/js/bootstrap.min.js"></script>-->
 		
 		
-		<title>Index</title>
+		<title>Profil</title>
 	</head>
 	<body>	
-		
+		<h1>Bienvenue 
+		<%=request.getSession().getAttribute("utilisateur") %></h1>
 		
 		
 		
@@ -28,14 +29,14 @@
 	<nav class="navbar-default navbar-inverse navbar-fixed-bottom">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a href="#"><img src="assets/img/Critical_dice_logo.png"></a>
+		      <a href="index.jsp"><img src="assets/img/Critical_dice_logo.png"></a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="#">Home</a></li>
+		      <li><a href="index.jsp">Home</a></li>
 		      <li><a href="#">Masterisation</a></li>
 		      <li><a href="#">Partie en cours</a></li>
 		      <li><a href="#">Options</a></li>
-		      <li><a href="profil.jsp">Profil</a></li>
+		      <li class="active"><a href="profil.jsp">Profil</a></li>
 		      <li><a href="#">Amis</a></li>
 		      <li><a href="#">Aide</a></li>
 		    </ul>

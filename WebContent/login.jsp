@@ -10,42 +10,61 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<title>Critical</title>
 	</head>
-	<body>
+	<body class="bg-image"
+	style="background-image: url('/assets/img/Critical_logo.png');">
 	
 	
 		<div class="container">
-		  <h2>Log in</h2>
-		  <form class="form-horizontal" action="ConnexionServlet" method="post">
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="pseudo">Pseudo:</label>
-		      <div class="col-sm-10">
-		        <input type="text" class="form-control" id="text" placeholder="Entrer pseudo" name="pseudo">
-		      </div>
-		    </div>
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="mdp">Mot de passe:</label>
-		      <div class="col-sm-10">          
-		        <input type="password" class="form-control" id="pwd" placeholder="Entrer mdp" name="mdp">
-		      </div>
-		    </div>
-		    <div class="form-group">        
-		      <div class="col-sm-offset-2 col-sm-10">
-		        <div class="checkbox">
-		          <label><input type="checkbox" name="remember"> Se souvenir de moi</label>
-		        </div>
-		      </div>
-		    </div>
-		    <div class="form-group">        
-		      <div class="col-sm-offset-2 col-sm-10">
-		      	<button type="submit" class="btn btn-default" >Submit</button>
-		      </div>
-		    </div>
-		    <div class="Container">
-		    	<div class="col-sm-offset-2 col-sm-10">
-		    		<a href="signup.jsp">Sign up</a>
-		    	</div>
-		    </div>
-		  </form>
+			<div class="content content-boxed overflow-hidden">
+				<div class="row">
+				<div class="col-xs-12"></div>
+					<div class="text-center">
+						<img src="assets/img/Critical_logo_mini.png"/>
+					</div>
+			  			<!-- Login form -->
+			  			<div style="margin:5%;">
+			  				<div class="col-xs-6 col-xs-offset-2">
+			  					<h1>Connexion</h1>
+			  				</div>
+						  
+						  <form class="form-horizontal" action="ConnexionServlet" method="post">
+						    <div class="form-group">
+						    	<div class="col-xs-6 col-xs-offset-2">
+						    		<div class="form-material form-material-primary">
+								      <label class="control-label" for="pseudo">Pseudo:</label>
+							    	  <input type="text" class="form-control" id="text" placeholder="Entrer pseudo" name="pseudo">
+						      		</div>
+						      	</div>
+						    </div>
+						    <div class="form-group">
+							    <div class="col-xs-6 col-xs-offset-2">
+							    		<div class="form-material form-material-primary">
+										      	<label class="control-label" for="mdp">Mdp:</label>     
+										        <input type="password" class="form-control" id="pwd" placeholder="Entrer mdp" name="mdp">
+										      
+							      		</div>
+							      </div>
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-xs-6 col-xs-offset-2">
+						        <div class="checkbox">
+						          <label><input type="checkbox" name="remember"> Se souvenir de moi</label>
+						        </div>
+						      </div>
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-xs-6 col-xs-offset-2">
+						      	<button type="submit" class="btn btn-default" >Se connecter</button>
+						      </div>
+						    </div>
+						    	<div class="col-xs-6 col-xs-offset-2">
+						    		<a href="signup.jsp">S'enregistrer</a>
+						    	</div>
+						  </form>
+						  </div>
+						</div>
+							  
+			</div>  
 		</div>
 		
 		

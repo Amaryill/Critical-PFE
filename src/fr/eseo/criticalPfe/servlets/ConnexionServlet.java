@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ConnexionServlet
@@ -19,7 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ConnexionServlet")
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	public static final String ATT_USER         = "utilisateur";
+    public static final String ATT_FORM         = "form";
+    public static final String ATT_SESSION_USER = "sessionUtilisateur";
+	  
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -64,6 +68,7 @@ public class ConnexionServlet extends HttpServlet {
 		boolean confirmation = false;
 		String mdpconfirme="";
 		
+		
 		try {
 		    connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
 
@@ -83,16 +88,10 @@ public class ConnexionServlet extends HttpServlet {
 			
 			/*traitement des données*/
 			
-			System.out.println("Mdp reçu de la bdd : "+mdpconfirme);
-			System.out.println("Mdp entré : "+mdp);
-			//System.out.println("Confirmation : "+mdp.contentEquals(mdpconfirme));
-			
 			if (mdp.contentEquals(mdpconfirme)){
 				confirmation = true;
-				System.out.println(confirmation);
 			} else {
 				confirmation = false;
-				System.out.println(confirmation);
 			}
 			
 
@@ -112,6 +111,9 @@ public class ConnexionServlet extends HttpServlet {
 		}
 		
 		if (confirmation == true){
+			HttpSession session = request.getSession();
+			session.setAttribute(ATT_SESSION_USER, pseudo);
+			session.setAttribute(ATT_USER, pseudo);
 			response.sendRedirect("index.jsp");
 		} else {
 			response.sendRedirect("login.jsp");
