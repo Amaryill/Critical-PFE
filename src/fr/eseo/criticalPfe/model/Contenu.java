@@ -9,3 +9,4 @@ public class Contenu {
 	List<Lieu> lieux;
 	String description;
 }
+	
