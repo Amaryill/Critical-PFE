@@ -1,26 +1,30 @@
 package fr.eseo.criticalPfe.servlets;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SignUpServlet
+ * Servlet implementation class ModifMdp
  */
-@WebServlet("/SignUpServlet")
-public class SignUpServlet extends HttpServlet {
+@WebServlet("/ModifMdp")
+public class ModifMdp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignUpServlet() {
+    public ModifMdp() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,27 +51,39 @@ public class SignUpServlet extends HttpServlet {
 		String url = "jdbc:mysql://localhost:3306/criticalpfe";  //à changer en fonction du nom de votre bdd
 		
 		/*informations de connexion à la bdd*/
-		String utilisateur = "Critical";
-		String motDePasse = "Lco950921";
-		
-		
-		
-		
-		//Récupération des informations du formulaire signup.jsp
-		String pseudo = (String) request.getParameter("pseudo");
-	    String mdp = (String) request.getParameter("mdp");
-	    String mdpconfirme = request.getParameter("mdpconfirme");
-	    
-	    Connection connexion = null;
-	    
+		String utilisateur_Bdd = "Critical";
+		String motDePasseBdd = "Lco950921";
+		Connection connexion = null;
 		try {
-		    connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
+		    connexion = DriverManager.getConnection( url, utilisateur_Bdd, motDePasseBdd );
 		    /* Ici, nous placerons nos requêtes vers la BDD */
 		    /* Création de l'objet gérant les requêtes */
 		    Statement statement = connexion.createStatement();
+		    String mdp_ancien = (String) request.getParameter("mdp_ancien");
+		    String mdp_nouveau = (String) request.getParameter("mdp_nouveau");
+		    String confirmer =(String) request.getParameter("confirmer");
+		    String utilisateur1 =(String)request.getSession().getAttribute("utilisateur");
+		    String mdpBdd = "";
+		    
+		    //Récupération mdp BDD
+		    Statement statementMdp = connexion.createStatement();
+		    ResultSet resultatMdpBdd = statementMdp.executeQuery("select password from utilisateur where login='"+utilisateur1+"';");
+		    try{
+		    	while(resultatMdpBdd.next()){
+		    		mdpBdd = resultatMdpBdd.getString("password");
+		    	}
+		    } catch (SQLException e){
+		    	
+		    }
 		    
 		    //Requete sql
-			int resultat = statement.executeUpdate( "insert into utilisateur values('"+pseudo+"','"+mdp+"');" );
+		    if (confirmer.contentEquals(mdp_ancien) && mdp_ancien.contentEquals(mdpBdd)){
+				int resultat = statement.executeUpdate( "update utilisateur set password='"+mdp_nouveau+"' where password='"+mdp_ancien+"';");
+				
+		    } else {
+		    	System.out.println("Je suis dans le else");
+		    	response.sendRedirect("profil.jsp");
+		    }
 			
 			
 			
@@ -86,7 +102,9 @@ public class SignUpServlet extends HttpServlet {
 		    
 		}
 		
-		response.sendRedirect("login.jsp");
+		response.sendRedirect("profil.jsp");
+		
+		
 		
 		doGet(request, response);
 	}

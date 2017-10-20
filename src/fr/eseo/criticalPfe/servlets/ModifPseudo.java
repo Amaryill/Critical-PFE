@@ -1,26 +1,32 @@
 package fr.eseo.criticalPfe.servlets;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SignUpServlet
+ * Servlet implementation class ModifPseudo
  */
-@WebServlet("/SignUpServlet")
-public class SignUpServlet extends HttpServlet {
+@WebServlet("/ModifPseudo")
+public class ModifPseudo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static final String ATT_USER         = "utilisateur";
+    public static final String ATT_FORM         = "form";
+    public static final String ATT_SESSION_USER = "sessionUtilisateur";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignUpServlet() {
+    public ModifPseudo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,25 +55,26 @@ public class SignUpServlet extends HttpServlet {
 		/*informations de connexion à la bdd*/
 		String utilisateur = "Critical";
 		String motDePasse = "Lco950921";
-		
-		
-		
-		
-		//Récupération des informations du formulaire signup.jsp
-		String pseudo = (String) request.getParameter("pseudo");
-	    String mdp = (String) request.getParameter("mdp");
-	    String mdpconfirme = request.getParameter("mdpconfirme");
-	    
-	    Connection connexion = null;
-	    
+		Connection connexion = null;
+
+		String pseudo_ancien = (String) request.getParameter("pseudo_ancien");
+		String pseudo_nouveau = (String) request.getParameter("pseudo_nouveau");
+		String pseudo_session = "";
 		try {
 		    connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
 		    /* Ici, nous placerons nos requêtes vers la BDD */
 		    /* Création de l'objet gérant les requêtes */
 		    Statement statement = connexion.createStatement();
-		    
+		    pseudo_session=(String)request.getSession().getAttribute("utilisateur");
 		    //Requete sql
-			int resultat = statement.executeUpdate( "insert into utilisateur values('"+pseudo+"','"+mdp+"');" );
+		    if (pseudo_session.contentEquals(pseudo_ancien)){
+				int resultat = statement.executeUpdate( "update utilisateur set login='"+pseudo_nouveau+"' where login='"+pseudo_ancien+"';");
+				HttpSession session = request.getSession();
+				session.setAttribute(ATT_SESSION_USER, pseudo_nouveau);
+				session.setAttribute(ATT_USER, pseudo_nouveau);
+		    } else {
+		    	response.sendRedirect("profil.jsp");
+		    }
 			
 			
 			
@@ -86,7 +93,9 @@ public class SignUpServlet extends HttpServlet {
 		    
 		}
 		
-		response.sendRedirect("login.jsp");
+		response.sendRedirect("profil.jsp");
+		
+		
 		
 		doGet(request, response);
 	}
