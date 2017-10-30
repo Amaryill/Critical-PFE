@@ -34,7 +34,7 @@
 		      <li class="active"><a href="#">Home</a></li>
 		      <li><a href="#">Masterisation</a></li>
 		      <li><a href="#">Partie en cours</a></li>
-		      <li><a href="#">Options</a></li>
+		      <li><a href="options.jsp">Options</a></li>
 		      <li><a href="profil.jsp">Profil</a></li>
 		      <li><a href="#">Amis</a></li>
 		      <li><a href="#">Aide</a></li>

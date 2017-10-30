@@ -52,7 +52,7 @@ public class ModifMdp extends HttpServlet {
 		
 		/*informations de connexion à la bdd*/
 		String utilisateur_Bdd = "Critical";
-		String motDePasseBdd = "Lco950921";
+		String motDePasseBdd = "19950921";
 		Connection connexion = null;
 		try {
 		    connexion = DriverManager.getConnection( url, utilisateur_Bdd, motDePasseBdd );

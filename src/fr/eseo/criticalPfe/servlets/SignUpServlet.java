@@ -48,13 +48,14 @@ public class SignUpServlet extends HttpServlet {
 		
 		/*informations de connexion à la bdd*/
 		String utilisateur = "Critical";
-		String motDePasse = "Lco950921";
+		String motDePasse = "19950921";
 		
 		
 		
 		
 		//Récupération des informations du formulaire signup.jsp
 		String pseudo = (String) request.getParameter("pseudo");
+		String email = (String) request.getParameter("email");
 	    String mdp = (String) request.getParameter("mdp");
 	    String mdpconfirme = request.getParameter("mdpconfirme");
 	    
@@ -67,7 +68,7 @@ public class SignUpServlet extends HttpServlet {
 		    Statement statement = connexion.createStatement();
 		    
 		    //Requete sql
-			int resultat = statement.executeUpdate( "insert into utilisateur values('"+pseudo+"','"+mdp+"');" );
+			int resultat = statement.executeUpdate( "insert into utilisateur values('"+pseudo+"','"+mdp+"','"+email+"','');" );
 			
 			
 			

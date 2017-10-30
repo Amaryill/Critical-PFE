@@ -54,7 +54,7 @@ public class ModifPseudo extends HttpServlet {
 		
 		/*informations de connexion à la bdd*/
 		String utilisateur = "Critical";
-		String motDePasse = "Lco950921";
+		String motDePasse = "19950921";
 		Connection connexion = null;
 
 		String pseudo_ancien = (String) request.getParameter("pseudo_ancien");

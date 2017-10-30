@@ -57,7 +57,7 @@ public class ConnexionServlet extends HttpServlet {
 		
 		/*informations de connexion à la bdd*/
 		String utilisateur = "Critical";
-		String motDePasse = "Lco950921";
+		String motDePasse = "19950921";
 		
 		//Récupération des informations du formulaire signup.jsp
 		String pseudo = (String) request.getParameter("pseudo");

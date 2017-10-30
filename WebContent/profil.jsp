@@ -21,62 +21,7 @@
 		<h1>Bienvenue 
 		<%=request.getSession().getAttribute("utilisateur") %></h1>
 		
-				<form class="form-horizontal" action="ModifPseudo" method="post">
-							<div class="form-group">
-						    	<div class="col-xs-6 col-xs-offset-2">
-						    		<div class="form-material form-material-primary">
-								      <label class="control-label" for="pseudo_ancien">Ancien pseudo:</label>
-							    	  <input type="text" class="form-control" id="text" placeholder="Entrer pseudo" name="pseudo_ancien">
-						      		</div>
-						      	</div>
-						    </div>
-						    <div class="form-group">
-							    <div class="col-xs-6 col-xs-offset-2">
-							    		<div class="form-material form-material-primary">
-										      	<label class="control-label" for="pseudo_nouveau">Nouveau pseudo:</label>     
-										        <input type="text" class="form-control" id="text" placeholder="Entrer nouveau pseudo" name="pseudo_nouveau">
-							      		</div>
-							      </div>
-						    </div>
-						    <div class="form-group">        
-						      <div class="col-xs-6 col-xs-offset-2">
-						      	<button type="submit" class="btn btn-default" >Modifier</button>
-						      </div>
-						    </div>
-	    		</form>
-		<h2>Modifier son mot de passe</h2>	
-				<form class="form-horizontal" action="ModifMdp" method="post">			
-						    
-						    <div class="form-group">
-						    	<div class="col-xs-6 col-xs-offset-2">
-						    		<div class="form-material form-material-primary">
-								      <label class="control-label" for="mdp">Ancien mot de passe:</label>
-							    	  <input type="password" class="form-control" id="pwd" placeholder="Entrer mot de passe actuel" name="mdp_ancien">
-						      		</div>
-						      	</div>
-						      	<div class="col-xs-6 col-xs-offset-2">
-						    		<div class="form-material form-material-primary">
-								      <label class="control-label" for="mdp">Confirmer:</label>
-							    	  <input type="password" class="form-control" id="pwd" placeholder="Confirmer" name="confirmer">
-						      		</div>
-						      	</div>
-						    </div>
-						    <div class="form-group">
-							    <div class="col-xs-6 col-xs-offset-2">
-							    		<div class="form-material form-material-primary">
-										      	<label class="control-label" for="mdp">Nouveau mot de passe:</label>     
-										        <input type="password" class="form-control" id="pwd" placeholder="Entrer nouveau mot de passe" name="mdp_nouveau">
-										      
-							      		</div>
-							      </div>
-						    </div>
-						    <div class="form-group">        
-						      <div class="col-xs-6 col-xs-offset-2">
-						      	<button type="submit" class="btn btn-default" >Modifier</button>
-						      </div>
-						    </div>
-				</form>
-		
+				
 	</body>
 	
 	
@@ -91,7 +36,7 @@
 		      <li><a href="index.jsp">Home</a></li>
 		      <li><a href="#">Masterisation</a></li>
 		      <li><a href="#">Partie en cours</a></li>
-		      <li><a href="#">Options</a></li>
+		      <li><a href="options.jsp">Options</a></li>
 		      <li class="active"><a href="profil.jsp">Profil</a></li>
 		      <li><a href="#">Amis</a></li>
 		      <li><a href="#">Aide</a></li>
