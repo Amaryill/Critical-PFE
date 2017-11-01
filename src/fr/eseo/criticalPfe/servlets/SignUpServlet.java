@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import fr.eseo.criticalPfe.bdd.BddBo;
 
 /**
  * Servlet implementation class SignUpServlet
@@ -38,58 +41,27 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try {
-		    Class.forName( "com.mysql.jdbc.Driver" );
-		} catch ( ClassNotFoundException e ) {
-		    /* Gérer les éventuelles erreurs ici. */
-		}
-		/* Connexion à la base de données */
-		String url = "jdbc:mysql://localhost:3306/criticalpfe";  //à changer en fonction du nom de votre bdd
 		
-		/*informations de connexion à la bdd*/
-		String utilisateur = "Critical";
-		String motDePasse = "19950921";
+		BddBo bddBo = new BddBo();
+		Boolean erreur = false;
+		String msgErreur = "";
 		
-		
-		
+		HttpSession session = request.getSession();
 		
 		//Récupération des informations du formulaire signup.jsp
 		String pseudo = (String) request.getParameter("pseudo");
 		String email = (String) request.getParameter("email");
 	    String mdp = (String) request.getParameter("mdp");
 	    String mdpconfirme = request.getParameter("mdpconfirme");
-	    
-	    Connection connexion = null;
-	    
-		try {
-		    connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
-		    /* Ici, nous placerons nos requêtes vers la BDD */
-		    /* Création de l'objet gérant les requêtes */
-		    Statement statement = connexion.createStatement();
-		    
-		    //Requete sql
-			int resultat = statement.executeUpdate( "insert into utilisateur values('"+pseudo+"','"+mdp+"','"+email+"','');" );
-			
-			
-			
-		} catch ( SQLException e ) {
-		    /* Gérer les éventuelles erreurs ici */
-			System.out.println(e.toString());
-		} finally {
-		    if ( connexion != null )
-		        try {
-		            /* Fermeture de la connexion */
-		            connexion.close();
-		        } catch ( SQLException ignore ) {
-		            /* Si une erreur survient lors de la fermeture, il suffit de l'ignorer. */
-		        }
-		    
-		    
+		
+		if (mdp.contentEquals(mdpconfirme)){
+			bddBo.signUp(pseudo, mdp, email);
+			response.sendRedirect("login.jsp");
 		}
 		
-		response.sendRedirect("login.jsp");
+		bddBo.close();
+		doGet(request,response);
 		
-		doGet(request, response);
 	}
 
 }
