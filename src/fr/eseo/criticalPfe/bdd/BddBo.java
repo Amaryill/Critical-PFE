@@ -107,6 +107,30 @@ public class BddBo {
 		
 	}
 	
+	public String getMdp (String pseudo) throws SQLException{
+		String mdpBdd="";
+		String getPassword = "select password from utilisateur where login='"+pseudo+"';";
+		this.bdd.prepareStmt(getPassword);
+		ResultSet resultatMdpBdd = this.bdd.executePrep();
+		while(resultatMdpBdd.next()){
+			mdpBdd = resultatMdpBdd.getString("password");
+		}
+		return mdpBdd;
+	}
+	
+	public void modifPseudo (String pseudo_ancien, String pseudo_nouveau){
+		String  updatePseudo = "update "+TABLE_UTILISATEUR+" set login='"+pseudo_nouveau+"' where login='"+pseudo_ancien+"';";
+		this.bdd.prepareStmt(updatePseudo);
+		ResultSet rset = this.bdd.executePrep();
+	}
+	
+	public void modifMdp (String pseudo, String mdp_nouveau){
+		
+		String  updateMdp = "update "+TABLE_UTILISATEUR+" set password='"+mdp_nouveau+"' where login='"+pseudo+"';";
+		this.bdd.prepareStmt(updateMdp);
+		ResultSet rset = this.bdd.executePrep();
+	}
+	
 	/**
 	 * Ferme la connexion à la bdd
 	 */
