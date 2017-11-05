@@ -93,7 +93,7 @@
 		<li><a href="#">Partie en cours</a></li>
 		<li class="active"><a href="options.jsp">Options</a></li>
 		<li><a href="profil.jsp">Profil</a></li>
-		<li><a href="#">Amis</a></li>
+		<li><a href="AfficherAmis">Amis</a></li>
 		<li><a href="#">Aide</a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
