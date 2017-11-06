@@ -24,66 +24,95 @@
 </head>
 <body>
 	<h1>
+
+		rechercher des amis : <br>
+	</h1>
+	<%
+		ArrayList<String> listeNonAmis = (ArrayList<String>) request.getSession().getAttribute("listeNonAmis");
+	%>
+	<FORM method="post" action="/Critical-PFE/DemandeAmis">
+		<SELECT name="pseudo">
+			<%
+				for (int i = 0; i < listeNonAmis.size(); i++) {
+			%>
+			<OPTION><%=listeNonAmis.get(i)%>
+				<%
+					}
+				%>
+			
+		</SELECT>
+		<button name="submit" type="submit" id="submit_demandeAmi"
+			value="ajouter un ami">Envoyer la demande d'ami</button>
+	</FORM>
+
+
+	<br>
+	<br>
+
+	<h1>
 		Les amis de :
-		<%=request.getSession().getAttribute("utilisateur")%></h1>
+		<%=request.getSession().getAttribute("utilisateur")%>
+	</h1>
 
 	<%
-
 		ArrayList<String> listeAmis = (ArrayList<String>) request.getSession().getAttribute("amis");
-		ArrayList<String> demandesEnvoyees = (ArrayList<String>) request.getSession().getAttribute("demandesEnvoyees");
+		ArrayList<String> demandesEnvoyees = (ArrayList<String>) request.getSession()
+				.getAttribute("demandesEnvoyees");
 		ArrayList<String> demandesRecues = (ArrayList<String>) request.getSession().getAttribute("demandesRecues");
-		ArrayList<String> demandesValidees = (ArrayList<String>) request.getSession().getAttribute("demandesValidees");
+		ArrayList<String> demandesValidees = (ArrayList<String>) request.getSession()
+				.getAttribute("demandesValidees");
 		if (listeAmis.size() > 0) {
 			out.println("amis :");
 			for (int i = 0; i < listeAmis.size(); i++) {
-				if(!demandesValidees.contains(listeAmis.get(i))){
-					out.println("<br>" + listeAmis.get(i));
+				out.println("<br>" + listeAmis.get(i));
+				if (demandesValidees.contains(listeAmis.get(i))) {
+					out.println("  Une nouvelle amitié est né <3");
 				}
-			}
+	%>
+	<form method="post" action="/Critical-PFE/SupprimerAmis">
+		<button type="hidden" name="pseudo" value=<%=listeAmis.get(i)%>
+			type="submit" id="submit_supprimerAmi" value="Supprimer">supprimer
+			l'amitié</button>
+	</form>
+
+	<%
+		}
 		}
 
 		if (demandesRecues.size() > 0) {
 			out.println("<br><br>demandes reçues :");
 			for (int i = 0; i < demandesRecues.size(); i++) {
-				out.println("<br>" + demandesRecues.get(i)+"<br>");
-				
-				%>
-				<form method="post" action="/Critical-PFE/ValiderAmis">
-					<button  type="hidden" name="pseudo"
-							value=<%=demandesRecues.get(i)%> 
-							type="submit" id="submit_validerDemande" value="Modifier">valider la demande</button>
-				</form>
-				<form method="post" action="/Critical-PFE/RefuserAmis">
-					<button  type="hidden" name="pseudo"
-							value=<%=demandesRecues.get(i)%> 
-							type="submit" id="submit_refuserDemande" value="Modifier">refuser la demande</button>
-				</form>
-				<%
-				
-			}
+				out.println("<br>" + demandesRecues.get(i) + "<br>");
+	%>
+	<form method="post" action="/Critical-PFE/ValiderAmis">
+		<button type="hidden" name="pseudo" value=<%=demandesRecues.get(i)%>
+			type="submit" id="submit_validerDemande" value="Modifier">valider
+			la demande</button>
+	</form>
+	<form method="post" action="/Critical-PFE/RefuserAmis">
+		<button type="hidden" name="pseudo" value=<%=demandesRecues.get(i)%>
+			type="submit" id="submit_refuserDemande" value="Modifier">refuser
+			la demande</button>
+	</form>
+	<%
+		}
 		}
 
 		if (demandesEnvoyees.size() > 0) {
 			out.println("<br><br>demandes envoyées :");
 			for (int i = 0; i < demandesEnvoyees.size(); i++) {
-				out.println("<br>" + demandesEnvoyees.get(i)+"<br>");
-			
-			%>
-			<form method="post" action="/Critical-PFE/AnnulerDemandeAmis">
-				<button  type="hidden" name="pseudo"
-						value=<%=demandesEnvoyees.get(i)%> 
-						type="submit" id="submit_annulerDemande" value="Modifier">annuler la demande</button>
-				</form>
-			<%
-			}
+				out.println("<br>" + demandesEnvoyees.get(i) + "<br>");
+	%>
+	<form method="post" action="/Critical-PFE/AnnulerDemandeAmis">
+		<button type="hidden" name="pseudo" value=<%=demandesEnvoyees.get(i)%>
+			type="submit" id="submit_annulerDemande" value="Modifier">annuler
+			la demande</button>
+	</form>
+	<%
 		}
+		}
+
 		
-		if (demandesValidees.size() > 0) {
-			out.println("<br><br>demandes validées :");
-			for (int i = 0; i < demandesValidees.size(); i++) {
-				out.println("<br>" + demandesValidees.get(i)+"<br>");
-			}
-		}
 	%>
 
 
