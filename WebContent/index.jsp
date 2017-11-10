@@ -10,6 +10,11 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
+		<!-- Verification de la variable session -->
+		<% if (request.getSession().getAttribute("utilisateur") == null) {
+			response.sendRedirect("login.jsp");
+		}
+		%>
 		
 		<!-- <link rel="stylesheet" href="WebContent/assets/css/bootstrap-theme.min.css">
 		<script src="WebContent/assets/js/bootstrap.min.js"></script>-->
