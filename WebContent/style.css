@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+.styleA {
+	color: green;
+	background-color: rgb(150,90,80);;
+}
+
+.champSaisie {
+	text-align:left;
+	border-radius: 5px;
+	border-style: groove;
+}
+
+.champLecture {
+/* 	border-width: 0px; */
+	text-align: left;
+}
