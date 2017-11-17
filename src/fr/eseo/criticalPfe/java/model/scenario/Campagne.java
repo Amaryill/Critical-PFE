@@ -3,8 +3,7 @@ package fr.eseo.criticalPfe.java.model.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eseo.criticalPfe.java.model.Contenu;
-import fr.eseo.criticalPfe.java.model.PersonnageJoueur;
+import fr.eseo.criticalPfe.java.model.entite.PersonnageJoueur;
 
 public class Campagne {
 

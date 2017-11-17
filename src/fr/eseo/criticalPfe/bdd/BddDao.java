@@ -1,4 +1,4 @@
-package fr.eseo.criticalPfe.bdd;
+wpackage fr.eseo.criticalPfe.bdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import fr.eseo.criticalPfe.config.Messages;
-import fr.eseo.criticalPfe.divers.Log;
+import fr.eseo.criticalPfe.java.utils.Log;
 
 public class BddDao {
 	/**

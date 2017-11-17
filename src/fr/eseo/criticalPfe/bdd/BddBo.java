@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import fr.eseo.criticalPfe.bdd.BddDao;
 import fr.eseo.criticalPfe.config.Messages;
-import fr.eseo.criticalPfe.divers.Log;
+import fr.eseo.criticalPfe.java.utils.Log;
 
 public class BddBo {
 	/**

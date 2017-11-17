@@ -3,8 +3,6 @@ package fr.eseo.criticalPfe.java.model.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eseo.criticalPfe.java.model.Contenu;
-
 public class Univers {
 
 	/********************* ATTRIBUTS *************************/

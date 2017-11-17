@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.criticalPfe.java.model.scenario.Session;
+
 @WebServlet("/CreationPersonnageServlet")
 public class CreationPersonnageServlet extends HttpServlet {
 
@@ -85,6 +87,17 @@ public class CreationPersonnageServlet extends HttpServlet {
 			Statement statement = connexion.createStatement();
 			// Requete sql
 
+			
+			
+			
+			
+			
+			HttpSession session = request.getSession();
+			String pseudo = (String) session.getAttribute("pseudo");
+			
+			
+			
+			
 			statement.executeUpdate(
 					"INSERT INTO Caracteristiques(Force_, Dexterite, Constitution, Intelligence, Sagesse, Charisme) "
 							+ "VALUES (" + force + "," + dexterite + "," + constitution + "," + intelligence + ","
@@ -94,6 +107,13 @@ public class CreationPersonnageServlet extends HttpServlet {
 					"INSERT INTO Personnage(Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, Age, Taille, Poids) "
 							+ "VALUES(" + alignement + "," + dieu + "," + sexe + "," + couleurYeux + ","
 							+ couleurCheveux + "," + age + "," + taille + "," + poids + ");");
+			
+			
+			
+			statement.executeUpdate(
+					"INSERT INTO EstClasse(niveau, Id, Nom) VALUES(1," + classe + "," + "VALEUR_ID_PERSONNAGE" );
+			
+			statement.executeUpdate("");
 
 			
 
