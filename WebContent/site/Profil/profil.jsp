@@ -15,37 +15,39 @@
 			response.sendRedirect("login.jsp");
 		}
 		%>
-		
+				
 		<!-- <link rel="stylesheet" href="WebContent/assets/css/bootstrap-theme.min.css">
 		<script src="WebContent/assets/js/bootstrap.min.js"></script>-->
 		
 		
-		<title>Index</title>
+		<title>Profil</title>
 	</head>
 	<body>	
+		<h1>Bienvenue 
+		<%=request.getSession().getAttribute("utilisateur") %></h1>
 		
-		
-		
-		
-		
+				
 	</body>
+	
+	
+	
 	
 	<nav class="navbar-default navbar-inverse navbar-fixed-bottom">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a href="#"><img src="assets/img/Critical_dice_logo.png"></a>
+		      <a href="#"><img src="../assets/img/Critical_dice_logo.png"></a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="#">Home</a></li>
-		      <li><a href="#">Masterisation</a></li>
+		      <li><a href="#">Home</a></li>
+		      <li><a href="../Masterisation/masterisation.jsp">Masterisation</a></li>
 		      <li><a href="#">Partie en cours</a></li>
-		      <li><a href="options.jsp">Options</a></li>
-		      <li><a href="profil.jsp">Profil</a></li>
-		      <li><a href="AfficherAmis">Amis</a></li>
-		      <li><a href="#">Aide</a></li>
+		      <li><a href="../options.jsp">Options</a></li>
+		      <li class="active"><a href="profil.jsp">Profil</a></li>
+		      <li><a href="../../AfficherAmis">Amis</a></li>
+		      <li><a href="../aide.jsp">Aide</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="deconnexion.jsp">Deconnexion</a></li>
+		      <li><a href="../Inscription_Connexion_Deco/deconnexion.jsp">Deconnexion</a></li>
 		    </ul>
 		  </div>
 	</nav>

@@ -37,15 +37,15 @@
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li><a href="index.jsp">Home</a></li>
-		      <li><a href="masterisation.jsp">Masterisation</a></li>
+		      <li><a href="Masterisation/masterisation.jsp">Masterisation</a></li>
 		      <li><a href="#">Partie en cours</a></li>
 		      <li><a href="options.jsp">Options</a></li>
-		      <li><a href="profil.jsp">Profil</a></li>
-		      <li><a href="#">Amis</a></li>
+		      <li><a href="Profil/profil.jsp">Profil</a></li>
+		      <li><a href="../AfficherAmis">Amis</a></li>
 		      <li class="active"><a href="aide.jsp">Aide</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="deconnexion.jsp">Deconnexion</a></li>
+		      <li><a href="Inscription_Connexion_Deco/deconnexion.jsp">Deconnexion</a></li>
 		    </ul>
 		  </div>
 	</nav>

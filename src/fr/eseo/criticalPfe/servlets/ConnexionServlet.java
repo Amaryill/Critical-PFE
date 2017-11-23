@@ -69,7 +69,7 @@ public class ConnexionServlet extends HttpServlet {
 			session.setAttribute(ATT_SESSION_USER, userLogin);
 			session.setAttribute(ATT_USER, userLogin);
 
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("site/index.jsp");
 		
 		} else {//si l'utilisateur n'est pas valide
 			session.invalidate();

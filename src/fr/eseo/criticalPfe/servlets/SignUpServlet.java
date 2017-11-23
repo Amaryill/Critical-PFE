@@ -56,7 +56,7 @@ public class SignUpServlet extends HttpServlet {
 		
 		if (mdp.contentEquals(mdpconfirme)){
 			bddBo.signUp(pseudo, mdp, email);
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("site/login.jsp");
 		}
 		
 		bddBo.close();

@@ -19,7 +19,7 @@
 				<div class="row">
 				<div class="col-xs-12"></div>
 					<div class="text-center">
-						<img src="assets/img/Critical_logo_mini.png"/>
+						<img src="../assets/img/Critical_logo_mini.png"/>
 					</div>
 			  			<!-- Login form -->
 			  			<div style="margin:5%;">
@@ -27,7 +27,7 @@
 			  					<h1>Connexion</h1>
 			  				</div>
 						  
-						  <form class="form-horizontal" action="ConnexionServlet" method="post">
+						  <form class="form-horizontal" action="../ConnexionServlet" method="post">
 						    <div class="form-group">
 						    	<div class="col-xs-6 col-xs-offset-2">
 						    		<div class="form-material form-material-primary">
@@ -58,7 +58,7 @@
 						      </div>
 						    </div>
 						    	<div class="col-xs-6 col-xs-offset-2">
-						    		<a href="signup.jsp">S'enregistrer</a>
+						    		<a href="Inscription_Connexion_Deco/signup.jsp">S'enregistrer</a>
 						    	</div>
 						  </form>
 						  </div>

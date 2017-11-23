@@ -13,7 +13,7 @@
 	<body>
 		<div class="container">
 		  <h2>Sign up</h2>
-		  <form class="form-horizontal" action="SignUpServlet" method="post">
+		  <form class="form-horizontal" action="../../SignUpServlet" method="post">
 		    <div class="form-group">
 		      <label class="control-label col-sm-2" for="email">Pseudo:</label>
 		      <div class="col-sm-10">

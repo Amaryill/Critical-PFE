@@ -5,6 +5,6 @@
 HttpSession varSession = request.getSession();
 varSession.invalidate(); 
 
-response.sendRedirect("login.jsp");
+response.sendRedirect("../login.jsp");
 
 %>

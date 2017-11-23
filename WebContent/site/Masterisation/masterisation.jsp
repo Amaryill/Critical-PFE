@@ -36,16 +36,16 @@
 		      <a href="#"><img src="assets/img/Critical_dice_logo.png"></a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li><a href="index.jsp">Home</a></li>
+		      <li><a href="../index.jsp">Home</a></li>
 		      <li class="active"><a href="masterisation.jsp">Masterisation</a></li>
 		      <li><a href="#">Partie en cours</a></li>
-		      <li><a href="options.jsp">Options</a></li>
-		      <li><a href="profil.jsp">Profil</a></li>
-		      <li><a href="#">Amis</a></li>
-		      <li><a href="aide.jsp">Aide</a></li>
+		      <li><a href="../options.jsp">Options</a></li>
+		      <li><a href="../Profil/profil.jsp">Profil</a></li>
+		      <li><a href="../../AfficherAmis">Amis</a></li>
+		      <li><a href="../aide.jsp">Aide</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="deconnexion.jsp">Deconnexion</a></li>
+		      <li><a href="../Inscription_Connexion_Deco/deconnexion.jsp">Deconnexion</a></li>
 		    </ul>
 		  </div>
 	</nav>
