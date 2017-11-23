@@ -36,8 +36,9 @@
 
 <title>Amis</title>
 </head>
-<body>
-
+<body class="bg-image"
+	style="background-image: url('../assets/img/login-bg.jpg');">
+	
 	<!--  Header et aside -->
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************

@@ -31,8 +31,9 @@
 		
 		<title>Profil</title>
 	</head>
-	<body>	
 	
+	<body class="bg-image"
+	style="background-image: url('../../assets/img/login-bg.jpg');">
 	<!--  Header et aside -->
 		<section id="container">
 		<!-- **********************************************************************************************************************************************************
@@ -111,12 +112,7 @@
 	
 	</section>	
 		 
-	
-	
-		<h1>Bienvenue 
-		<%=request.getSession().getAttribute("utilisateur") %></h1>
-		
-		
+
 		<!-- js placed at the end of the document so the pages load faster -->
 		<div id="Importation des scripts">
 		    <script src="../../dashgum/assets/js/jquery.js"></script>
