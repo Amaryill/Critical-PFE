@@ -5,46 +5,63 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		 <!-- Bootstrap core CSS -->
+	    <link href="../../dashgum/assets/css/bootstrap.css" rel="stylesheet">
+	    <!--external css-->
+	    <link href="../../dashgum/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	        
+	    <!-- Custom styles for this template -->
+	    <link href="../../dashgum/assets/css/style.css" rel="stylesheet">
+	    <link href="../../dashgum/assets/css/style-responsive.css" rel="stylesheet">
 		<title>Critical</title>
 	</head>
-	<body>
-		<div class="container">
-		  <h2>Sign up</h2>
-		  <form class="form-horizontal" action="../../SignUpServlet" method="post">
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="email">Pseudo:</label>
-		      <div class="col-sm-10">
-		        <input class="form-control" id="email" placeholder="Entrer pseudo" name="pseudo">
-		      </div>
-		    </div>
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="email">Email:</label>
-		      <div class="col-sm-10">
-		        <input class="form-control" id="email" placeholder="Entrer email" name="email">
-		      </div>
-		    </div>
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="pwd">Mot de passe:</label>
-		      <div class="col-sm-10">          
-		        <input type="password" class="form-control" id="pwd" placeholder="Entrer mot de passe" name="mdp">
-		      </div>
-		    </div>
-		    <div class="form-group">        
-		      <label class="control-label col-sm-2" for="pwd">Confirmer votre mot de passe:</label>
-		      <div class="col-sm-10">          
-		        <input type="password" class="form-control" id="pwd" placeholder="Confirmer mot de passe" name="mdpconfirme">
-		      </div>
-		    </div>
-		    <div class="form-group">        
-		      <div class="col-sm-offset-2 col-sm-10">
-		      	<button type="submit" class="btn btn-default" >Sign Up</button>
-		      </div>
-		    </div>
-		    
-		  </form>
+	
+	<body class="bg-image"
+	style="background-image: url('../../assets/img/login-bg.jpg');">
+	
+	 <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+	
+		<div id="login-page">
+			<div class="container">
+				<form class="form-login" action="../../SignUpServlet" method="post">
+					<h2 class="form-login-heading">Inscription</h2>
+					
+					<div class="login-wrap">
+						<input type="text" class="form-control" placeholder="Entrer login" name="login" autofocus>
+						<br>
+						<input type="text" class="form-control" placeholder="Entrer email" name="email">
+						<br>
+						<input type="password" class="form-control" placeholder="Entrer mot de passe" name="mdp" autofocus>
+						<br>
+						<input type="password" class="form-control" placeholder="Confirmez mot de passe" name="mdpconfirme">
+						<br>
+						<input type="text" class="form-control" placeholder="Entrer pseudo" name="pseudo">
+						<hr>
+						<button class="btn btn-theme btn-block" type="submit"> S'inscrire</button>
+			            
+						
+												      	      			
+					</div>
+					
+				</form>
+			</div>
 		</div>
+	
+			
+		
+		<!-- js placed at the end of the document so the pages load faster -->
+	    <script src="../../dashgum/assets/js/jquery.js"></script>
+	    <script src=".../dashgum/assets/js/bootstrap.min.js"></script>
+	
+	    <!--BACKSTRETCH-->
+	    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+	    <script type="text/javascript" src="../../dashgum/assets/js/jquery.backstretch.min.js"></script>
+	    <script>
+	        $.backstretch("../assets/img/login-bg.jpg", {speed: 500});
+	    </script>
+		
 	</body>
 </html>

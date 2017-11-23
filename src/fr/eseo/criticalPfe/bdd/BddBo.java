@@ -99,9 +99,10 @@ public class BddBo {
 	 * @param mail
 	 */
 	
-	public void signUp(String pseudo, String mdp, String mail){
+	public void signUp(String pseudo, String login, String mdp, String mail){
 		
-		String insertUser = insert + TABLE_UTILISATEUR + values + pseudo+"','"+mdp+"','"+mail+"','');";
+		String insertUser = insert + TABLE_UTILISATEUR + values + pseudo+"','"+login+"','"+mdp+"','"+mail+"','');";
+		System.out.println(insertUser);
 		this.bdd.prepareStmt(insertUser);
 		ResultSet rset = this.bdd.executePrep();
 		
@@ -119,14 +120,14 @@ public class BddBo {
 	}
 	
 	public void modifPseudo (String pseudo_ancien, String pseudo_nouveau){
-		String  updatePseudo = "update "+TABLE_UTILISATEUR+" set login='"+pseudo_nouveau+"' where login='"+pseudo_ancien+"';";
+		String  updatePseudo = "update "+TABLE_UTILISATEUR+" set pseudo='"+pseudo_nouveau+"' where pseudo='"+pseudo_ancien+"';";
 		this.bdd.prepareStmt(updatePseudo);
 		ResultSet rset = this.bdd.executePrep();
 	}
 	
-	public void modifMdp (String pseudo, String mdp_nouveau){
+	public void modifMdp (String login, String mdp_nouveau){
 		
-		String  updateMdp = "update "+TABLE_UTILISATEUR+" set password='"+mdp_nouveau+"' where login='"+pseudo+"';";
+		String  updateMdp = "update "+TABLE_UTILISATEUR+" set password='"+mdp_nouveau+"' where login='"+login+"';";
 		this.bdd.prepareStmt(updateMdp);
 		ResultSet rset = this.bdd.executePrep();
 	}
