@@ -70,12 +70,17 @@
 	                          <span>Home</span>
 	                        </a>
               	  		</li>
-              	  		<li  class="sub-menu">
-              	  			<a href="../Masterisation/masterisation.jsp">
-	                          <i class="fa"></i>
-	                          <span>Masterisation</span>
-	                        </a>
-              	  		</li>
+              	  		<li class="sub-menu">
+	              	  			<a href="#">
+		                          <i class="fa"></i>
+		                          <span>Masterisation</span>
+		                        </a>
+		                        <ul class="sub"> 
+		                        	<li><a href="../Masterisation/masterisation.jsp">Portail de MJ</a></li>
+		                        	<li><a href="../Masterisation/creationPersonnage.jsp">Créer un personnage</a></li>
+		                        	<li><a href="../Masterisation/fichePersonnage.jsp">Voir mes personnages</a></li>
+		                        </ul>
+	              	  	</li>
               	  		<li class="sub-menu">
               	  			<a href="#">
 	                          <i class="fa"></i>
@@ -109,6 +114,17 @@
 					</ul>
 				</div>
 			</aside>	
+	
+		<!-- **********************************************************************************************************************************************************
+	      MAIN CONTENT
+	      *********************************************************************************************************************************************************** -->
+	      <!--main content start-->
+	      <section id="main-content">
+	          <section class="wrapper">
+	          	
+	          </section>
+	      </section>
+	
 	
 	</section>	
 		 

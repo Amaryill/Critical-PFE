@@ -73,11 +73,16 @@
 	                        </a>
               	  		</li>
               	  		<li class="sub-menu">
-              	  			<a href="Masterisation/masterisation.jsp">
-	                          <i class="fa"></i>
-	                          <span>Masterisation</span>
-	                        </a>
-              	  		</li>
+	              	  			<a href="#">
+		                          <i class="fa"></i>
+		                          <span>Masterisation</span>
+		                        </a>
+		                        <ul class="sub"> 
+		                        	<li><a href="Masterisation/masterisation.jsp">Portail de MJ</a></li>
+		                        	<li><a href="Masterisation/creationPersonnage.jsp">Créer un personnage</a></li>
+		                        	<li><a href="Masterisation/fichePersonnage.jsp">Voir mes personnages</a></li>
+		                        </ul>
+	              	  	</li>
               	  		<li class="sub-menu">
               	  			<a href="#">
 	                          <i class="fa"></i>
@@ -112,75 +117,80 @@
 				</div>
 			</aside>	
 	
+			<!-- **********************************************************************************************************************************************************
+		      MAIN CONTENT
+		      *********************************************************************************************************************************************************** -->
+		     <!--main content start-->
+			<section id="main-content">
+				<section class="wrapper">
+				
+				
+					<h2 style="color:black;">Modifier mon pseudo</h2>
+					<form class="form-horizontal" action="../ModifPseudo" method="post">
+						<div class="form-group">
+							<div class="col-xs-6 col-xs-offset-2">
+								<div class="form-material form-material-primary">
+									<label class="control-label" for="pseudo_ancien" style="color:black;">Ancien
+										pseudo:</label> <input type="text" class="form-control" id="text"
+										placeholder="Entrer pseudo" name="pseudo_ancien">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-6 col-xs-offset-2">
+								<div class="form-material form-material-primary">
+									<label class="control-label" for="pseudo_nouveau" style="color:black;">Nouveau
+										pseudo:</label> <input type="text" class="form-control" id="text"
+										placeholder="Entrer nouveau pseudo" name="pseudo_nouveau">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-6 col-xs-offset-2">
+								<button type="submit" class="btn btn-default">Modifier</button>
+							</div>
+						</div>
+					</form>
+					<h2 style="color:black;">Modifier son mot de passe</h2>
+					<form class="form-horizontal" action="../ModifMdp" method="post">
+				
+						<div class="form-group">
+							<div class="col-xs-6 col-xs-offset-2">
+								<div class="form-material form-material-primary">
+									<label class="control-label" for="mdp" style="color:black;">Ancien mot de passe:</label>
+									<input type="password" class="form-control" id="pwd"
+										placeholder="Entrer mot de passe actuel" name="mdp_ancien">
+								</div>
+							</div>
+							<div class="col-xs-6 col-xs-offset-2">
+								<div class="form-material form-material-primary">
+									<label class="control-label" for="mdp" style="color:black;">Confirmer:</label> <input
+										type="password" class="form-control" id="pwd"
+										placeholder="Confirmer" name="confirmer">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-6 col-xs-offset-2">
+								<div class="form-material form-material-primary">
+									<label class="control-label" for="mdp" style="color:black;">Nouveau mot de
+										passe:</label> <input type="password" class="form-control" id="pwd"
+										placeholder="Entrer nouveau mot de passe" name="mdp_nouveau">
+				
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-6 col-xs-offset-2">
+								<button type="submit" class="btn btn-default">Modifier</button>
+							</div>
+						</div>
+					</form>
+				</section>
+			</section>
 	</section>	
 		 
-	<!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-	<section id="main-content">
-	<h2>Modifier mon pseudo</h2>
-	<form class="form-horizontal" action="ModifPseudo" method="post">
-		<div class="form-group">
-			<div class="col-xs-6 col-xs-offset-2">
-				<div class="form-material form-material-primary">
-					<label class="control-label" for="pseudo_ancien">Ancien
-						pseudo:</label> <input type="text" class="form-control" id="text"
-						placeholder="Entrer pseudo" name="pseudo_ancien">
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-xs-6 col-xs-offset-2">
-				<div class="form-material form-material-primary">
-					<label class="control-label" for="pseudo_nouveau">Nouveau
-						pseudo:</label> <input type="text" class="form-control" id="text"
-						placeholder="Entrer nouveau pseudo" name="pseudo_nouveau">
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-xs-6 col-xs-offset-2">
-				<button type="submit" class="btn btn-default">Modifier</button>
-			</div>
-		</div>
-	</form>
-	<h2>Modifier son mot de passe</h2>
-	<form class="form-horizontal" action="ModifMdp" method="post">
-
-		<div class="form-group">
-			<div class="col-xs-6 col-xs-offset-2">
-				<div class="form-material form-material-primary">
-					<label class="control-label" for="mdp">Ancien mot de passe:</label>
-					<input type="password" class="form-control" id="pwd"
-						placeholder="Entrer mot de passe actuel" name="mdp_ancien">
-				</div>
-			</div>
-			<div class="col-xs-6 col-xs-offset-2">
-				<div class="form-material form-material-primary">
-					<label class="control-label" for="mdp">Confirmer:</label> <input
-						type="password" class="form-control" id="pwd"
-						placeholder="Confirmer" name="confirmer">
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-xs-6 col-xs-offset-2">
-				<div class="form-material form-material-primary">
-					<label class="control-label" for="mdp">Nouveau mot de
-						passe:</label> <input type="password" class="form-control" id="pwd"
-						placeholder="Entrer nouveau mot de passe" name="mdp_nouveau">
-
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-xs-6 col-xs-offset-2">
-				<button type="submit" class="btn btn-default">Modifier</button>
-			</div>
-		</div>
-	</form>
-	</section>
+	
 
 
 <!-- js placed at the end of the document so the pages load faster -->

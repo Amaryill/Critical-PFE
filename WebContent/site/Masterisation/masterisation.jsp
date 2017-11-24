@@ -70,11 +70,16 @@
 	                        </a>
               	  		</li>
               	  		<li class="sub-menu">
-              	  			<a class="active" href="#">
-	                          <i class="fa"></i>
-	                          <span>Masterisation</span>
-	                        </a>
-              	  		</li>
+	              	  			<a class="active" href="#">
+		                          <i class="fa"></i>
+		                          <span>Masterisation</span>
+		                        </a>
+		                        <ul class="sub"> 
+		                        	<li><a href="#">Portail de MJ</a></li>
+		                        	<li><a href="creationPersonnage.jsp">Créer un personnage</a></li>
+		                        	<li><a href="fichePersonnage.jsp">Voir mes personnages</a></li>
+		                        </ul>
+	              	  	</li>
               	  		<li class="sub-menu">
               	  			<a href="#">
 	                          <i class="fa"></i>

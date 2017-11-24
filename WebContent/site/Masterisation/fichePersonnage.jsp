@@ -25,6 +25,7 @@
 </head>
 <body class="bg-image"
 	style="background-image: url('../../assets/img/login-bg.jpg');">
+	
 	<!--  Header et aside -->
 		<section id="container">
 		<!-- **********************************************************************************************************************************************************
@@ -61,12 +62,17 @@
 	                          <span>Home</span>
 	                        </a>
               	  		</li>
-              	  		<li  class="sub-menu">
-              	  			<a href="../Masterisation/masterisation.jsp">
-	                          <i class="fa"></i>
-	                          <span>Masterisation</span>
-	                        </a>
-              	  		</li>
+              	  		<li class="sub-menu">
+	              	  			<a class="active" href="#">
+		                          <i class="fa"></i>
+		                          <span>Masterisation</span>
+		                        </a>
+		                        <ul class="sub"> 
+		                        	<li><a href="masterisation.jsp">Portail de MJ</a></li>
+		                        	<li><a href="#">Créer un personnage</a></li>
+		                        	<li><a href="fichePersonnage.jsp">Voir mes personnages</a></li>
+		                        </ul>
+	              	  	</li>
               	  		<li class="sub-menu">
               	  			<a href="#">
 	                          <i class="fa"></i>
@@ -101,79 +107,83 @@
 				</div>
 			</aside>	
 	
-	</section>	
 		
-
-	<h1>Fiche Personnage</h1>
-
-	<form class="form-horizontal">
-		<ul class="nav nav-pills nav-justified container-fluid styleA">
-			<li class="active"><a data-toggle="pill" href="#home">Description</a></li>
-			<li><a data-toggle="tab" href="#menu1">Caractéristiques</a></li>
-			<li><a data-toggle="tab" href="#menu2">Inventaire</a></li>
-			<li><a data-toggle="tab" href="#menu3">Compétences</a></li>
-		</ul>
-
-		<div class="tab-content">
-			<div id="home" class="tab-pane fade in active"
-				style="margin-top: 30px">
-				<div class="row">
-					<label class="control-label col-xs-2" for="pseudo_ancien">Nom personnage :</label> 
-					<input type="text" id="nom" name="nom"
-						class="control-label col-xs-2 champLecture" value="a" readonly />
-				</div>
-				<div class="row" style="margin-top: 15px">
-
-					<label class="control-label col-xs-2" for="pseudo_ancien">Race
-						:</label> <input type="text" id="nom" name="nom"
-						class="control-label col-xs-2 champLecture" value="a" readonly /> <label
-						class="control-label col-xs-2" for="pseudo_ancien">Classe
-						:</label> <input type="text " id="nom" name="nom"
-						class="control-label col-xs-2 champLecture" value="a" readonly />
-				</div>
-				<div class="row" style="margin-top: 15px">
-
-					<label class="control-label col-xs-2" for="pseudo_ancien">Alignement
-						:</label> <input type="text" id="nom" name="nom"
-						class="control-label col-xs-2 champLecture" value="a" readonly /> <label
-						class="control-label col-xs-2" for="pseudo_ancien">Dieu :</label>
-					<input type="text" id="nom" name="nom"
-						class="control-label col-xs-2 champLecture" value="a" readonly />
-				</div>
-			</div>
-
-			<div id="menu1" class="tab-pane fade" style="margin-top: 30px">
-				<%
-					String[] caracNomComplet = new String[] { "Force", "Intelligence", "Dexterite", "Sagesse", "Constitution",
-							"Charisme" };
-					String[] carac = new String[] { "for", "dex", "con", "int", "sag", "cha" };
-					for (int i = 0; i < 6; i += 2) {
-						out.println("<div class=\"row\" style=\"margin-top: 10px\">");
-						out.println("<label class=\"control-label col-xs-2\" for=\"pseudo_ancien\">" + caracNomComplet[i]
-								+ " :</label>");
-						out.println("<input type=\"text\" name=\"" + carac[i] + "\" id=\"" + carac[i]
-								+ "\" class=\"control-label col-xs-2 champLecture\" value=\"a\" readonly/>");
-						out.println("<label class=\"control-label col-xs-2\" for=\"pseudo_ancien\">" + caracNomComplet[i + 1]
-								+ " :</label>");
-						out.println("<input type=\"text\" name=\"" + carac[i + 1] + "\" id=\"" + carac[i + 1]
-								+ "\" class=\"control-label col-xs-2 champLecture\" value=\"a\" readonly/>");
-						out.println("</div>");
-					}
-				%>
-			</div>
-
-			<div id="menu2" class="tab-pane fade col-xs-offset-1"
-				style="margin-top: 30px">
-				<p>menu2</p>
-			</div>
-
-			<div id="menu3" class="tab-pane fade col-xs-offset-1"
-				style="margin-top: 30px">
-				<p>menu3</p>
-			</div>
-		</div>
-
-	</form>
+		
+		<section id="main-content">
+				<section class="wrapper">
+				
+					<h1>Fiche Personnage</h1>
+				
+					<form class="form-horizontal">
+						<ul class="nav nav-pills nav-justified container-fluid styleA">
+							<li class="active"><a data-toggle="pill" href="#home">Description</a></li>
+							<li><a data-toggle="tab" href="#menu1">Caractéristiques</a></li>
+							<li><a data-toggle="tab" href="#menu2">Inventaire</a></li>
+							<li><a data-toggle="tab" href="#menu3">Compétences</a></li>
+						</ul>
+				
+						<div class="tab-content">
+							<div id="home" class="tab-pane fade in active"
+								style="margin-top: 30px">
+								<div class="row">
+									<label class="control-label col-xs-2" for="pseudo_ancien">Nom personnage :</label> 
+									<input type="text" id="nom" name="nom"
+										class="control-label col-xs-2 champLecture" value="a" readonly />
+								</div>
+								<div class="row" style="margin-top: 15px">
+				
+									<label class="control-label col-xs-2" for="pseudo_ancien">Race
+										:</label> <input type="text" id="nom" name="nom"
+										class="control-label col-xs-2 champLecture" value="a" readonly /> <label
+										class="control-label col-xs-2" for="pseudo_ancien">Classe
+										:</label> <input type="text " id="nom" name="nom"
+										class="control-label col-xs-2 champLecture" value="a" readonly />
+								</div>
+								<div class="row" style="margin-top: 15px">
+				
+									<label class="control-label col-xs-2" for="pseudo_ancien">Alignement
+										:</label> <input type="text" id="nom" name="nom"
+										class="control-label col-xs-2 champLecture" value="a" readonly /> <label
+										class="control-label col-xs-2" for="pseudo_ancien">Dieu :</label>
+									<input type="text" id="nom" name="nom"
+										class="control-label col-xs-2 champLecture" value="a" readonly />
+								</div>
+							</div>
+				
+							<div id="menu1" class="tab-pane fade" style="margin-top: 30px">
+								<%
+									String[] caracNomComplet = new String[] { "Force", "Intelligence", "Dexterite", "Sagesse", "Constitution",
+											"Charisme" };
+									String[] carac = new String[] { "for", "dex", "con", "int", "sag", "cha" };
+									for (int i = 0; i < 6; i += 2) {
+										out.println("<div class=\"row\" style=\"margin-top: 10px\">");
+										out.println("<label class=\"control-label col-xs-2\" for=\"pseudo_ancien\">" + caracNomComplet[i]
+												+ " :</label>");
+										out.println("<input type=\"text\" name=\"" + carac[i] + "\" id=\"" + carac[i]
+												+ "\" class=\"control-label col-xs-2 champLecture\" value=\"a\" readonly/>");
+										out.println("<label class=\"control-label col-xs-2\" for=\"pseudo_ancien\">" + caracNomComplet[i + 1]
+												+ " :</label>");
+										out.println("<input type=\"text\" name=\"" + carac[i + 1] + "\" id=\"" + carac[i + 1]
+												+ "\" class=\"control-label col-xs-2 champLecture\" value=\"a\" readonly/>");
+										out.println("</div>");
+									}
+								%>
+							</div>
+				
+							<div id="menu2" class="tab-pane fade col-xs-offset-1"
+								style="margin-top: 30px">
+								<p>menu2</p>
+							</div>
+				
+							<div id="menu3" class="tab-pane fade col-xs-offset-1"
+								style="margin-top: 30px">
+								<p>menu3</p>
+							</div>
+						</div>
+					</form>
+			</section>
+		</section>
+	</section>
 
 	<!-- js placed at the end of the document so the pages load faster -->
 		<div id="Importation des scripts">

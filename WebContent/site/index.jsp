@@ -63,7 +63,7 @@
 			  <aside>
 					<div id="sidebar" class="nav-collapse">
 						<ul class="sidebar-menu" id="nav-accordion">
-							<p class="centered"><a href="profile.html"><img src="../assets/img/Critical_dice_logo_large.png" class="img-circle" width="60"></a></p>
+							<p class="centered"><img src="../assets/img/Critical_dice_logo_large.png" class="img-circle" width="60"></p>
 	              	  		<h5 class="centered"><% String login = request.getSession().getAttribute("utilisateur").toString();%><%= login %></h5>
 	              	  		
 	              	  		<li class="mt">
@@ -73,10 +73,15 @@
 		                        </a>
 	              	  		</li>
 	              	  		<li class="sub-menu">
-	              	  			<a href="Masterisation/masterisation.jsp">
+	              	  			<a href="#">
 		                          <i class="fa"></i>
 		                          <span>Masterisation</span>
 		                        </a>
+		                        <ul class="sub"> 
+		                        	<li><a href="Masterisation/masterisation.jsp">Portail de MJ</a></li>
+		                        	<li><a href="Masterisation/creationPersonnage.jsp">Créer un personnage</a></li>
+		                        	<li><a href="Masterisation/fichePersonnage.jsp">Voir mes personnages</a></li>
+		                        </ul>
 	              	  		</li>
 	              	  		<li class="sub-menu">
 	              	  			<a href="#">
@@ -136,40 +141,6 @@
 	    <script src="../dashgum/assets/js/sparkline-chart.js"></script>    
 		<script src="../dashgum/assets/js/zabuto_calendar.js"></script>
 		
-		<script type="application/javascript">
-        $(document).ready(function () {
-            $("#date-popover").popover({html: true, trigger: "manual"});
-            $("#date-popover").hide();
-            $("#date-popover").click(function (e) {
-                $(this).hide();
-            });
-        
-            $("#my-calendar").zabuto_calendar({
-                action: function () {
-                    return myDateFunction(this.id, false);
-                },
-                action_nav: function () {
-                    return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
-                },
-                legend: [
-                    {type: "text", label: "Special event", badge: "00"},
-                    {type: "block", label: "Regular event", }
-                ]
-            });
-        });
-        
-        
-        function myNavFunction(id) {
-            $("#date-popover").hide();
-            var nav = $("#" + id).data("navigation");
-            var to = $("#" + id).data("to");
-            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-        }
-   	 	</script>
 	
 		</div>
 	
