@@ -56,7 +56,7 @@ public class ConnexionServlet extends HttpServlet {
 		String userPassword = null;
 		String mail = null;
 		
-		userLogin = (String)request.getParameter("pseudo");
+		userLogin = (String)request.getParameter("login");
 		userPassword = (String) request.getParameter("mdp");
 		
 		String[] result = bddBo.getUser(userLogin, userPassword);
@@ -69,7 +69,7 @@ public class ConnexionServlet extends HttpServlet {
 			session.setAttribute(ATT_SESSION_USER, userLogin);
 			session.setAttribute(ATT_USER, userLogin);
 
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("site/index.jsp");
 		
 		} else {//si l'utilisateur n'est pas valide
 			session.invalidate();
