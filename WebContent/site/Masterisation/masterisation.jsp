@@ -48,7 +48,7 @@
              <!--logo end-->
              <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="Inscription_Connexion_Deco/deconnexion.jsp">Déconnexion</a></li>
+                    <li><a class="logout" href="../Inscription_Connexion_Deco/deconnexion.jsp">Déconnexion</a></li>
             	</ul>
             </div>
           </header>
