@@ -121,12 +121,9 @@
 	      *********************************************************************************************************************************************************** -->
 		<section id="main-content">
 			<section class="wrapper">
+			
 			<br><br>
-			<form method="post" action="/Critical-PFE/CreationUnivers">
-				<button type="submit" class=" btn btn-default" id="submit_creerUnivers">Créer un nouvel univers</button>
-			</form>
-			<br><br>
-			<h1 style="color:black;">TODO : afficher la liste des serveurs du joueur</h1>
+			<h1 style="color:black;">un univers à été créé <br>affichage et modification de l'univers sélectionné <br> affichage des chapitres<br>et creation d'un chapitre</h1>
 			</section>
 		</section>
 		

@@ -95,7 +95,7 @@ public class Utilisateur {
 	}
 
 	public void creerUnivers(String nomUnivers) {
-		this.listUnivers.add(new Univers(nomUnivers));
+		this.listUnivers.add(new Univers(this));
 	}
 
 	public void supprimerUnivers(String nomUnivers) {
