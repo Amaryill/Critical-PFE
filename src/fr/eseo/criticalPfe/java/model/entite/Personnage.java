@@ -38,6 +38,10 @@ public class Personnage extends Entitee {
 		this.poids = poids;
 	}
 
+	public Personnage(){
+		
+	}
+	
 	public String getNom() {
 		return nom;
 	}
