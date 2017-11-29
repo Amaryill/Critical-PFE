@@ -1,4 +1,4 @@
-wpackage fr.eseo.criticalPfe.bdd;
+package fr.eseo.criticalPfe.bdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

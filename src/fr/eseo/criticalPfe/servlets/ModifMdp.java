@@ -71,9 +71,9 @@ public class ModifMdp extends HttpServlet {
 		//Requete sql
 		if (confirmer.contentEquals(mdp_ancien) && mdp_ancien.contentEquals(mdpBdd)){
 			bddBo.modifMdp(utilisateur1, mdp_nouveau);
-			response.sendRedirect("options.jsp");
+			response.sendRedirect("site/options.jsp");
 		} else {
-			response.sendRedirect("options.jsp");
+			response.sendRedirect("site/options.jsp");
 		}
 
 
