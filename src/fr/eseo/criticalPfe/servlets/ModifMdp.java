@@ -51,8 +51,8 @@ public class ModifMdp extends HttpServlet {
 		HttpSession session = request.getSession();	
 
 
-		/* Ici, nous placerons nos requêtes vers la BDD */
-		/* Création de l'objet gérant les requêtes */
+		/* Ici, nous placerons nos requï¿½tes vers la BDD */
+		/* Crï¿½ation de l'objet gï¿½rant les requï¿½tes */
 		String mdp_ancien = (String) request.getParameter("mdp_ancien");
 		String mdp_nouveau = (String) request.getParameter("mdp_nouveau");
 		String confirmer =(String) request.getParameter("confirmer");
@@ -71,9 +71,9 @@ public class ModifMdp extends HttpServlet {
 		//Requete sql
 		if (confirmer.contentEquals(mdp_ancien) && mdp_ancien.contentEquals(mdpBdd)){
 			bddBo.modifMdp(utilisateur1, mdp_nouveau);
-			response.sendRedirect("site/options.jsp");
+			response.sendRedirect("/Critical-PFE/site/options.jsp");
 		} else {
-			response.sendRedirect("site/options.jsp");
+			response.sendRedirect("/Critical-PFE/site/options.jsp");
 		}
 
 

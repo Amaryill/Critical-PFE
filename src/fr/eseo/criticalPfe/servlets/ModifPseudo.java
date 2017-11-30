@@ -60,9 +60,9 @@ public class ModifPseudo extends HttpServlet {
 			bddBo.modifPseudo(pseudo_ancien, pseudo_nouveau);
 			session.setAttribute(ATT_SESSION_USER, pseudo_nouveau);
 			session.setAttribute(ATT_USER, pseudo_nouveau);
-			response.sendRedirect("site/options.jsp");
+			response.sendRedirect("/Critical-PFE/site/options.jsp");
 		} else {
-			response.sendRedirect("site/options.jsp");
+			response.sendRedirect("/Critical-PFE/site/options.jsp");
 		}
 		
 		doGet(request, response);
