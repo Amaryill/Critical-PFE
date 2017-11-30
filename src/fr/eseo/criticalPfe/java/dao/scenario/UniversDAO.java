@@ -38,7 +38,7 @@ public class UniversDAO {
 
 	public void supprimerUnivers(int idUnivers, String utilisateur) {
 		ConnexionBDD.getConnexion().requestToDataBase(
-				"DELETE FROM `univers` WHERE `Id` = " + idUnivers + " and `Pseudo` = " + utilisateur);
+				"DELETE FROM `univers` WHERE `Id` = " + idUnivers + " and `Pseudo` = '" + utilisateur+"'");
 	}
 
 	public List<Univers> getListeUnivers(String pseudoUtilisateur) {
@@ -75,6 +75,11 @@ public class UniversDAO {
 			Log.warning(e.toString());
 		}
 		return univers;
+	}
+
+	public void rennommerUnivers(int idUnivers, String nouveauNomUnivers) {
+		ConnexionBDD.getConnexion().requestToDataBase(
+				"UPDATE `univers` SET `Nom`='"+nouveauNomUnivers+"' WHERE `Id`="+idUnivers);
 	}
 	
 }

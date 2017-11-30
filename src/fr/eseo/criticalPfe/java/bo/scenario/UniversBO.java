@@ -28,4 +28,10 @@ public class UniversBO {
 		return dAO.getUnivers(idUnivers);
 	}
 
+	public void renommerUnivers(int idUnivers, String nouveauNomUnivers) {
+		UniversDAO dAO = new UniversDAO();
+		dAO.rennommerUnivers(idUnivers,nouveauNomUnivers);
+		
+	}
+
 }

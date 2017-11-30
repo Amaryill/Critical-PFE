@@ -53,14 +53,48 @@
 		<section id="main-content">
 			<section class="wrapper">
 			
+			<form class="form-horizontal" method="post" action="/Critical-PFE/AffichageListeUnivers">
+				<div class="col-xs-2 col-xs-offset-0">
+					<button class="btn btn-theme btn-block" type="submit" id="afficher univers">Retour</button>
+				</div>
+			</form>
+			
 			<br><br>
 			<% Univers univers = (Univers)request.getSession().getAttribute("univers"); %>
+			
+			<br>
+			
+			<form class="form-horizontal" method="post" action="/Critical-PFE/SuppressionUnivers">
+				<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId() %>>
+				<div class="col-xs-2 col-xs-offset-0">
+					<button class="btn btn-theme btn-block" type="submit" id="afficher univers">Supprimer l'univers</button>
+				</div>
+			</form>
+			<br>
 			
 			<h1 style="color:black;">
 			<%= univers.getNomUnivers() %>
 			</h1>
+			<h2 style="color:black;">Changer le nom de l'univers </h2>
+					<form class="form-horizontal" action="/Critical-PFE/RenommerUnivers" method="post">
+						<div class="form-group">
+							<div class="col-xs-3 col-xs-offset-0">
+								<div class="form-material form-material-primary">
+									<label class="control-label" for="pseudo_nouveau" style="color:black;">Nouveau
+										nom:</label> <input type="text" class="form-control" id="nomUnivers"
+										placeholder="Entrer nom d'Univers" name="nomUnivers">
+								</div>
+							</div>
+						</div>
+					<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId() %>>
+						<div class="form-group">
+							<div class="col-xs-6 col-xs-offset-0">
+								<button type="submit" class="btn btn-default">Modifier</button>
+							</div>
+						</div>
+					</form>
 			
-			<h1 style="color:black;">affichage et modification de l'univers sélectionné <br> affichage des campagnes<br>et creation d'une campagnes</h1>
+			
 			</section>
 		</section>
 		
