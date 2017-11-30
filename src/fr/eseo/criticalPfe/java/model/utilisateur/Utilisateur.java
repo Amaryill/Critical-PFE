@@ -55,7 +55,14 @@ public class Utilisateur {
 	public void setUnivers(List<Univers> univers) {
 		this.listUnivers = univers;
 	}
+	
+	public String getPseudo(){
+		return this.pseudo;
+	}
 
+	public void setPseudo(String pseudo){
+		this.pseudo = pseudo;
+	}
 	/********************** METHODES *************************/
 
 	public Univers getUniversParNom(String nomUnivers) {
@@ -95,7 +102,7 @@ public class Utilisateur {
 	}
 
 	public void creerUnivers(String nomUnivers) {
-		this.listUnivers.add(new Univers(nomUnivers));
+		this.listUnivers.add(new Univers(this));
 	}
 
 	public void supprimerUnivers(String nomUnivers) {
