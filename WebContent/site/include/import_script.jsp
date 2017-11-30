@@ -2,24 +2,24 @@
     pageEncoding="ISO-8859-1"%>
 
 <!-- js placed at the end of the document so the pages load faster -->
-	    <script src="../dashgum/assets/js/jquery.js"></script>
-	    <script src="../dashgum/assets/js/jquery-1.8.3.min.js"></script>
-	    <script src="../dashgum/assets/js/bootstrap.min.js"></script>
-	    <script class="include" type="text/javascript" src="../dashgum/assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	    <script src="../dashgum/assets/js/jquery.scrollTo.min.js"></script>
-	    <script src="../dashgum/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-	    <script src="../dashgum/assets/js/jquery.sparkline.js"></script>
+	    <script src="/Critical-PFE/dashgum/assets/js/jquery.js"></script>
+	    <script src="/Critical-PFE/dashgum/assets/js/jquery-1.8.3.min.js"></script>
+	    <script src="/Critical-PFE/dashgum/assets/js/bootstrap.min.js"></script>
+	    <script class="include" type="text/javascript" src="/Critical-PFE/dashgum/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+	    <script src="/Critical-PFE/dashgum/assets/js/jquery.scrollTo.min.js"></script>
+	    <script src="/Critical-PFE/dashgum/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+	    <script src="/Critical-PFE/dashgum/assets/js/jquery.sparkline.js"></script>
 	
 	
 	    <!--common script for all pages-->
-	    <script src="../dashgum/assets/js/common-scripts.js"></script>
+	    <script src="/Critical-PFE/dashgum/assets/js/common-scripts.js"></script>
 	    
-	    <script type="text/javascript" src="../dashgum/assets/js/gritter/js/jquery.gritter.js"></script>
-	    <script type="text/javascript" src="../dashgum/assets/js/gritter-conf.js"></script>
+	    <script type="text/javascript" src="/Critical-PFE/dashgum/assets/js/gritter/js/jquery.gritter.js"></script>
+	    <script type="text/javascript" src="/Critical-PFE/dashgum/assets/js/gritter-conf.js"></script>
 	
 	    <!--script for this page-->
-	    <script src="../dashgum/assets/js/sparkline-chart.js"></script>    
-		<script src="../dashgum/assets/js/zabuto_calendar.js"></script>
+	    <script src="/Critical-PFE/dashgum/assets/js/sparkline-chart.js"></script>    
+		<script src="/Critical-PFE/dashgum/assets/js/zabuto_calendar.js"></script>
 		
 		<script type="application/javascript">
 	        $(document).ready(function () {

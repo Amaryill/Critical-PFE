@@ -25,86 +25,11 @@
 		
 		<!--  Header et aside -->
 		<section id="container">
-		<!-- **********************************************************************************************************************************************************
-	      TOP BAR CONTENT & NOTIFICATIONS
-	      *********************************************************************************************************************************************************** -->
-	      <!--header start-->
-	      <header class="header black-bg">
-             <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-             </div>
-             <!--logo start-->
-           	 <a href="index.jsp" class="logo"><b>Critical</b></a>
-             <!--logo end-->
-             <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="Inscription_Connexion_Deco/deconnexion.jsp">Déconnexion</a></li>
-            	</ul>
-            </div>
-          </header>
-			
-		  <!-- **********************************************************************************************************************************************************
-	      MAIN SIDEBAR MENU
-	      *********************************************************************************************************************************************************** -->
-	      <!--sidebar start-->
-		  <aside>
-				<div id="sidebar" class="nav-collapse">
-					<ul class="sidebar-menu" id="nav-accordion">
-						<p class="centered"><a href="profile.html"><img src="../assets/img/Critical_dice_logo_large.png" class="img-circle" width="60"></a></p>
-              	  		<h5 class="centered"><% String login = request.getSession().getAttribute("utilisateur").toString();%><%= login %></h5>
-              	  		
-              	  		<li class="mt">
-              	  			<a href="index.jsp">
-	                          <i class="fa fa-dashboard"></i>
-	                          <span>Home</span>
-	                        </a>
-              	  		</li>
-              	  		<li class="sub-menu">
-	              	  			<a href="#">
-		                          <i class="fa"></i>
-		                          <span>Masterisation</span>
-		                        </a>
-		                        <ul class="sub"> 
-		                        	<li><a href="Masterisation/masterisation.jsp">Portail de MJ</a></li>
-		                        	<li><a href="Masterisation/creationPersonnage.jsp">Créer un personnage</a></li>
-		                        	<li><a href="Masterisation/fichePersonnage.jsp">Voir mes personnages</a></li>
-		                        </ul>
-	              	  	</li>
-              	  		<li class="sub-menu">
-              	  			<a href="#">
-	                          <i class="fa"></i>
-	                          <span>Partie en cours</span>
-	                        </a>
-              	  		</li>
-              	  		<li class="sub-menu">
-              	  			<a href="options.jsp">
-	                          <i class="fa"></i>
-	                          <span>Options</span>
-	                        </a>
-              	  		</li>
-              	  		<li class="sub-menu">
-              	  			<a href="Profil/profil.jsp">
-	                          <i class="fa"></i>
-	                          <span>Profil</span>
-	                        </a>
-              	  		</li>
-              	  		<li class="sub-menu">
-              	  			<a href="../AfficherAmis">
-	                          <i class="fa"></i>
-	                          <span>Amis</span>
-	                        </a>
-              	  		</li>
-              	  		<li class="sub-menu">
-              	  			<a class="active" href="aide.jsp">
-	                          <i class="fa"></i>
-	                          <span>Aide</span>
-	                        </a>
-              	  		</li>
-					</ul>
-				</div>
-			</aside>	
+		
+			<jsp:include page="include/import_header.jsp" />	
+			<jsp:include page="include/import_aside.jsp"/>	
 	
-	</section>	
+		</section>	
 		
 		
 		
