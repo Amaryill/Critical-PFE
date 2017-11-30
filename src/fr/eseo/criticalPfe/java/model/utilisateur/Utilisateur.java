@@ -32,6 +32,15 @@ public class Utilisateur {
 
 	/************** ACCESSEURS ET MUTATEURS *************/
 
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}	
+
 	public Statistique getStatistique() {
 		return statistique;
 	}

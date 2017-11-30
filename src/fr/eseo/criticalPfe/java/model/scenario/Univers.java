@@ -3,6 +3,8 @@ package fr.eseo.criticalPfe.java.model.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
+
 public class Univers {
 
 	/********************* ATTRIBUTS *************************/
@@ -24,7 +26,7 @@ public class Univers {
 		this(nomUnivers, new ArrayList<Campagne>(), new Contenu());
 	}
 	
-	
+
 	/************** ACCESSEURS ET MUTATEURS ******************/
 	
 	public String getNomUnivers() {
