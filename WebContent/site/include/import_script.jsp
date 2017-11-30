@@ -54,4 +54,25 @@
 	            var to = $("#" + id).data("to");
 	            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
 	        }
+	        
+	        $(document).ready(function (){
+	   			var link = window.location.href;
+ 	   			var tableauLink = ["index.jsp","options.jsp","ami.jsp","aide.jsp","profil.jsp","masterisation.jsp","fichePersonnage.jsp",
+ 	   				"creationPersonnage.jsp"]
+ 	   			var tableauId = ["index","options","amis","aide","profil","masterisation","masterisation","masterisation"]
+ 	   			for (i=0;i<tableauLink.length;i++){
+ 	   				if (link.indexOf(tableauId[i]) !== -1){
+ 	   					$('#'+tableauId[i]).addClass('active');
+ 	   				}
+ 	   			}
+ 	   		})
 	   	 	</script>
+	   	 	
+	   	 	
+	   	 	
+	   	 	
+	   	 	<!-- 	   class="active"  -->
+
+	   		
+	   
+	   	 	
