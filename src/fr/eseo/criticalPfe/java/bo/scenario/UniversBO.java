@@ -22,5 +22,10 @@ public class UniversBO {
 		UniversDAO dAO = new UniversDAO();
 		return dAO.getListeUnivers(loginUtilisateur);
 	}
+	
+	public Univers getUnivers(int idUnivers){
+		UniversDAO dAO = new UniversDAO();
+		return dAO.getUnivers(idUnivers);
+	}
 
 }

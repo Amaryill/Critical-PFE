@@ -57,4 +57,24 @@ public class UniversDAO {
 		}
 		return listeUnivers;
 	}
+	
+	public Univers getUnivers(int idUnivers) {
+		Univers univers = null;
+		ResultSet rSet = ConnexionBDD.getConnexion().selectFromDataBase(
+				"SELECT `Id`, `Nom`, `Description`, `Pseudo`  FROM `univers` WHERE id = "+idUnivers);
+		Utilisateur user = new Utilisateur();
+		try {
+			//TODO ajouter les campagnes
+			
+			if (rSet.next()) {
+				user.setPseudo(rSet.getString("Pseudo"));
+				univers = new Univers(rSet.getInt("id"), rSet.getString("nom"), rSet.getString("description"),
+						new ArrayList<>(), new Contenu());
+			}
+		} catch (SQLException e) {
+			Log.warning(e.toString());
+		}
+		return univers;
+	}
+	
 }

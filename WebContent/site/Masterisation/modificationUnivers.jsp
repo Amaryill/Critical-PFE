@@ -56,11 +56,11 @@
 			<br><br>
 			<% Univers univers = (Univers)request.getSession().getAttribute("univers"); %>
 			
-			
+			<h1 style="color:black;">
 			<%= univers.getNomUnivers() %>
+			</h1>
 			
-			
-			<h1 style="color:black;">un univers à été créé <br>affichage et modification de l'univers sélectionné <br> affichage des chapitres<br>et creation d'un chapitre</h1>
+			<h1 style="color:black;">affichage et modification de l'univers sélectionné <br> affichage des campagnes<br>et creation d'une campagnes</h1>
 			</section>
 		</section>
 		

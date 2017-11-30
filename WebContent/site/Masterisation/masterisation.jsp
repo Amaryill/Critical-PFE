@@ -40,8 +40,8 @@
 				for(Univers univers : listeUnivers){
 					%>
 					
-					<form class="form-horizontal" method="post" action="">
-					<input type="hidden" name="id" id="id" value = <%=univers.getId() %>>
+					<form class="form-horizontal" method="post" action="/Critical-PFE/AfficherUnivers">
+					<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId() %>>
 						<div class="form-group">
 							<div class="col-xs-6 col-xs-offset-2">
 								<button type="submit" id="submit_Creer univers" value="Creer"><%=univers.getNomUnivers() %></button>

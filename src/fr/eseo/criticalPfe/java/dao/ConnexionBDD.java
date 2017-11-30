@@ -42,7 +42,7 @@ public class ConnexionBDD {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			connection = DriverManager.getConnection("jdbc:mysql://" + BDD_HOST + ":" + BDD_PORT + "/" + BDD_DB
-					+ "?user=" + BDD_USER + "&password=" + BDD_PASS);
+					+ "?user=" + BDD_USER + "&password=" + BDD_PASS + "&useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false");
 
 		} catch (SQLException | ClassNotFoundException e) {
 			Log.warning(e.toString());
