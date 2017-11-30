@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.java.model.entite.Personnage;
 import fr.eseo.criticalPfe.java.model.scenario.Session;
 
 @WebServlet("/CreationPersonnageServlet")
@@ -97,7 +96,7 @@ public class CreationPersonnageServlet extends HttpServlet {
 			String pseudo = (String) session.getAttribute("pseudo");
 			
 			
-			Personnage personnage = new Personnage();
+			
 			
 			statement.executeUpdate(
 					"INSERT INTO Caracteristiques(Force_, Dexterite, Constitution, Intelligence, Sagesse, Charisme) "
@@ -111,10 +110,8 @@ public class CreationPersonnageServlet extends HttpServlet {
 			
 			
 			
-			
 			statement.executeUpdate(
-					"INSERT INTO EstClasse(niveau, Id, Nom) VALUES(1," + classe + "," + ""
-							+ "SELECT MAX(id) FROM Personnage)" );
+					"INSERT INTO EstClasse(niveau, Id, Nom) VALUES(1," + classe + "," + "VALEUR_ID_PERSONNAGE" );
 			
 			statement.executeUpdate("");
 

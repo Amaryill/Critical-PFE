@@ -9,19 +9,19 @@ public class Campagne {
 
 	String nomCampagne;
 	List<PersonnageJoueur> joueurs;
-	List<Session> sessions;
+	List<Chapitre> chapitres;
 	Contenu contenu;
 
 	
-	public Campagne(String nomCampagne, List<PersonnageJoueur> joueurs, Contenu contenu){
+	public Campagne(String nomCampagne, List<PersonnageJoueur> joueurs, List<Chapitre> chapitres, Contenu contenu){
 		this.nomCampagne = nomCampagne;
 		this.joueurs = joueurs;
+		this.chapitres = chapitres;
 		this.contenu = contenu;
-		this.sessions = new ArrayList<>();
 	}
 	
 	public Campagne(String nomCampagne){
-		this(nomCampagne, new ArrayList<PersonnageJoueur>(), new Contenu());
+		this(nomCampagne, new ArrayList<PersonnageJoueur>(), new ArrayList<Chapitre>(), new Contenu());
 	}
 
 	
@@ -34,24 +34,20 @@ public class Campagne {
 		this.joueurs = joueurs;
 	}
 
+	public List<Chapitre> getChapitres() {
+		return chapitres;
+	}
+
+	public void setChapitres(List<Chapitre> chapitres) {
+		this.chapitres = chapitres;
+	}
+
 	public Contenu getContenu() {
 		return contenu;
 	}
 
 	public void setContenu(Contenu contenu) {
 		this.contenu = contenu;
-	}
-
-	public List<Session> getSessions() {
-		return sessions;
-	}
-
-	public void setSessions(List<Session> sessions) {
-		this.sessions = sessions;
-	}
-	
-	public void addSession(Session session){
-		this.sessions.add(session);
 	}
 	
 
