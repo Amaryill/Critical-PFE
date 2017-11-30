@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.dao.entite;
 
-public class PersonnageJoueurDAO {
+public interface PersonnageJoueurDAO {
 
 }

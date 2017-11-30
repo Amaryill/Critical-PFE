@@ -2,7 +2,7 @@ package fr.eseo.criticalPfe.java.model.attributs;
 
 public class Competence {
 
-	/************** ACCESSEURS ET MUTATEURS ******************/
+	/************** ATTRIBUTS ******************/
 
 	String nom;
 	String caracAssociee;

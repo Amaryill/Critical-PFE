@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.bo.utilisateur;
 
-public class UtilisateurBO {
+public interface UtilisateurBO {
 
 }

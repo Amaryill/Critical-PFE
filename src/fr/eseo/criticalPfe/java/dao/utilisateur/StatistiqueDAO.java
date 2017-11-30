@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.dao.utilisateur;
 
-public class StatistiqueDAO {
+public interface StatistiqueDAO {
 
 }

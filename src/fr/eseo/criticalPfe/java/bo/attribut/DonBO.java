@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.bo.attribut;
 
-public class DonBO {
+public interface DonBO {
 
 }

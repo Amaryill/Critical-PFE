@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.dao.objet;
 
-public class ObjetDAO {
+public interface ObjetDAO {
 
 }

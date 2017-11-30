@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.bo.entite;
 
-public class RaceBO {
+public interface RaceBO {
 
 }

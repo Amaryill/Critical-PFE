@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.bo.objet;
 
-public class ObjetBO {
+public interface ObjetBO {
 
 }

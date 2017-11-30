@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.bo.entite;
 
-public class CaracteristiqueBO {
+public interface CaracteristiqueBO {
 
 }

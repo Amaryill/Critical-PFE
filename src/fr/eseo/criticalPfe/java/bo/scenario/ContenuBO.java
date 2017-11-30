@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.bo.scenario;
 
-public class ContenuBO {
+public interface ContenuBO {
 
 }

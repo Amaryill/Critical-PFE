@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.dao.scenario;
 
-public class CarteDAO {
+public interface CarteDAO {
 
 }

@@ -1,5 +1,5 @@
 package fr.eseo.criticalPfe.java.dao.scenario;
 
-public class SessionDAO {
+public interface SessionDAO {
 
 }
