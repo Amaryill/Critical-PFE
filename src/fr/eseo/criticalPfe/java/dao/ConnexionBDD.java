@@ -51,7 +51,7 @@ public class ConnexionBDD {
 		return connection;
 	}
 
-	public ResultSet requestFromDataBase(String sqlQuery) {
+	public ResultSet selectFromDataBase(String sqlQuery) {
 		Statement stmt;
 		ResultSet rset = null;
 		try {
@@ -67,7 +67,7 @@ public class ConnexionBDD {
 		return rset;
 	}
 
-	public void insertIntoDataBase(String insert){
+	public void requestToDataBase(String insert){
 		try {
 			this.connection.createStatement().execute(insert);
 		} catch (SQLException e) {

@@ -3,27 +3,30 @@ package fr.eseo.criticalPfe.java.model.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
-
 public class Univers {
 
 	/********************* ATTRIBUTS *************************/
-	
+
+	int id;
 	String nomUnivers;
+	String description;
 	List<Campagne> campagnes;
 	Contenu contenu;
 
 	
 	/******************* CONSTRUCTEURS ***********************/
 	
-	public Univers(String nomUnivers, List<Campagne> campagnes, Contenu contenu){
+	
+	public Univers(int id, String nomUnivers, String description, List<Campagne> campagnes, Contenu contenu) {
+		this.id = id;
 		this.nomUnivers = nomUnivers;
+		this.description = description;
 		this.campagnes = campagnes;
 		this.contenu = contenu;
 	}
-	
+
 	public Univers(String nomUnivers){
-		this(nomUnivers, new ArrayList<Campagne>(), new Contenu());
+		this(0,nomUnivers,"", new ArrayList<Campagne>(), new Contenu());
 	}
 	
 
@@ -35,6 +38,22 @@ public class Univers {
 
 	public void setNomUnivers(String nomUnivers) {
 		this.nomUnivers = nomUnivers;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<Campagne> getCampagnes() {

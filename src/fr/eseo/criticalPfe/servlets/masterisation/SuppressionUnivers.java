@@ -15,14 +15,14 @@ import fr.eseo.criticalPfe.java.model.scenario.Univers;
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/CreationUnivers")
-public class CreationUnivers extends HttpServlet {
+@WebServlet("/SuppressionUnivers")
+public class SuppressionUnivers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreationUnivers() {
+    public SuppressionUnivers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,11 +36,10 @@ public class CreationUnivers extends HttpServlet {
 		HttpSession session = request.getSession();
 		UniversBO universBO = new UniversBO();
 		String utilisateur = (String)session.getAttribute("utilisateur");
-		Univers univers = universBO.creationUnivers(utilisateur);
-		session.setAttribute("univers", univers);
+		int idUnivers = (Integer)session.getAttribute("idUnivers");
+		universBO.supprimerUnivers(idUnivers, utilisateur);
 		
-		//List<Univers> listeUnivers = universBO.getListeUnivers(utilisateur);		
-		response.sendRedirect("/Critical-PFE/site/Masterisation/modificationUnivers.jsp");
+		response.sendRedirect("/Critical-PFE/site/Masterisation/masterisation.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

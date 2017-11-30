@@ -25,7 +25,7 @@
 		                          <span>Masterisation</span>
 		                        </a>
 		                        <ul class="sub"> 
-		                        	<li><a href="/Critical-PFE/site/Masterisation/masterisation.jsp">Portail de MJ</a></li>
+		                        	<li><a href="/Critical-PFE/AffichageUnivers">Portail de MJ</a></li>
 		                        	<li><a href="/Critical-PFE/site/Masterisation/creationPersonnage.jsp">Créer un personnage</a></li>
 		                        	<li><a href="/Critical-PFE/site/Masterisation/fichePersonnage.jsp">Voir mes personnages</a></li>
 		                        	
