@@ -138,6 +138,8 @@ public class UniversDAO extends DAO<Univers> {
 	
 	
 	
+	
+	
 	/** VERSION CHAILLOU **/
 	
 
@@ -225,4 +227,13 @@ public class UniversDAO extends DAO<Univers> {
 		ConnexionBDD.getConnexion()
 				.requestToDataBase("UPDATE `univers` SET `Nom`='" + nouveauNomUnivers + "' WHERE `Id`=" + idUnivers);
 	}
+	
+	public void editDescriptionUnivers(int idUnivers, String nouvelleDescriptionUnivers) {
+		ConnexionBDD.getConnexion().requestToDataBase(
+				"UPDATE `univers` SET `Description`='"+nouvelleDescriptionUnivers+"' WHERE `Id`="+idUnivers);
+		
+	}
+	
+	
+	
 }

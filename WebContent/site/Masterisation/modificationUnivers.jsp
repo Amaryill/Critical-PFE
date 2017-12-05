@@ -35,7 +35,11 @@
 	</head>
 	<body class="bg-image"
 	style="background-image: url('../../assets/img/login-bg.jpg');">
-		
+		<script type="text/javascript">
+		    function getContent(){
+		        document.getElementById("my-textarea").value = document.getElementById("my-content").innerHTML;
+		    }
+		</script>
 		
 		<!--  Header et aside -->
 		<section id="container">
@@ -53,50 +57,81 @@
 		<section id="main-content">
 			<section class="wrapper">
 			
-			<form class="form-horizontal" method="post" action="/Critical-PFE/AffichageListeUnivers">
-				<div class="col-xs-2 col-xs-offset-0">
-					<button class="btn btn-theme btn-block" type="submit" id="afficher univers">Retour</button>
-				</div>
-			</form>
 			
-			<br><br>
-			<% Univers univers = (Univers)request.getSession().getAttribute("univers"); %>
-			
-			<br>
-			
-			<form class="form-horizontal" method="post" action="/Critical-PFE/SuppressionUnivers">
-				<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId() %>>
-				<div class="col-xs-2 col-xs-offset-0">
-					<button class="btn btn-theme btn-block" type="submit" id="afficher univers">Supprimer l'univers</button>
-				</div>
-			</form>
-			<br>
-			
-			<h1 style="color:black;">
-			<%= univers.getNomUnivers() %>
-			</h1>
-			<h2 style="color:black;">Changer le nom de l'univers </h2>
-					<form class="form-horizontal" action="/Critical-PFE/RenommerUnivers" method="post">
-						<div class="form-group">
-							<div class="col-xs-3 col-xs-offset-0">
-								<div class="form-material form-material-primary">
-									<label class="control-label" for="pseudo_nouveau" style="color:black;">Nouveau
-										nom:</label> <input type="text" class="form-control" id="nomUnivers"
-										placeholder="Entrer nom d'Univers" name="nomUnivers">
-								</div>
-							</div>
-						</div>
+				<form class="form-horizontal" method="post" action="/Critical-PFE/AffichageListeUnivers">
+					<div class="col-xs-2 col-xs-offset-0">
+						<button class="btn btn-theme btn-block" type="submit" id="afficher univers">Retour</button>
+					</div>
+				</form>
+				
+				<br><br>
+				<% Univers univers = (Univers)request.getSession().getAttribute("univers"); %>
+				
+				<br>
+				
+				
+				<form class="form-horizontal" method="post" action="/Critical-PFE/SuppressionUnivers">
 					<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId() %>>
-						<div class="form-group">
-							<div class="col-xs-6 col-xs-offset-0">
-								<button type="submit" class="btn btn-default">Modifier</button>
+					<div class="col-xs-2 col-xs-offset-0">
+						<button class="btn btn-theme btn-block" type="submit" id="afficher univers">Supprimer l'univers</button>
+					</div>
+				</form>
+				<br>
+				
+				<h1 style="color:black;">
+				<%= univers.getNomUnivers() %>
+				</h1>
+				<br>
+				<br>
+				<br>
+				<br>
+				
+				<h2 style="color:black;">
+				 - Description - 
+				</h2>
+				
+				<div id="my-content" contenteditable="true">
+					<p style="color:black;"><%= univers.getDescription() %></p>
+				</div>
+			
+				<form id="form" action="/Critical-PFE/EditDescriptionUnivers" onsubmit="return getContent()">
+			    	<textarea id="my-textarea" name="my-textarea" style="display:none"></textarea>
+					<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId() %>>
+			    	<div class="col-xs-6 col-xs-offset-0">
+						<button type="submit" class="btn btn-default">editer</button>
+					</div>				
+				</form>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				
+				<form class="form-horizontal" action="/Critical-PFE/RenommerUnivers" method="post">
+					<div class="form-group">
+						<div class="col-xs-3 col-xs-offset-0">
+							<div class="form-material form-material-primary">
+								<label class="control-label" for="pseudo_nouveau" style="color:black;">Changer le nom de l'univers</label> 
+								<input type="text" class="form-control" id="nomUnivers"
+									placeholder="Nouveau nom" name="nomUnivers">
+			   					<textarea id="my-textarea" style="display:none"></textarea>
 							</div>
 						</div>
-					</form>
-			
-			
+					</div>
+					<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId() %>>
+					<div class="form-group">
+						<div class="col-xs-6 col-xs-offset-0">
+							<button type="submit" class="btn btn-default">Modifier</button>
+						</div>
+					</div>
+						
+				</form>
 			</section>
 		</section>
+		
+		
 		
 <!-- js placed at the end of the document so the pages load faster -->
 		<div id="Importation des scripts">

@@ -34,4 +34,9 @@ public class UniversBO {
 		dAO.rennommerUnivers(idUnivers,nouveauNomUnivers);
 		
 	}
+	
+	public void editDescriptionUnivers(int idUnivers, String nouvelleDescriptionUnivers) {
+		UniversDAO dAO = new UniversDAO();
+		dAO.editDescriptionUnivers(idUnivers,nouvelleDescriptionUnivers);
+	}
 }
