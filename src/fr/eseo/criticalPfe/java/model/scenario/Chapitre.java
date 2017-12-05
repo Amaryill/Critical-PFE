@@ -1,6 +1,8 @@
 package fr.eseo.criticalPfe.java.model.scenario;
 
-public class Chapitre {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Chapitre extends Model {
 
 	Contenu contenu;
 }

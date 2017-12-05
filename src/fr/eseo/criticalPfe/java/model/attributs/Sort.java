@@ -2,9 +2,10 @@ package fr.eseo.criticalPfe.java.model.attributs;
 
 import java.util.HashMap;
 
+import fr.eseo.criticalPfe.java.model.Model;
 import fr.eseo.criticalPfe.java.model.entite.Classe;
 
-public class Sort {
+public class Sort extends Model {
 
 	/********************* ATTRIBUTS *************************/
 

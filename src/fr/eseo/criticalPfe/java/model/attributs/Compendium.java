@@ -3,9 +3,10 @@ package fr.eseo.criticalPfe.java.model.attributs;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.model.Model;
 import fr.eseo.criticalPfe.java.model.objet.Objet;
 
-public class Compendium {
+public class Compendium extends Model {
 
 	/********************* ATTRIBUTS *************************/
 	

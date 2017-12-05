@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.dao.scenario.UniversDAO;
+import fr.eseo.criticalPfe.java.model.scenario.Campagne;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 public class UniversBO {
@@ -33,5 +34,4 @@ public class UniversBO {
 		dAO.rennommerUnivers(idUnivers,nouveauNomUnivers);
 		
 	}
-
 }

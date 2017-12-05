@@ -3,22 +3,23 @@ package fr.eseo.criticalPfe.java.model.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Univers {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Univers extends Model {
 
 	/********************* ATTRIBUTS *************************/
 
-	int id;
 	String nomUnivers;
 	String description;
 	List<Campagne> campagnes;
 	Contenu contenu;
+	Regle regle;
 
 	
 	/******************* CONSTRUCTEURS ***********************/
 	
 	
-	public Univers(int id, String nomUnivers, String description, List<Campagne> campagnes, Contenu contenu) {
-		this.id = id;
+	public Univers(String nomUnivers, String description, List<Campagne> campagnes, Contenu contenu) {
 		this.nomUnivers = nomUnivers;
 		this.description = description;
 		this.campagnes = campagnes;
@@ -26,9 +27,13 @@ public class Univers {
 	}
 
 	public Univers(String nomUnivers){
-		this(0,nomUnivers,"", new ArrayList<Campagne>(), new Contenu());
+		this(nomUnivers,"", new ArrayList<Campagne>(), new Contenu());
 	}
 	
+
+	public Univers() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/************** ACCESSEURS ET MUTATEURS ******************/
 	
@@ -38,14 +43,6 @@ public class Univers {
 
 	public void setNomUnivers(String nomUnivers) {
 		this.nomUnivers = nomUnivers;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getDescription() {
@@ -72,7 +69,14 @@ public class Univers {
 		this.contenu = contenu;
 	}
 	
-	
+	public Regle getRegle() {
+		return regle;
+	}
+
+	public void setRegle(Regle regle) {
+		this.regle = regle;
+	}
+
 	/********************** METHODES *************************/
 
 	public void ajouterCampagne(String nomCampagne){

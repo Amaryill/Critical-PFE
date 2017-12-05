@@ -2,9 +2,10 @@ package fr.eseo.criticalPfe.java.model.entite;
 
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.model.Model;
 import fr.eseo.criticalPfe.java.model.attributs.Competence;
 
-public class Classe {
+public class Classe extends Model {
 
 	/********************* ATTRIBUTS *************************/
 	

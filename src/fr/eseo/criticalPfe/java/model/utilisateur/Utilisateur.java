@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.model.Model;
 import fr.eseo.criticalPfe.java.model.entite.Classe;
 import fr.eseo.criticalPfe.java.model.entite.PersonnageJoueur;
 import fr.eseo.criticalPfe.java.model.entite.Race;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
-public class Utilisateur {
+public class Utilisateur extends Model {
 
 	String pseudo;
 	String description;

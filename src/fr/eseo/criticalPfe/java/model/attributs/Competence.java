@@ -1,6 +1,8 @@
 package fr.eseo.criticalPfe.java.model.attributs;
 
-public class Competence {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Competence extends Model {
 
 	/************** ATTRIBUTS ******************/
 

@@ -1,6 +1,8 @@
 package fr.eseo.criticalPfe.java.model.attributs;
 
-public class Don {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Don extends Model {
 
 	String nom;
 	

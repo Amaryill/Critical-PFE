@@ -3,7 +3,9 @@ package fr.eseo.criticalPfe.java.model.objet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inventaire {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Inventaire extends Model {
 
 	/********************* ATTRIBUTS *************************/
 

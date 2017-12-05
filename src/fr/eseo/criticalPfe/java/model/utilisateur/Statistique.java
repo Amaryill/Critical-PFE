@@ -1,5 +1,7 @@
 package fr.eseo.criticalPfe.java.model.utilisateur;
 
-public class Statistique {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Statistique extends Model {
 
 }

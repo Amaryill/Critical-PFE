@@ -2,7 +2,9 @@ package fr.eseo.criticalPfe.java.model.scenario;
 
 import java.util.List;
 
-public class Contenu {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Contenu extends Model {
 
 	List<Lieu> lieux;
 	String description;

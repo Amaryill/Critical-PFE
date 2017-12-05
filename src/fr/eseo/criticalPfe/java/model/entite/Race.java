@@ -1,6 +1,8 @@
 package fr.eseo.criticalPfe.java.model.entite;
 
-public class Race {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Race extends Model {
 
 	/********************* ATTRIBUTS *************************/
 

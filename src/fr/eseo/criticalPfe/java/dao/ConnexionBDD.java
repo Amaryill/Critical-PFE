@@ -10,6 +10,8 @@ import fr.eseo.criticalPfe.config.Messages;
 import fr.eseo.criticalPfe.java.utils.Log;
 
 public class ConnexionBDD {
+	private final String GET_LAST_ID = 	"SELECT LAST_INSERT_ID()";
+	
 	private static final String BDD_HOST = Messages.getString("host_bdd");
 	private static final String BDD_PORT = Messages.getString("port_bdd");
 	private static final String BDD_USER = Messages.getString("user");
@@ -82,5 +84,23 @@ public class ConnexionBDD {
 			this.connection = null;
 		}
 	}
+	
+
+	public Integer getLastId() throws SQLException{
+		Integer id = null;
+		// TODO Rajouter from table
+		ResultSet result = this.selectFromDataBase(GET_LAST_ID);
+		
+		while(result.next()){
+			id = result.getInt(1);
+		}
+		
+		return id;
+	}
+
+	  public Connection getCo() throws SQLException {
+	        return DriverManager.getConnection("jdbc:mysql://" + BDD_HOST + ":" + BDD_PORT + "/" + BDD_DB, BDD_USER, BDD_PASS);
+	    }
+	
 
 }

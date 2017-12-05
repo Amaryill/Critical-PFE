@@ -3,6 +3,7 @@ package fr.eseo.criticalPfe.java.model.entite;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.model.Model;
 import fr.eseo.criticalPfe.java.utils.Outils;
 
 /**
@@ -10,7 +11,7 @@ import fr.eseo.criticalPfe.java.utils.Outils;
  * @author Maxime pv ou point competence bonus dans classe prédilection
  *
  */
-public class Caracteristique {
+public class Caracteristique extends Model {
 
 	/********************* ATTRIBUTS *************************/
 

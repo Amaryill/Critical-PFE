@@ -1,8 +1,9 @@
 package fr.eseo.criticalPfe.java.model.objet;
 
+import fr.eseo.criticalPfe.java.model.Model;
 import fr.eseo.criticalPfe.java.utils.Image;
 
-public abstract class Objet {
+public abstract class Objet extends Model {
 
 	String nom;
 	int valeur;

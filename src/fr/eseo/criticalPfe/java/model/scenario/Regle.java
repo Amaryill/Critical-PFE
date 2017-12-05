@@ -1,5 +1,7 @@
 package fr.eseo.criticalPfe.java.model.scenario;
 
-public class Regle {
+import fr.eseo.criticalPfe.java.model.Model;
+
+public class Regle extends Model {
 
 }

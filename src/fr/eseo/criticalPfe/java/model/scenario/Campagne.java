@@ -3,9 +3,10 @@ package fr.eseo.criticalPfe.java.model.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.model.Model;
 import fr.eseo.criticalPfe.java.model.entite.PersonnageJoueur;
 
-public class Campagne {
+public class Campagne extends Model {
 
 	String nomCampagne;
 	List<PersonnageJoueur> joueurs;
