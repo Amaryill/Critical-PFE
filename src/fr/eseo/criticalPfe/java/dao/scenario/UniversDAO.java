@@ -42,7 +42,7 @@ public class UniversDAO implements DAO<Univers> {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			connexion = ConnexionBDD.getConnexion().getCo();
+			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(ADD_UNIVERS);
 			preparedStatement.setString(1, obj.getNomUnivers());
 			preparedStatement.setString(2, obj.getDescription());
@@ -51,7 +51,7 @@ public class UniversDAO implements DAO<Univers> {
 			preparedStatement.setInt(5, obj.getRegle().getId());
 			preparedStatement.executeUpdate();
 
-			obj.setId(ConnexionBDD.getConnexion().getLastId("UNIVERS"));
+			obj.setId(ConnexionBDD.getLastId("UNIVERS"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -65,7 +65,7 @@ public class UniversDAO implements DAO<Univers> {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			connexion = ConnexionBDD.getConnexion().getCo();
+			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(DLT_UNIVERS);
 			preparedStatement.setInt(1, obj.getId());
 			preparedStatement.executeUpdate();
@@ -82,7 +82,7 @@ public class UniversDAO implements DAO<Univers> {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			connexion = ConnexionBDD.getConnexion().getCo();
+			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(SLT_UNIVERS);
 			preparedStatement.setInt(1, obj.getId());
 			ResultSet result = preparedStatement.executeQuery();
@@ -103,7 +103,7 @@ public class UniversDAO implements DAO<Univers> {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			connexion = ConnexionBDD.getConnexion().getCo();
+			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(SLT_UNIVERS_BY_PSEUDO);
 			preparedStatement.setString(1, obj.getUser().getPseudo());
 			ResultSet result = preparedStatement.executeQuery();
@@ -123,7 +123,7 @@ public class UniversDAO implements DAO<Univers> {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			connexion = ConnexionBDD.getConnexion().getCo();
+			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(CHG_UNIVERS);
 			preparedStatement.setString(1, obj.getNomUnivers());
 			preparedStatement.setString(2, obj.getDescription());

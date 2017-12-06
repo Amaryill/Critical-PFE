@@ -29,11 +29,11 @@ public class RegleDAO implements DAO<Regle>{
 		PreparedStatement preparedStatement = null;
 
 		try {
-			connexion = ConnexionBDD.getConnexion().getCo();
+			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(ADD_CONTENU);
 			preparedStatement.executeUpdate();
 
-			obj.setId(ConnexionBDD.getConnexion().getLastId("REGLE"));
+			obj.setId(ConnexionBDD.getLastId("REGLE"));
 			System.out.println(obj.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();

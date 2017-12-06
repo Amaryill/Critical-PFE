@@ -32,11 +32,11 @@ public class ContenuDAO implements DAO<Contenu>{
 		PreparedStatement preparedStatement = null;
 
 		try {
-			connexion = ConnexionBDD.getConnexion().getCo();
+			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(ADD_CONTENU);
 			preparedStatement.executeUpdate();
 
-			obj.setId(ConnexionBDD.getConnexion().getLastId("CONTENUE"));
+			obj.setId(ConnexionBDD.getLastId("CONTENUE"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

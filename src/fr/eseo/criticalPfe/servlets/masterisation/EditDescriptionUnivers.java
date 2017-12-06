@@ -35,7 +35,6 @@ public class EditDescriptionUnivers extends HttpServlet {
 		UniversBO universBO = new UniversBO();
 		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
 		String nouvelleDescriptionUnivers = request.getParameter("my-textarea");
-		System.out.println(nouvelleDescriptionUnivers);
 		universBO.editDescriptionUnivers(idUnivers,nouvelleDescriptionUnivers);
 
 		response.sendRedirect("/Critical-PFE/AfficherUnivers");

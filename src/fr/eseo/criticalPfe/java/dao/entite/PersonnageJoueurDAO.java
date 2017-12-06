@@ -13,16 +13,16 @@ public class PersonnageJoueurDAO implements DAO<PersonnageJoueur> {
 	
 	@Override
 	public PersonnageJoueur creer(PersonnageJoueur obj) {
-		ConnexionBDD connexion = ConnexionBDD.getConnexion();
-		
-		try {
-			connexion.requestToDataBase(REQUEST_CREER_PERSONNAGE);
-			obj.setId(connexion.getLastId("Personnage"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+//		ConnexionBDD connexion = ConnexionBDD.getConnexion();
+//		
+//		try {
+//			connexion.requestToDataBase(REQUEST_CREER_PERSONNAGE);
+//			obj.setId(connexion.getLastId("Personnage"));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return null;
+//		}
 		return obj;
 	}
 

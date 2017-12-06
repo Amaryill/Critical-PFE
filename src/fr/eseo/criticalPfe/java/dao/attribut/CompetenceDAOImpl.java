@@ -105,7 +105,7 @@ public class CompetenceDAOImpl implements CompetenceDAO {
         query += "WHERE `Nom` = '" + nomCompetence + "' ;";
 
         // Execution Requète
-        ConnexionBDD.getConnexion().requestToDataBase(query);
+        ConnexionBDD.getConnexionBDD().requestToDataBase(query);
 
         return trouver(nomCompetence);
     }
