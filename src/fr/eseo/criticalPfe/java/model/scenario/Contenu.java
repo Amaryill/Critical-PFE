@@ -8,5 +8,6 @@ public class Contenu extends Model {
 
 	List<Lieu> lieux;
 	String description;
+	int id;
 }
 	

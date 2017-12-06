@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.attributs.Compendium;
 
-public class CompendiumDAO extends DAO<Compendium>{
+public class CompendiumDAO implements DAO<Compendium>{
 
 	@Override
 	public Compendium creer(Compendium obj) {

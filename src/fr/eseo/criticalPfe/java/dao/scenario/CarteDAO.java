@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.scenario.Carte;
 
-public class CarteDAO extends DAO<Carte>{
+public class CarteDAO implements DAO<Carte>{
 
 	@Override
 	public Carte creer(Carte obj) {

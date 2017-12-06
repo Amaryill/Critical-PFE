@@ -4,34 +4,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.model.Model;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
-public class Univers extends Model {
+public class Univers {
 
 	/********************* ATTRIBUTS *************************/
-
+	
+	
 	String nomUnivers;
 	String description;
 	List<Campagne> campagnes;
 	Contenu contenu;
 	Regle regle;
+	Utilisateur user;
+	int id;
 
 	
+	
+
 	/******************* CONSTRUCTEURS ***********************/
 	
 	
-	public Univers(String nomUnivers, String description, List<Campagne> campagnes, Contenu contenu) {
-		this.nomUnivers = nomUnivers;
-		this.description = description;
-		this.campagnes = campagnes;
-		this.contenu = contenu;
+
+	public Utilisateur getUser() {
+		return user;
 	}
 
-	public Univers(String nomUnivers){
-		this(nomUnivers,"", new ArrayList<Campagne>(), new Contenu());
+	public void setUser(Utilisateur user) {
+		this.user = user;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public Univers(String nomUnivers, String description, Contenu contenu , Regle regle) {
+		this.nomUnivers = nomUnivers;
+		this.description = description;
+		this.contenu = contenu;
+		this.regle = regle;
 	}
 	
 
 	public Univers() {
+		this.contenu = new Contenu();
+		this.regle = new Regle();
 		// TODO Auto-generated constructor stub
 	}
 

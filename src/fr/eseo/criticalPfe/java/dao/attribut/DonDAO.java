@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.attributs.Don;
 
-public class DonDAO extends DAO<Don>{
+public class DonDAO implements DAO<Don>{
 
 	@Override
 	public Don creer(Don obj) {

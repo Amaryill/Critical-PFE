@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Classe;
 
-public class ClasseDAO extends DAO<Classe>{
+public class ClasseDAO implements DAO<Classe>{
 
 	@Override
 	public Classe creer(Classe obj) {

@@ -15,14 +15,14 @@ import fr.eseo.criticalPfe.java.model.scenario.Univers;
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/CreationUnivers")
-public class CreationUnivers extends HttpServlet {
+@WebServlet("/EditDescriptionUnivers")
+public class EditDescriptionUnivers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreationUnivers() {
+    public EditDescriptionUnivers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,15 @@ public class CreationUnivers extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		HttpSession session = request.getSession();
 		UniversBO universBO = new UniversBO();
-		String utilisateur = (String)session.getAttribute("utilisateur");
-		Univers univers = universBO.creationUnivers(utilisateur);
-		session.setAttribute("univers", univers);
-			
+		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
+		String nouvelleDescriptionUnivers = request.getParameter("my-textarea");
+		System.out.println(nouvelleDescriptionUnivers);
+		universBO.editDescriptionUnivers(idUnivers,nouvelleDescriptionUnivers);
+
 		response.sendRedirect("/Critical-PFE/AfficherUnivers");
+		
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

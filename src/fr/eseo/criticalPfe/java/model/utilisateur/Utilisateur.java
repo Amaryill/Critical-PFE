@@ -104,9 +104,9 @@ public class Utilisateur extends Model {
 		this.personnages.remove(getPersonnageParNom(nomPersonnage));
 	}
 
-	public void creerUnivers(String nomUnivers) {
-		this.listUnivers.add(new Univers(nomUnivers));
-	}
+//	public void creerUnivers(String nomUnivers) {
+//		this.listUnivers.add(new Univers(nomUnivers));
+//	}
 
 	public void supprimerUnivers(String nomUnivers) {
 		this.listUnivers.remove(getUniversParNom(nomUnivers));

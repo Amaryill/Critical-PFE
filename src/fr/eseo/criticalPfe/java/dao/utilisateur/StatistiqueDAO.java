@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.utilisateur.Statistique;
 
-public class StatistiqueDAO extends DAO<Statistique>{
+public class StatistiqueDAO implements DAO<Statistique>{
 
 	@Override
 	public Statistique creer(Statistique obj) {

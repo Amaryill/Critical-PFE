@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
 
-public class PersonnageDAO extends DAO<Personnage>{
+public class PersonnageDAO implements DAO<Personnage>{
 
 	@Override
 	public Personnage creer(Personnage obj) {
