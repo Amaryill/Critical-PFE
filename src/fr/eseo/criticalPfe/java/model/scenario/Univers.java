@@ -100,7 +100,4 @@ public class Univers {
 
 	/********************** METHODES *************************/
 
-	public void ajouterCampagne(String nomCampagne){
-		this.campagnes.add(new Campagne(nomCampagne));
-	}
 }

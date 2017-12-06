@@ -1,55 +1,91 @@
 package fr.eseo.criticalPfe.java.model.scenario;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import fr.eseo.criticalPfe.java.model.Model;
 import fr.eseo.criticalPfe.java.model.entite.PersonnageJoueur;
 
-public class Campagne extends Model {
+public class Campagne {
 
+	int id;
+	Univers univers;
 	String nomCampagne;
+	String description;
 	List<PersonnageJoueur> joueurs;
-	List<Chapitre> chapitres;
 	Contenu contenu;
+	Regle regle;
 
 	
-	public Campagne(String nomCampagne, List<PersonnageJoueur> joueurs, List<Chapitre> chapitres, Contenu contenu){
+	public Campagne(){
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public Univers getUnivers() {
+		return univers;
+	}
+
+
+	public void setUnivers(Univers univers) {
+		this.univers = univers;
+	}
+
+
+	public String getNomCampagne() {
+		return nomCampagne;
+	}
+
+
+	public void setNomCampagne(String nomCampagne) {
 		this.nomCampagne = nomCampagne;
-		this.joueurs = joueurs;
-		this.chapitres = chapitres;
-		this.contenu = contenu;
-	}
-	
-	public Campagne(String nomCampagne){
-		this(nomCampagne, new ArrayList<PersonnageJoueur>(), new ArrayList<Chapitre>(), new Contenu());
 	}
 
-	
-	
-	public List<PersonnageJoueur> getJoueur() {
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public List<PersonnageJoueur> getJoueurs() {
 		return joueurs;
 	}
 
-	public void setJoueur(List<PersonnageJoueur> joueurs) {
+
+	public void setJoueurs(List<PersonnageJoueur> joueurs) {
 		this.joueurs = joueurs;
 	}
 
-	public List<Chapitre> getChapitres() {
-		return chapitres;
-	}
-
-	public void setChapitres(List<Chapitre> chapitres) {
-		this.chapitres = chapitres;
-	}
 
 	public Contenu getContenu() {
 		return contenu;
 	}
 
+
 	public void setContenu(Contenu contenu) {
 		this.contenu = contenu;
 	}
-	
 
+
+	public Regle getRegle() {
+		return regle;
+	}
+
+
+	public void setRegle(Regle regle) {
+		this.regle = regle;
+	}
+	
 }
