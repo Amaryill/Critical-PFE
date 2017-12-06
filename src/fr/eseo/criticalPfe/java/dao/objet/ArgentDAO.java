@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.objet.Argent;
 
-public class ArgentDAO extends DAO<Argent>{
+public class ArgentDAO implements DAO<Argent>{
 
 	@Override
 	public Argent creer(Argent obj) {

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Caracteristique;
 
-public class CaracteristiqueDAO extends DAO<Caracteristique>{
+public class CaracteristiqueDAO implements DAO<Caracteristique>{
 
 	@Override
 	public Caracteristique creer(Caracteristique obj) {

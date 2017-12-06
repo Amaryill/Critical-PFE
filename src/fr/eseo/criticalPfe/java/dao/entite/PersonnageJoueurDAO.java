@@ -7,7 +7,7 @@ import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.PersonnageJoueur;
 
-public class PersonnageJoueurDAO extends DAO<PersonnageJoueur> {
+public class PersonnageJoueurDAO implements DAO<PersonnageJoueur> {
 
 	private final String REQUEST_CREER_PERSONNAGE = "INSERT INTO Personnage(Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux) VALUES ('?','?','?','?','?')";
 	
@@ -17,7 +17,7 @@ public class PersonnageJoueurDAO extends DAO<PersonnageJoueur> {
 		
 		try {
 			connexion.requestToDataBase(REQUEST_CREER_PERSONNAGE);
-			obj.setId(connexion.getLastId());
+			obj.setId(connexion.getLastId("Personnage"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

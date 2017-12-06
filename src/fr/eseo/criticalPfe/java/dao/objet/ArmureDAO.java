@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.objet.Armure;
 
-public class ArmureDAO extends DAO<Armure>{
+public class ArmureDAO implements DAO<Armure>{
 
 	@Override
 	public Armure creer(Armure obj) {

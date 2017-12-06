@@ -36,7 +36,7 @@ public class SuppressionUnivers extends HttpServlet {
 		UniversBO universBO = new UniversBO();
 		String utilisateur = (String)session.getAttribute("utilisateur");
 		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
-		universBO.supprimerUnivers(idUnivers, utilisateur);
+		universBO.supprimerUnivers(idUnivers);
 		
 		response.sendRedirect("/Critical-PFE/AffichageListeUnivers");
 		response.getWriter().append("Served at: ").append(request.getContextPath());

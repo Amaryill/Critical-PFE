@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.scenario.Campagne;
 
-public class CampagneDAO extends DAO<Campagne> {
+public class CampagneDAO implements DAO<Campagne> {
 
 	@Override
 	public Campagne creer(Campagne obj) {

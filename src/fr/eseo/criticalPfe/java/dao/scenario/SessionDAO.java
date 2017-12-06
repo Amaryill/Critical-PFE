@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.scenario.Session;
 
-public class SessionDAO extends DAO<Session>{
+public class SessionDAO implements DAO<Session>{
 
 	@Override
 	public Session creer(Session obj) {

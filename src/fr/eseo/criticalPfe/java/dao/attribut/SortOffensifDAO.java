@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.attributs.SortOffensif;
 
-public class SortOffensifDAO extends DAO<SortOffensif>{
+public class SortOffensifDAO implements DAO<SortOffensif>{
 
 	@Override
 	public SortOffensif creer(SortOffensif obj) {
