@@ -14,7 +14,8 @@ public class CompetenceDAOImpl implements CompetenceDAO {
     private CompetenceDAOImpl(){
     }
     
-    public static CompetenceDAOImpl getDAO(){
+    
+    public static synchronized CompetenceDAOImpl getDAO(){
         if(DAO == null){
             DAO = new CompetenceDAOImpl();
         }
@@ -41,7 +42,7 @@ public class CompetenceDAOImpl implements CompetenceDAO {
     public Competence creer (String nomCompetence, String nomCaracteristique, String formationNecessaire,
             String competenceDeClasse, String malusArmure, String niveauDeCompetence, String description) {
 
-        ConnexionBDD.getConnexion().requestToDataBase(
+        ConnexionBDD.getConnexionBDD().requestToDataBase(
                 "INSERT INTO `competence`(`Nom`, `CaracAssocie`, `FormationNecessaire`, `CompetenceClasse`, `MalusArmure`, `niveauComp`, `Description`) "
                         + "VALUES ('" + nomCompetence + "','" + nomCaracteristique + "', " + formationNecessaire + ", "
                         + competenceDeClasse + ", " + malusArmure + ", '" + niveauDeCompetence + "', '" + description
@@ -120,7 +121,7 @@ public class CompetenceDAOImpl implements CompetenceDAO {
     public Competence trouver (String nomCompetence) {
         String query = "SELECT `Nom`, `CaracAssocie`, `FormationNecessaire`, `CompetenceClasse`, `MalusArmure`, `niveauComp`, `Description` "
                 + "FROM `competence` WHERE nom = '" + nomCompetence + "';";
-        ResultSet rSet = ConnexionBDD.getConnexion().selectFromDataBase(query);
+        ResultSet rSet = ConnexionBDD.getConnexionBDD().selectFromDataBase(query);
 
         Competence newComp = null;
 
@@ -164,7 +165,7 @@ public class CompetenceDAOImpl implements CompetenceDAO {
         String query = "DELETE FROM `competence` " + "WHERE nom = '" + nomCompetence + "';";
 
         // Execution Requète
-        return ConnexionBDD.getConnexion().requestToDataBase(query);
+        return ConnexionBDD.getConnexionBDD().requestToDataBase(query);
     }
 
     @Override
