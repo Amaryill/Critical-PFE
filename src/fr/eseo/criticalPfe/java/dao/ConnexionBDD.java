@@ -19,13 +19,20 @@ public class ConnexionBDD {
 	private static final String BDD_DB = Messages.getString("database");
 
 	private static ConnexionBDD conn;
-	private Connection connection;
+	private static Connection connection;
 
 	private ConnexionBDD() {
 		this.connection = this.ouvrir();
 	}
 
-	public static ConnexionBDD getConnexion() {
+	public static Connection getConnexion() {
+		if (conn == null) {
+			conn = new ConnexionBDD();
+		}
+		return connection;
+	}
+	
+	public static ConnexionBDD getConnexionBDD() {
 		if (conn == null) {
 			conn = new ConnexionBDD();
 		}
@@ -89,10 +96,10 @@ public class ConnexionBDD {
 	}
 	
 
-	public Integer getLastId(String table) throws SQLException{
+	public static Integer getLastId(String table) throws SQLException{
 		Integer id = null;
 		// TODO Rajouter from table
-		ResultSet result = this.selectFromDataBase("SELECT `Id` FROM "+table+" WHERE id = (SELECT max(id) FROM "+table+")");
+		ResultSet result = conn.selectFromDataBase("SELECT `Id` FROM "+table+" WHERE id = (SELECT max(id) FROM "+table+")");
 		
 		while(result.next()){
 			id = result.getInt(1);
