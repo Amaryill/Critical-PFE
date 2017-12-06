@@ -33,9 +33,9 @@ public class EditDescriptionUnivers extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		UniversBO universBO = new UniversBO();
-		System.out.println(request.getParameter("idUnivers"));
 		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
 		String nouvelleDescriptionUnivers = request.getParameter("my-textarea");
+		System.out.println(nouvelleDescriptionUnivers);
 		universBO.editDescriptionUnivers(idUnivers,nouvelleDescriptionUnivers);
 
 		response.sendRedirect("/Critical-PFE/AfficherUnivers");

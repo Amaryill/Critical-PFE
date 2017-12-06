@@ -37,9 +37,8 @@ public class CreationUnivers extends HttpServlet {
 		UniversBO universBO = new UniversBO();
 		String utilisateur = (String)session.getAttribute("utilisateur");
 		Univers univers = universBO.creationUnivers(utilisateur);
-		session.setAttribute("idUnivers", univers.getId());
-		
-		//List<Univers> listeUnivers = universBO.getListeUnivers(utilisateur);		
+		session.setAttribute("univers", univers);
+			
 		response.sendRedirect("/Critical-PFE/AfficherUnivers");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

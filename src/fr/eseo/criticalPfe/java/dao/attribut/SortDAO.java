@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.attributs.Sort;
 
-public class SortDAO extends DAO<Sort>{
+public class SortDAO implements DAO<Sort>{
 
 	@Override
 	public Sort creer(Sort obj) {

@@ -41,7 +41,7 @@
 					%>
 					
 					<form class="form-horizontal" method="post" action="/Critical-PFE/AfficherUnivers">
-						<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId() %>>
+						<input type="hidden" name="idUnivers" id="idUnivers" value = <%=univers.getId()%>>
 						<div class="form-group">
 							<div class="col-xs-3 col-xs-offset-1">
 								<button class="btn btn-theme btn-block" type="submit" id="submit_Creer univers" value="Creer"><%=univers.getNomUnivers() %></button>

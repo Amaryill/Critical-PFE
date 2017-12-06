@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
-public class UtilisateurDAO extends DAO<Utilisateur>{
+public class UtilisateurDAO implements DAO<Utilisateur>{
 
 	@Override
 	public Utilisateur creer(Utilisateur obj) {

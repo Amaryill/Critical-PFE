@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.objet.Inventaire;
 
-public class InventaireDAO extends DAO<Inventaire>{
+public class InventaireDAO implements DAO<Inventaire>{
 
 	@Override
 	public Inventaire creer(Inventaire obj) {

@@ -89,10 +89,10 @@ public class ConnexionBDD {
 	}
 	
 
-	public Integer getLastId() throws SQLException{
+	public Integer getLastId(String table) throws SQLException{
 		Integer id = null;
 		// TODO Rajouter from table
-		ResultSet result = this.selectFromDataBase(GET_LAST_ID);
+		ResultSet result = this.selectFromDataBase("SELECT `Id` FROM "+table+" WHERE id = (SELECT max(id) FROM "+table+")");
 		
 		while(result.next()){
 			id = result.getInt(1);

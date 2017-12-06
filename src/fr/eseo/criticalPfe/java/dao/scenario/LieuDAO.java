@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.scenario.Lieu;
 
-public class LieuDAO extends DAO<Lieu>{
+public class LieuDAO implements DAO<Lieu>{
 
 	@Override
 	public Lieu creer(Lieu obj) {

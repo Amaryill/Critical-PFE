@@ -36,7 +36,6 @@ public class AfficherUnivers extends HttpServlet {
 		HttpSession session = request.getSession();
 		UniversBO universBO = new UniversBO();
 		int idUnivers;
-
 		if(request.getParameter("idUnivers")!=null){
 			idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
 		}else{
