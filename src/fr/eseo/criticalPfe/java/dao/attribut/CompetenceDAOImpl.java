@@ -8,7 +8,19 @@ import fr.eseo.criticalPfe.java.model.attributs.Competence;
 import fr.eseo.criticalPfe.java.utils.Log;
 
 public class CompetenceDAOImpl implements CompetenceDAO {
-
+    
+    private static CompetenceDAOImpl DAO;
+    
+    private CompetenceDAOImpl(){
+    }
+    
+    public static CompetenceDAOImpl getDAO(){
+        if(DAO == null){
+            DAO = new CompetenceDAOImpl();
+        }
+        return DAO;
+    }
+    
     public String nullToString (String s) {
         if (s == null) {
             return "";
@@ -50,47 +62,47 @@ public class CompetenceDAOImpl implements CompetenceDAO {
             String competenceDeClasse, String malusArmure, String niveauDeCompetence, String description) {
         boolean elementPrecedent = false;
         String query = "UPDATE `competence` " + "SET ";
-        if(nomCaracteristique != null){
+        if (nomCaracteristique != null) {
             query += "`CaracAssocie` = '" + nomCaracteristique + "' ";
             elementPrecedent = true;
         }
-        if(formationNecessaire != null){
-            if(elementPrecedent){
+        if (formationNecessaire != null) {
+            if (elementPrecedent) {
                 query += ", ";
             }
             elementPrecedent = true;
             query += "`FormationNecessaire` = " + formationNecessaire + " ";
         }
-        if(competenceDeClasse != null){
-            if(elementPrecedent){
+        if (competenceDeClasse != null) {
+            if (elementPrecedent) {
                 query += ", ";
             }
             elementPrecedent = true;
             query += "`CompetenceClasse` = " + competenceDeClasse + " ";
         }
-        if(malusArmure != null){
-            if(elementPrecedent){
+        if (malusArmure != null) {
+            if (elementPrecedent) {
                 query += ", ";
             }
             elementPrecedent = true;
             query += "`MalusArmure` = " + malusArmure + " ";
         }
-        if(niveauDeCompetence != null){
-            if(elementPrecedent){
+        if (niveauDeCompetence != null) {
+            if (elementPrecedent) {
                 query += ", ";
             }
             elementPrecedent = true;
             query += "`niveauComp` = '" + niveauDeCompetence + "' ";
         }
-        if(description != null){
-            if(elementPrecedent){
+        if (description != null) {
+            if (elementPrecedent) {
                 query += ", ";
             }
             elementPrecedent = true;
             query += "`Description` = '" + description + "' ";
         }
-        query += "WHERE `Nom` = '" + nomCompetence + "' ;" ;
-        
+        query += "WHERE `Nom` = '" + nomCompetence + "' ;";
+
         // Execution Requète
         ConnexionBDD.getConnexion().requestToDataBase(query);
 
@@ -99,36 +111,25 @@ public class CompetenceDAOImpl implements CompetenceDAO {
 
     @Override
     public Competence modifier (Competence comp) {
-        // TODO Auto-generated method stub
-        return null;
+        return modifier(comp.getNom(), comp.getCaracAssociee(), String.valueOf(comp.isFormationNecessaire()),
+                String.valueOf(comp.isCompetenceDeClasse()), String.valueOf(comp.isMalusArmure()),
+                String.valueOf(comp.getNiveauCompetence()), comp.getDescription());
     }
-    
+
     @Override
     public Competence trouver (String nomCompetence) {
+        String query = "SELECT `Nom`, `CaracAssocie`, `FormationNecessaire`, `CompetenceClasse`, `MalusArmure`, `niveauComp`, `Description` "
+                + "FROM `competence` WHERE nom = '" + nomCompetence + "';";
+        ResultSet rSet = ConnexionBDD.getConnexion().selectFromDataBase(query);
 
-        Competence newCompetence = null;
+        Competence newComp = null;
 
-        ResultSet rSet = ConnexionBDD.getConnexion().selectFromDataBase(
-                "SELECT `Nom`, `CaracAssocie`, `FormationNecessaire`, `CompetenceClasse`, `MalusArmure`, `niveauComp`, `Description` "
-                        + "FROM `competence` WHERE nom = '" + nomCompetence + "';");
         try {
-            if (rSet.next()) {
-                String nomComp = rSet.getString("Nom");
-                String nomCar = rSet.getString("CaracAssocie");
-                String formationNec = nullToString(rSet.getString("formationNecessaire"));
-                String competenceClasse = nullToString(rSet.getString("competenceClasse"));
-                String malusArm = nullToString(rSet.getString("malusArmure"));
-                String niveauComp = nullStringToInt(rSet.getString("niveauComp"));
-                String descri = nullToString(rSet.getString("description"));
-
-                newCompetence = new Competence(nomComp, nomCar, formationNec, competenceClasse, malusArm, niveauComp,
-                        descri);
-            }
+            newComp = map(rSet);
         } catch (SQLException e) {
             Log.warning(e.toString());
         }
-
-        return newCompetence;
+        return newComp;
     }
 
     @Override
@@ -138,27 +139,37 @@ public class CompetenceDAOImpl implements CompetenceDAO {
 
     @Override
     public Competence map (ResultSet result) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        Competence newCompetence = null;
+        try {
+            if (result.next()) {
+                String nomComp = result.getString("Nom");
+                String nomCar = result.getString("CaracAssocie");
+                String formationNec = nullToString(result.getString("formationNecessaire"));
+                String competenceClasse = nullToString(result.getString("competenceClasse"));
+                String malusArm = nullToString(result.getString("malusArmure"));
+                String niveauComp = nullStringToInt(result.getString("niveauComp"));
+                String descri = nullToString(result.getString("description"));
+
+                newCompetence = new Competence(nomComp, nomCar, formationNec, competenceClasse, malusArm, niveauComp,
+                        descri);
+            }
+        } catch (SQLException e) {
+            Log.warning(e.toString());
+        }
+        return newCompetence;
     }
-    
+
     @Override
-    public Competence supprimer (String nomCompetence) {
-        Competence comp = supprimer(nomCompetence);
-        String query = "DELETE FROM `competence` "
-                + "WHERE nom = '" + nomCompetence + "';";
-        
-         // Execution Requète
-            ConnexionBDD.getConnexion().requestToDataBase(query);
-        
-        
-        return comp;
+    public boolean supprimer (String nomCompetence) {
+        String query = "DELETE FROM `competence` " + "WHERE nom = '" + nomCompetence + "';";
+
+        // Execution Requète
+        return ConnexionBDD.getConnexion().requestToDataBase(query);
     }
 
     @Override
     public boolean supprimer (Competence obj) {
-        // TODO Auto-generated method stub
-        return false;
+        return supprimer(obj.getNom());
     }
 
 }

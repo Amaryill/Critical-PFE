@@ -8,6 +8,8 @@ import fr.eseo.criticalPfe.java.model.attributs.Competence;
 
 public interface CompetenceDAO extends DAO<Competence>{
     
+    
+    
     /**
      * Insère une compétence en BDD selon les paramètres donnés.
      * @param nomCompetence le nom de la compétence
@@ -42,7 +44,7 @@ public interface CompetenceDAO extends DAO<Competence>{
      * @param nomCompetence le nom de la compétence
      * @return la compétence à supprimer, le cas échéant
      */
-    public Competence supprimer(String nomCompetence);
+    public boolean supprimer(String nomCompetence);
     
     /**
      * Transforme un ResultSet en Competence.
