@@ -69,12 +69,15 @@ public class ConnexionBDD {
 		return rset;
 	}
 
-	public void requestToDataBase(String insert){
-		try {
-			this.connection.createStatement().execute(insert);
+	public boolean requestToDataBase(String insert){
+		boolean result = false;
+	    try {
+			result = this.connection.createStatement().execute(insert);
+			result = true;
 		} catch (SQLException e) {
 			Log.warning(e.toString());
 		}
+	    return result;
 	}
 
 	public void closeRequestToDataBase() throws SQLException {
