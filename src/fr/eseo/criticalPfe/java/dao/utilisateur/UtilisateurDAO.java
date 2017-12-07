@@ -15,7 +15,7 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 	private final String REQUEST_ADD = "INSERT INTO Utilisateur(Pseudo, Login, Password, Mail, presentation) VALUES (?,?,?,?,?)";
 	private final String REQUEST_DLT = "DELETE FROM Utilisateur WHERE login=?";
 	private final String REQUEST_UPD = "UPDATE Utilisateur SET Pseudo=?, Login=?, Password=?, Mail=?, presentation=? WHERE Login=?";
-	private final String REQUEST_SLT = "SELECT Pseudo, Login, Password, Mail, presentation FROM Race WHERE";
+	private final String REQUEST_SLT = "SELECT Pseudo, Login, Password, Mail, presentation FROM Utilisateur WHERE";
 	private final String REQUEST_CON = "SELECT Password FROM Utilisateur WHERE Login=?";
 	private final String CLAUSE_ID = " Login=?";
 	
@@ -119,6 +119,7 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 			preparedStatement.setString(3, obj.getPassword());
 			preparedStatement.setString(4, obj.getMail());
 			preparedStatement.setString(5, obj.getPresentation());
+			preparedStatement.setString(6, obj.getLogin());
 			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

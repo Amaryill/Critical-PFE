@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.criticalPfe.bdd.BddBo;
+import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
+import fr.eseo.criticalPfe.java.dao.utilisateur.UtilisateurDAO;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 /**
  * Servlet implementation class ModifPseudo
@@ -46,26 +49,58 @@ public class ModifPseudo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BddBo bddBo = new BddBo();
-		Boolean erreur = false;
-		String msgErreur = "";
-		
 		HttpSession session = request.getSession();
-
+		UtilisateurBOImpl boUtilisateur = null;
+		Utilisateur utilisateur = null;
+		
 		String pseudo_ancien = (String) request.getParameter("pseudo_ancien");
 		String pseudo_nouveau = (String) request.getParameter("pseudo_nouveau");
-		String pseudo_session = (String)request.getSession().getAttribute("utilisateur");
+		String pseudo_session = (String) request.getSession().getAttribute("utilisateur");
 		
 		if (pseudo_session.contentEquals(pseudo_ancien)){
-			bddBo.modifPseudo(pseudo_ancien, pseudo_nouveau);
+			boUtilisateur = new UtilisateurBOImpl(new UtilisateurDAO());
+			utilisateur = new Utilisateur();
+			utilisateur.setLogin((String) session.getAttribute("utilisateur"));
+			utilisateur = boUtilisateur.pullUtilisateur(utilisateur);
+			
+			utilisateur.setPseudo(pseudo_nouveau);
+			
+			boUtilisateur.modifUtilisateur(utilisateur);
+			
 			session.setAttribute(ATT_SESSION_USER, pseudo_nouveau);
 			session.setAttribute(ATT_USER, pseudo_nouveau);
+			
 			response.sendRedirect("/Critical-PFE/site/options.jsp");
 		} else {
 			response.sendRedirect("/Critical-PFE/site/options.jsp");
 		}
-		
-		doGet(request, response);
 	}
+	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		BddBo bddBo = new BddBo();
+//		Boolean erreur = false;
+//		String msgErreur = "";
+//		
+//		HttpSession session = request.getSession();
+//
+//		String pseudo_ancien = (String) request.getParameter("pseudo_ancien");
+//		String pseudo_nouveau = (String) request.getParameter("pseudo_nouveau");
+//		String pseudo_session = (String)request.getSession().getAttribute("utilisateur");
+//		
+//		if (pseudo_session.contentEquals(pseudo_ancien)){
+//			bddBo.modifPseudo(pseudo_ancien, pseudo_nouveau);
+//			session.setAttribute(ATT_SESSION_USER, pseudo_nouveau);
+//			session.setAttribute(ATT_USER, pseudo_nouveau);
+//			response.sendRedirect("/Critical-PFE/site/options.jsp");
+//		} else {
+//			response.sendRedirect("/Critical-PFE/site/options.jsp");
+//		}
+//		
+//		doGet(request, response);
+//	}
 
 }
