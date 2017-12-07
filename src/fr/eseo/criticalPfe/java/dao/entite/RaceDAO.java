@@ -1,41 +1,115 @@
 package fr.eseo.criticalPfe.java.dao.entite;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Race;
 
-public class RaceDAO implements DAO<Race>{
+public class RaceDAO implements DAO<Race> {
 
-	@Override
+	// TODO Changer Table par le nom de la Univers
+	private final String REQUEST_ADD = "INSERT INTO Race(nom, Description, Taille, Vitesse) VALUES (?,?,?,?)";
+	private final String REQUEST_DLT = "DELETE FROM Race WHERE nom=?";
+	private final String REQUEST_UPD = "UPDATE Race SET nom=?, Description=?, Taille=?, Vitesse=? WHERE nom=?";
+	private final String REQUEST_SLT = "SELECT nom, Description, Taille, Vitesse FROM Race WHERE";
+	private final String CLAUSE_ID = " nom=?";
+
 	public Race creer(Race obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_ADD);
+
+			preparedStatement.setString(1, obj.getNom());
+			preparedStatement.setString(2, obj.getDescription());
+			preparedStatement.setString(3, obj.getTaille());
+			preparedStatement.setInt(4, obj.getVitesse());
+			
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return obj;
 	}
 
 	@Override
 	public boolean supprimer(Race obj) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_DLT);
+			preparedStatement.setString(1, obj.getNom());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public Race trouver(Race obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
+			preparedStatement.setString(1, obj.getNom());
+
+			ResultSet result = preparedStatement.executeQuery();
+			if (result.next()) {
+				obj = map(result);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return obj;
 	}
 
 	@Override
 	public Race modifier(Race obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_UPD);
+
+			preparedStatement.setString(1, obj.getNom());
+			preparedStatement.setString(2, obj.getDescription());
+			preparedStatement.setString(3, obj.getTaille());
+			preparedStatement.setInt(4, obj.getVitesse());
+			preparedStatement.setString(5, obj.getNom());
+			
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return obj;
 	}
 
 	@Override
 	public Race map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Race race = new Race();
 
+		race.setNom(result.getString("nom"));
+		race.setDescription(result.getString("Description"));
+		race.setTaille(result.getString("Taille"));
+		race.setVitesse(result.getInt("vitesse"));
+
+		return race;
+
+	}
 }

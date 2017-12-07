@@ -1,41 +1,119 @@
 package fr.eseo.criticalPfe.java.dao.entite;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Classe;
 
 public class ClasseDAO implements DAO<Classe>{
 
-	@Override
-	public Classe creer(Classe obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	// TODO Changer Table par le nom de la Univers
+		private final String REQUEST_ADD = "INSERT INTO Classe(Nom, deDeVie, alignementPossible, ptsCompParNiveau, Description) VALUES (?,?,?,?)";
+		private final String REQUEST_DLT = "DELETE FROM Classe WHERE Nom=?";
+		private final String REQUEST_UPD = "UPDATE Classe SET Nom=?, deDeVie=?, alignementPossible=?, ptsCompParNiveau=?, Description=? WHERE Nom=?";
+		private final String REQUEST_SLT = "SELECT Nom, deDeVie, alignementPossible, ptsCompParNiveau, Description FROM Classe WHERE";
+		private final String CLAUSE_ID = " Nom=?";
 
-	@Override
-	public boolean supprimer(Classe obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		public Classe creer(Classe obj) {
+			Connection connexion = null;
+			PreparedStatement preparedStatement = null;
 
-	@Override
-	public Classe trouver(Classe obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+			try {
+				connexion = ConnexionBDD.getConnexion();
+				preparedStatement = connexion.prepareStatement(REQUEST_ADD);
 
-	@Override
-	public Classe modifier(Classe Obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+				preparedStatement.setString(1, obj.getNom());
+				preparedStatement.setInt(2, obj.getDeDeVie());
+				preparedStatement.setString(3, obj.getAlignement());
+				preparedStatement.setInt(4, obj.getPointCompetenceNiveau());
+				preparedStatement.setString(5, obj.getDescription());
 
-	@Override
-	public Classe map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+				preparedStatement.executeUpdate();
 
-}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+			return obj;
+		}
+
+		@Override
+		public boolean supprimer(Classe obj) {
+			Connection connexion = null;
+			PreparedStatement preparedStatement = null;
+
+			try {
+				connexion = ConnexionBDD.getConnexion();
+				preparedStatement = connexion.prepareStatement(REQUEST_DLT);
+				preparedStatement.setInt(1, obj.getId());
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+		}
+
+		@Override
+		public Classe trouver(Classe obj) {
+			Connection connexion = null;
+			PreparedStatement preparedStatement = null;
+
+			try {
+				connexion = ConnexionBDD.getConnexion();
+				preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
+				preparedStatement.setString(1, obj.getNom());
+
+				ResultSet result = preparedStatement.executeQuery();
+				if (result.next()) {
+					obj = map(result);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+			return obj;
+		}
+
+		@Override
+		public Classe modifier(Classe obj) {
+			Connection connexion = null;
+			PreparedStatement preparedStatement = null;
+
+			try {
+				connexion = ConnexionBDD.getConnexion();
+				preparedStatement = connexion.prepareStatement(REQUEST_UPD);
+				
+				preparedStatement.setString(1, obj.getNom());
+				preparedStatement.setInt(2, obj.getDeDeVie());
+				preparedStatement.setString(3, obj.getAlignement());
+				preparedStatement.setInt(4, obj.getPointCompetenceNiveau());
+				preparedStatement.setString(5, obj.getDescription());
+				preparedStatement.setString(6, obj.getNom());
+
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+			return obj;
+		}
+
+		@Override
+		public Classe map(ResultSet result) throws SQLException {
+			Classe race = new Classe();
+
+			race.setNom(result.getString("Nom"));
+			race.setDeDeVie(result.getInt("deDeVie"));
+			race.setAlignement(result.getString("alignementPossible"));
+			race.setPointCompetenceNiveau(result.getInt("ptsCompParNiveau"));
+			race.setDescription(result.getString("Description"));
+
+			return race;
+
+		}
+	}

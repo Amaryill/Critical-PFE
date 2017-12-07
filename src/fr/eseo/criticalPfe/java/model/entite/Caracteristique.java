@@ -90,6 +90,10 @@ public class Caracteristique extends Model {
 		this.bad = bba + modificateurs.get("dex") + Outils.getModificateurTaille(race.getTaille());
 	}
 
+	public Caracteristique() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/************** ACCESSEURS ET MUTATEURS ******************/
 
 	public HashMap<String, Integer> getCaracs() {

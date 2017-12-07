@@ -1,41 +1,140 @@
 package fr.eseo.criticalPfe.java.dao.entite;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
+import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
-public class PersonnageDAO implements DAO<Personnage>{
+public class PersonnageDAO implements DAO<Personnage> {
 
-	@Override
+	// TODO Changer Table par le nom de la Univers
+	private final String REQUEST_ADD = "INSERT INTO Personnage(Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entite) VALUES (?,?,?,?,?,?,?,?,?,?,?)"; // TODO
+	private final String REQUEST_DLT = "DELETE FROM Personnage WHERE Id=?";
+	private final String REQUEST_UPD = "UPDATE Personnage SET Alignement=?, Dieu=?, Sexe=?, CouleurYeux=?, CouleurCheveux=?, taille=?, poids=?, age=?, nom=?, Id_Compendium=?, Id_Entite=? WHERE id=?"; // TODO
+	private final String REQUEST_SLT = "SELECT Id, Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entite FROM Personnage WHERE";
+	private final String CLAUSE_ID = " id=?";
+
 	public Personnage creer(Personnage obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_ADD);
+
+			// TODO PraparedStatement
+			preparedStatement.setString(1, obj.getAlignement());
+			preparedStatement.setString(2, obj.getDieu());
+			preparedStatement.setString(3, obj.getSexe());
+			preparedStatement.setString(4, obj.getCouleurYeux());
+			preparedStatement.setString(5, obj.getCouleurCheveux());
+			preparedStatement.setInt(6, obj.getTaille());
+			preparedStatement.setInt(7, obj.getPoids());
+			preparedStatement.setInt(8, obj.getAge());
+			preparedStatement.setString(9, obj.getNom());
+			preparedStatement.setInt(10, obj.getCompendium().getId());
+			preparedStatement.setInt(11, obj.getIdEntitee());
+			System.out.println(preparedStatement);
+
+			preparedStatement.executeUpdate();
+
+			obj.setId(ConnexionBDD.getLastId("Personnage"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return obj;
 	}
 
 	@Override
 	public boolean supprimer(Personnage obj) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_DLT);
+			preparedStatement.setInt(1, obj.getId());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public Personnage trouver(Personnage obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
+			preparedStatement.setInt(1, obj.getId());
+
+			ResultSet result = preparedStatement.executeQuery();
+			if (result.next()) {
+				obj = map(result);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return obj;
 	}
 
 	@Override
 	public Personnage modifier(Personnage obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_UPD);
+			// TODO mappage des changements
+			preparedStatement.setString(1, obj.getAlignement());
+			preparedStatement.setString(2, obj.getDieu());
+			preparedStatement.setString(3, obj.getSexe());
+			preparedStatement.setString(4, obj.getCouleurYeux());
+			preparedStatement.setString(5, obj.getCouleurCheveux());
+			preparedStatement.setInt(6, obj.getTaille());
+			preparedStatement.setInt(7, obj.getPoids());
+			preparedStatement.setInt(8, obj.getAge());
+			preparedStatement.setString(9, obj.getNom());
+			preparedStatement.setInt(10, obj.getCompendium().getId());
+			preparedStatement.setInt(11, obj.getIdEntitee());
+			preparedStatement.setInt(12, obj.getId());
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return obj;
 	}
 
 	@Override
 	public Personnage map(ResultSet result) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Personnage personnage = new Personnage();
 
+		// TODO : mappage
+		personnage.setId(result.getInt("Id"));
+		personnage.setAlignement(result.getString("Alignement"));
+		personnage.setDieu(result.getString("Dieu"));
+		personnage.setSexe(result.getString("Sexe"));
+		personnage.setCouleurYeux(result.getString("CouleurYeux"));
+		personnage.setCouleurCheveux(result.getString("CouleurCheveux"));
+		personnage.setTaille(result.getInt("taille"));
+		personnage.setNom(result.getString("nom"));
+		personnage.getCompendium().setId(result.getInt("Id_Compendium"));
+		personnage.setIdEntitee(result.getInt("Id_Entitee"));
+		
+		return personnage;
+	}
 }

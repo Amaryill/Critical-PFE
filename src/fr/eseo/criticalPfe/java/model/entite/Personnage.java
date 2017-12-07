@@ -3,6 +3,8 @@ package fr.eseo.criticalPfe.java.model.entite;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.model.attributs.Compendium;
+
 public class Personnage extends Entitee {
 
 	String nom;
@@ -11,31 +13,20 @@ public class Personnage extends Entitee {
 	Race race;
 	String alignement;
 	String dieu;
-	String sex;
+	String sexe;
 	String couleurYeux;
 	String couleurCheveux;
 
+	Compendium compendium;
 	int niveauPersonnage;
 
 	int taille;
 	int age;
 	int poids;
 
-	public Personnage(String nom, List<Classe> classes, Race race, HashMap<String, Integer> caracs, String alignement,
-			String dieu, String sex, String couleurYeux, String couleurCheveux, int taille, int age, int poids) {
-		this.nom = nom;
-		this.classes = classes;
-		this.race = race;
-		this.caracteristique = new Caracteristique(caracs, classes, race);
-		this.alignement = alignement;
-		this.dieu = dieu;
-		this.sex = sex;
-		this.couleurYeux = couleurYeux;
-		this.couleurCheveux = couleurCheveux;
-		this.niveauPersonnage = 1;
-		this.taille = taille;
-		this.age = age;
-		this.poids = poids;
+
+	public Personnage() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getNom() {
@@ -78,12 +69,12 @@ public class Personnage extends Entitee {
 		this.dieu = dieu;
 	}
 
-	public String getSex() {
-		return sex;
+	public String getSexe() {
+		return sexe;
 	}
 
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
 	}
 
 	public String getCouleurYeux() {
@@ -133,5 +124,15 @@ public class Personnage extends Entitee {
 	public void setPoids(int poids) {
 		this.poids = poids;
 	}
+
+	public Compendium getCompendium() {
+		return compendium;
+	}
+
+	public void setCompendium(Compendium compendium) {
+		this.compendium = compendium;
+	}
+	
+	
 
 }

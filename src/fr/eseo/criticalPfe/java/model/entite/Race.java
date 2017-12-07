@@ -22,6 +22,10 @@ public class Race extends Model {
 		this.taille = taille;
 	}
 
+	public Race() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/************** ACCESSEURS ET MUTATEURS ******************/
 
 	public String getNom() {

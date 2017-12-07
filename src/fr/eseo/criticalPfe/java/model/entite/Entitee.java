@@ -11,16 +11,28 @@ import fr.eseo.criticalPfe.java.utils.Image;
 
 public abstract class Entitee extends Model {
 
+	Integer idEntitee;
+	
+
+
+	String nom;
+	
 	Caracteristique caracteristique;
 	List<Competence> comptence;
 	List<Don> dons;
 	List<Sort> sorts;
-	List<String> langues;
+	String langues;
 	Inventaire inventaire;	
 	
 	double facteurPuissance;
 	
-	Image image; // Peut être une liste si on veut pouvoir mettre plusieurs image d'une entitée importante ?
+	public Integer getIdEntitee() {
+		return idEntitee;
+	}
+
+	public void setIdEntitee(Integer idEntitee) {
+		this.idEntitee = idEntitee;
+	}
 
 	public Caracteristique getCaracteristique() {
 		return caracteristique;
@@ -54,12 +66,20 @@ public abstract class Entitee extends Model {
 		this.sorts = sorts;
 	}
 
-	public List<String> getLangues() {
+	public String getLangues() {
 		return langues;
 	}
 
-	public void setLangues(List<String> langues) {
+	public void setLangues(String langues) {
 		this.langues = langues;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public Inventaire getInventaire() {
@@ -77,16 +97,5 @@ public abstract class Entitee extends Model {
 	public void setFacteurPuissance(double facteurPuissance) {
 		this.facteurPuissance = facteurPuissance;
 	}
-
-	public Image getImage() {
-		return image;
-	}
-
-	public void setImage(Image image) {
-		this.image = image;
-	}
-
-
-	
 }
 	

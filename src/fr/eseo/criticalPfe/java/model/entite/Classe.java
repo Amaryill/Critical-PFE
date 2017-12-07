@@ -39,6 +39,11 @@ public class Classe extends Model {
 	}
 
 	
+	public Classe() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/************** ACCESSEURS ET MUTATEURS ******************/
 	
 	public String getNom() {

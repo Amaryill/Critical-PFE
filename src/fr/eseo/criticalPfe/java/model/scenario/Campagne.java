@@ -2,7 +2,7 @@ package fr.eseo.criticalPfe.java.model.scenario;
 
 import java.util.List;
 
-import fr.eseo.criticalPfe.java.model.entite.PersonnageJoueur;
+import fr.eseo.criticalPfe.java.model.entite.Personnage;
 
 public class Campagne {
 
@@ -10,7 +10,7 @@ public class Campagne {
 	Univers univers;
 	String nomCampagne;
 	String description;
-	List<PersonnageJoueur> joueurs;
+	List<Personnage> joueurs;
 	Contenu contenu;
 	Regle regle;
 
@@ -59,12 +59,12 @@ public class Campagne {
 	}
 
 
-	public List<PersonnageJoueur> getJoueurs() {
+	public List<Personnage> getJoueurs() {
 		return joueurs;
 	}
 
 
-	public void setJoueurs(List<PersonnageJoueur> joueurs) {
+	public void setJoueurs(List<Personnage> joueurs) {
 		this.joueurs = joueurs;
 	}
 
