@@ -25,6 +25,7 @@ public class ConnexionServlet extends HttpServlet {
 	public static final String ATT_USER         = "utilisateur";
     public static final String ATT_FORM         = "form";
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
+    public static final String ATT_PRES         = "presentation";
 	  
     /**
      * @see HttpServlet#HttpServlet()
@@ -55,31 +56,42 @@ public class ConnexionServlet extends HttpServlet {
 		String userLogin = null;
 		String userPassword = null;
 		String mail = null;
+		String presentation = null;
 		
 		userLogin = (String)request.getParameter("login");
 		userPassword = (String) request.getParameter("mdp");
-		
-		String[] result = bddBo.getUser(userLogin, userPassword);
-		
-		if (result[0] != null){
-			userLogin = result[0];
-			userPassword = result[1];
-			mail = result[2];
-			//attribution des variables session
-			session.setAttribute(ATT_SESSION_USER, userLogin);
-			session.setAttribute(ATT_USER, userLogin);
-
-			response.sendRedirect("site/index.jsp");
-		
-		} else {//si l'utilisateur n'est pas valide
-			session.invalidate();
-			erreur = true;
-			msgErreur ="Utilisateur invalide";
-			response.sendRedirect("login.jsp");
+		try {
+			String[] result = bddBo.getUser(userLogin, userPassword);
+			result[3]= bddBo.getPres(userLogin);
+			if (result[0] != null){
+				userLogin = result[0];
+				userPassword = result[1];
+				mail = result[2];
+				presentation = result[3];
+				
+				//attribution des variables session
+				session.setAttribute(ATT_SESSION_USER, userLogin);
+				session.setAttribute(ATT_USER, userLogin);
+				session.setAttribute(ATT_PRES, presentation);
+				
+				
+				response.sendRedirect("site/index.jsp");
+			
+			} else {//si l'utilisateur n'est pas valide
+				session.invalidate();
+				erreur = true;
+				msgErreur ="Utilisateur invalide";
+				response.sendRedirect("login.jsp");
+			}
+			
+			bddBo.close();
+			doGet(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		bddBo.close();
-		doGet(request, response);
+		
 
 		
 	}

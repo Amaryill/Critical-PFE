@@ -119,6 +119,17 @@ public class BddBo {
 		return mdpBdd;
 	}
 	
+	public String getPres (String login) throws SQLException{
+		String presBdd="";
+		String getPres = "select presentation from utilisateur where login='"+login+"';";
+		this.bdd.prepareStmt(getPres);
+		ResultSet resultatPresBdd = this.bdd.executePrep();
+		while(resultatPresBdd.next()){
+			presBdd=resultatPresBdd.getString("presentation");
+		}
+		return presBdd;
+	}
+	
 	public void modifPseudo (String pseudo_ancien, String pseudo_nouveau){
 		String  updatePseudo = "update "+TABLE_UTILISATEUR+" set pseudo='"+pseudo_nouveau+"' where pseudo='"+pseudo_ancien+"';";
 		this.bdd.prepareStmt(updatePseudo);
@@ -129,6 +140,12 @@ public class BddBo {
 		
 		String  updateMdp = "update "+TABLE_UTILISATEUR+" set password='"+mdp_nouveau+"' where login='"+login+"';";
 		this.bdd.prepareStmt(updateMdp);
+		ResultSet rset = this.bdd.executePrep();
+	}
+	
+	public void modifPres (String login, String presentation){
+		String updatePres = "update "+TABLE_UTILISATEUR+" set presentation='"+presentation+"' where login='"+login+"';";
+		this.bdd.prepareStmt(updatePres);
 		ResultSet rset = this.bdd.executePrep();
 	}
 	
