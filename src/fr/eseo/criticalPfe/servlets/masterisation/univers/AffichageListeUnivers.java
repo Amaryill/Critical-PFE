@@ -1,6 +1,7 @@
-package fr.eseo.criticalPfe.servlets.masterisation;
+package fr.eseo.criticalPfe.servlets.masterisation.univers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.java.bo.scenario.UniversBO;
+import fr.eseo.criticalPfe.java.bo.scenario.UniversBOImpl;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/EditDescriptionUnivers")
-public class EditDescriptionUnivers extends HttpServlet {
+@WebServlet("/AffichageListeUnivers")
+public class AffichageListeUnivers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditDescriptionUnivers() {
+    public AffichageListeUnivers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +33,14 @@ public class EditDescriptionUnivers extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		UniversBO universBO = new UniversBO();
-		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
-		String nouvelleDescriptionUnivers = request.getParameter("my-textarea");
-		universBO.editDescriptionUnivers(idUnivers,nouvelleDescriptionUnivers);
-
-		response.sendRedirect("/Critical-PFE/AfficherUnivers");
 		
+		HttpSession session = request.getSession();
+		UniversBOImpl universBO = new UniversBOImpl();
+		String utilisateur = (String)session.getAttribute("utilisateur");
 		
+		List<Univers> listeUnivers = universBO.getListeUnivers(utilisateur);
+		session.setAttribute("listeUnivers", listeUnivers);
+		response.sendRedirect("/Critical-PFE/site/Masterisation/masterisation.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

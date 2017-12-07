@@ -1,4 +1,4 @@
-package fr.eseo.criticalPfe.servlets.masterisation;
+package fr.eseo.criticalPfe.servlets.masterisation.campagne;
 
 import java.io.IOException;
 
@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.java.bo.scenario.UniversBO;
+import fr.eseo.criticalPfe.java.bo.scenario.CampagneBOImpl;
+import fr.eseo.criticalPfe.java.model.scenario.Campagne;
 
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/SuppressionUnivers")
-public class SuppressionUnivers extends HttpServlet {
+@WebServlet("/EditDescriptionCampagne")
+public class EditDescriptionCampagne extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SuppressionUnivers() {
+    public EditDescriptionCampagne() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +32,15 @@ public class SuppressionUnivers extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		HttpSession session = request.getSession();
-		UniversBO universBO = new UniversBO();
-		String utilisateur = (String)session.getAttribute("utilisateur");
-		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
-		universBO.supprimerUnivers(idUnivers);
+		CampagneBOImpl campagneBO = new CampagneBOImpl();
+		Campagne campagne = (Campagne)session.getAttribute("campagne");
+		String nouvelleDescriptionCampagne = request.getParameter("my-textarea");
+		campagne.setDescription(nouvelleDescriptionCampagne);
+		campagneBO.modifierCampagne(campagne);
+
+		response.sendRedirect("/Critical-PFE/AfficherCampagne");
 		
-		response.sendRedirect("/Critical-PFE/AffichageListeUnivers");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

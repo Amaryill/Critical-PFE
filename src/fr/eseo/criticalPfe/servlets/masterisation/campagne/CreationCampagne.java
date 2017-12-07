@@ -1,4 +1,4 @@
-package fr.eseo.criticalPfe.servlets.masterisation;
+package fr.eseo.criticalPfe.servlets.masterisation.campagne;
 
 import java.io.IOException;
 import java.util.ArrayList;

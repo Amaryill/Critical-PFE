@@ -1,4 +1,4 @@
-package fr.eseo.criticalPfe.servlets.masterisation;
+package fr.eseo.criticalPfe.servlets.masterisation.univers;
 
 import java.io.IOException;
 
@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.java.bo.scenario.UniversBO;
-import fr.eseo.criticalPfe.java.model.scenario.Univers;
+import fr.eseo.criticalPfe.java.bo.scenario.UniversBOImpl;
 
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/CreationUnivers")
-public class CreationUnivers extends HttpServlet {
+@WebServlet("/SuppressionUnivers")
+public class SuppressionUnivers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreationUnivers() {
+    public SuppressionUnivers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,12 +33,12 @@ public class CreationUnivers extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		UniversBO universBO = new UniversBO();
+		UniversBOImpl universBO = new UniversBOImpl();
 		String utilisateur = (String)session.getAttribute("utilisateur");
-		Univers univers = universBO.creationUnivers(utilisateur);
-		session.setAttribute("univers", univers);
-			
-		response.sendRedirect("/Critical-PFE/AfficherUnivers");
+		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
+		universBO.supprimerUnivers(idUnivers);
+		
+		response.sendRedirect("/Critical-PFE/AffichageListeUnivers");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

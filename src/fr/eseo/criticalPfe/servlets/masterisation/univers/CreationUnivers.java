@@ -1,7 +1,6 @@
-package fr.eseo.criticalPfe.servlets.masterisation;
+package fr.eseo.criticalPfe.servlets.masterisation.univers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,21 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.java.bo.scenario.CampagneBOImpl;
-import fr.eseo.criticalPfe.java.model.scenario.Campagne;
+import fr.eseo.criticalPfe.java.bo.scenario.UniversBOImpl;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/AfficherCampagne")
-public class AfficherCampagne extends HttpServlet {
+@WebServlet("/CreationUnivers")
+public class CreationUnivers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AfficherCampagne() {
+    public CreationUnivers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,26 +34,12 @@ public class AfficherCampagne extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		CampagneBOImpl campagnesBO = new CampagneBOImpl();
-		Campagne campagne = null;
-		if(request.getParameter("idCampagne")!=null){
-			int idCampagne = Integer.parseInt(request.getParameter("idCampagne"));
-			ArrayList<Campagne> listeCampagne = (ArrayList<Campagne>)session.getAttribute("listeCampagne");
-			for (Campagne campagne2 : listeCampagne) {
-				if (campagne2.getId()==idCampagne){
-					campagne = campagne2;
-				}
-			}
-		}else{
-			campagne = (Campagne)session.getAttribute("campagne");
-		}
-		
-		if(campagne!=null){
-			session.setAttribute("campagne", campagne);
-			response.sendRedirect("/Critical-PFE/site/Masterisation/modificationCampagne.jsp");
-		}else{
-			response.sendRedirect("/Critical-PFE/AfficherUnivers");
-		}
+		UniversBOImpl universBO = new UniversBOImpl();
+		String utilisateur = (String)session.getAttribute("utilisateur");
+		Univers univers = universBO.creationUnivers(utilisateur);
+		session.setAttribute("univers", univers);
+			
+		response.sendRedirect("/Critical-PFE/AfficherUnivers");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

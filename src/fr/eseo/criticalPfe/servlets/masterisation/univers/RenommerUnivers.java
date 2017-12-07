@@ -1,4 +1,4 @@
-package fr.eseo.criticalPfe.servlets.masterisation;
+package fr.eseo.criticalPfe.servlets.masterisation.univers;
 
 import java.io.IOException;
 
@@ -7,23 +7,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.java.bo.scenario.CampagneBOImpl;
-import fr.eseo.criticalPfe.java.bo.scenario.UniversBO;
-import fr.eseo.criticalPfe.java.model.scenario.Campagne;
+import fr.eseo.criticalPfe.java.bo.scenario.UniversBOImpl;
 
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/RenommerCampagne")
-public class RenommerCampagne extends HttpServlet {
+@WebServlet("/RenommerUnivers")
+public class RenommerUnivers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RenommerCampagne() {
+    public RenommerUnivers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +29,13 @@ public class RenommerCampagne extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		CampagneBOImpl campagneBO = new CampagneBOImpl();
-		String nouveauNomCampagne = request.getParameter("nomCampagne");
-		Campagne campagne = (Campagne)session.getAttribute("campagne");
-		campagne.setNomCampagne(nouveauNomCampagne);
-		campagneBO.modifierCampagne(campagne);
+		// TODO Auto-generated method stub
+		UniversBOImpl universBO = new UniversBOImpl();
+		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
+		String nouveauNomUnivers = request.getParameter("nomUnivers");
+		universBO.renommerUnivers(idUnivers,nouveauNomUnivers);
 
-		response.sendRedirect("/Critical-PFE/AfficherCampagne");
+		response.sendRedirect("/Critical-PFE/AfficherUnivers");
 		
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
