@@ -9,8 +9,8 @@ import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 public class UniversBO {
 	
 	public Univers creationUnivers(String loginUtilisateur){
-		ImplContenuBO contenuBO = new ImplContenuBO();
-		ImplRegleBO regleBO = new ImplRegleBO();
+		ContenuBOImpl contenuBO = new ContenuBOImpl();
+		RegleBOImpl regleBO = new RegleBOImpl();
 		
 		Utilisateur user = new Utilisateur();
 		user.setPseudo(loginUtilisateur);

@@ -11,21 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.criticalPfe.java.bo.scenario.CampagneBOImpl;
-import fr.eseo.criticalPfe.java.bo.scenario.UniversBO;
 import fr.eseo.criticalPfe.java.model.scenario.Campagne;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/AfficherUnivers")
-public class AfficherUnivers extends HttpServlet {
+@WebServlet("/AfficherCampagne")
+public class AfficherCampagne extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AfficherUnivers() {
+    public AfficherCampagne() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,24 +36,25 @@ public class AfficherUnivers extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		UniversBO universBO = new UniversBO();
-		int idUnivers;
-		if(request.getParameter("idUnivers")!=null){
-			idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
+		CampagneBOImpl campagnesBO = new CampagneBOImpl();
+		Campagne campagne = null;
+		if(request.getParameter("idCampagne")!=null){
+			int idCampagne = Integer.parseInt(request.getParameter("idCampagne"));
+			ArrayList<Campagne> listeCampagne = (ArrayList<Campagne>)session.getAttribute("listeCampagne");
+			for (Campagne campagne2 : listeCampagne) {
+				if (campagne2.getId()==idCampagne){
+					campagne = campagne2;
+				}
+			}
 		}else{
-			idUnivers = ((Univers)session.getAttribute("univers")).getId();
+			campagne = (Campagne)session.getAttribute("campagne");
 		}
-		Univers univers = universBO.getUnivers(idUnivers);
-		if(univers!=null){
-			session.setAttribute("univers", univers);
-			
-			CampagneBOImpl campagneBO = new CampagneBOImpl();
-			ArrayList<Campagne> listeCampagne = campagneBO.getListeCampagneByUnivers(univers);
-			session.setAttribute("listeCampagne", listeCampagne);
-			
-			response.sendRedirect("/Critical-PFE/site/Masterisation/modificationUnivers.jsp");
+		
+		if(campagne!=null){
+			session.setAttribute("campagne", campagne);
+			response.sendRedirect("/Critical-PFE/site/Masterisation/modificationCampagne.jsp");
 		}else{
-			response.sendRedirect("/Critical-PFE/AffichageListeUnivers");
+			response.sendRedirect("/Critical-PFE/AfficherUnivers");
 		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

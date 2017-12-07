@@ -48,15 +48,8 @@
 							</div>
 						</div>
 					</form>
-					
-					
-					
 					<%
 				}
-				
-				
-				
-				
 				%>
 			
 				<form class="form-horizontal" method="post" action="/Critical-PFE/CreationUnivers">

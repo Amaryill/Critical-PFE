@@ -4,20 +4,33 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.scenario.Campagne;
+import fr.eseo.criticalPfe.java.model.scenario.Contenu;
+import fr.eseo.criticalPfe.java.model.scenario.Regle;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 public class CampagneDAO implements DAO<Campagne> {
+	private static CampagneDAO dao;
 
 	private final String ADD_CAMPAGNE = "INSERT INTO Campagne(Nom, description, Id_Univers, Id_Contenue, Id_Regle) VALUES (?,?,?,?,?)";
 	private final String DLT_CAMPAGNE = "DELETE FROM Campagne WHERE Id = ?";
 	private final String CHG_CAMPAGNE = "UPDATE Campagne SET Nom=?, Description=?,Id_Univers = ?, Id_Contenue=?, Id_Regle=? WHERE id=?";
 	private final String SLT_CAMPAGNE = "SELECT Id, Nom, Description,Id_Univers, Id_Contenue, Id_Regle FROM Campagne WHERE id=?";
-	private final String SLT_CAMPAGNE_BY_UNIVERS = "SELECT Id, Nom, Description,pseudo, Id_Contenue, Id_Regle FROM Campagne WHERE Id_Univers=?";
-
+	private final String SLT_CAMPAGNE_BY_UNIVERS = "SELECT Id, Nom, Description,Id_Univers, Id_Contenue, Id_Regle FROM Campagne WHERE Id_Univers=?";
+	
+	private CampagneDAO (){
+	}
+	
+	public static CampagneDAO getCampagneDAO(){
+		if (dao == null){
+			dao = new CampagneDAO();
+		}
+		return dao;
+	}
 	@Override
 	public Campagne creer(Campagne obj) {
 		Connection connexion = null;
@@ -81,7 +94,8 @@ public class CampagneDAO implements DAO<Campagne> {
 		return obj;
 	}
 
-	public Campagne trouverByUnivers(Campagne obj) {
+	public ArrayList<Campagne> trouverByUnivers(Campagne obj) {
+		ArrayList<Campagne> listeCampagne= new ArrayList<>();
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 
@@ -92,13 +106,13 @@ public class CampagneDAO implements DAO<Campagne> {
 
 			ResultSet result = preparedStatement.executeQuery();
 			while (result.next()) {
-				obj = map(result);
+				listeCampagne.add(map(result));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return obj;
+		return listeCampagne;
 	}
 
 	@Override
@@ -114,6 +128,7 @@ public class CampagneDAO implements DAO<Campagne> {
 			preparedStatement.setInt(3, obj.getUnivers().getId());
 			preparedStatement.setInt(4, obj.getContenu().getId());
 			preparedStatement.setInt(5, obj.getRegle().getId());
+			preparedStatement.setInt(6, obj.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,7 +148,9 @@ public class CampagneDAO implements DAO<Campagne> {
 		Univers univers = new Univers();
 		univers.setId(result.getInt("Id_Univers"));
 		campagne.setUnivers(univers);
+		campagne.setContenu(new Contenu());
 		campagne.getContenu().setId(result.getInt("Id_Contenue"));
+		campagne.setRegle(new Regle());
 		campagne.getRegle().setId(result.getInt("Id_Regle"));
 
 		return campagne;

@@ -14,7 +14,8 @@
 	    <jsp:include page="/site/include/import_dashgum.jsp" />
 	    
 	    <!-- importation des classes -->
-	    <%@page import="fr.eseo.criticalPfe.java.model.scenario.Univers" %>
+	    <%@page import="fr.eseo.criticalPfe.java.model.scenario.Univers,fr.eseo.criticalPfe.java.model.scenario.Campagne,
+	    	java.util.List" %>
 	    
 		<!-- Verification de la variable session -->
 		<% if (request.getSession().getAttribute("utilisateur") == null) {
@@ -53,7 +54,6 @@
 				
 				<br><br>
 				<% Univers univers = (Univers)request.getSession().getAttribute("univers"); %>
-				
 				<br>
 				
 				
@@ -66,9 +66,8 @@
 				<br>
 				
 				<h1 style="color:black;">
-				<%= univers.getNomUnivers() %>
+					<%= univers.getNomUnivers() %>
 				</h1>
-				<br>
 				<br>
 				
 				<h2 style="color:black;">
@@ -116,6 +115,38 @@
 					</div>
 						
 				</form>
+				
+				<br><br><br>
+				
+				<% List<Campagne> listeCampagne = (List<Campagne>)request.getSession().getAttribute("listeCampagne"); 
+				for(Campagne campagne : listeCampagne){
+					%>
+					
+					<form class="form-horizontal" method="post" action="/Critical-PFE/AfficherCampagne">
+						<input type="hidden" name="idCampagne" id="idCampagne" value = <%=campagne.getId()%>>
+						<div class="form-group">
+							<div class="col-xs-3 col-xs-offset-1">
+								<button class="btn btn-theme btn-block" type="submit" id="afficher campagne" value="afficher"><%=campagne.getNomCampagne() %></button>
+							</div>
+						</div>
+					</form>
+					<%
+				}
+				%>
+				<form class="form-horizontal" method="post" action="/Critical-PFE/CreationCampagne">
+					<div class="col-xs-3 col-xs-offset-2">
+						<button class="btn btn-theme btn-block" type="submit" id="submit_Creer campagne" value="Creer">Créer une nouvelle campagne</button>
+					</div>
+				</form>
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			</section>
 		</section>
 		

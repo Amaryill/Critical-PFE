@@ -11,21 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.criticalPfe.java.bo.scenario.CampagneBOImpl;
-import fr.eseo.criticalPfe.java.bo.scenario.UniversBO;
 import fr.eseo.criticalPfe.java.model.scenario.Campagne;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/AfficherUnivers")
-public class AfficherUnivers extends HttpServlet {
+@WebServlet("/CreationCampagne")
+public class CreationCampagne extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AfficherUnivers() {
+    public CreationCampagne() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,25 +36,22 @@ public class AfficherUnivers extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		UniversBO universBO = new UniversBO();
-		int idUnivers;
-		if(request.getParameter("idUnivers")!=null){
-			idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
-		}else{
-			idUnivers = ((Univers)session.getAttribute("univers")).getId();
-		}
-		Univers univers = universBO.getUnivers(idUnivers);
-		if(univers!=null){
-			session.setAttribute("univers", univers);
+		CampagneBOImpl campagneBO = new CampagneBOImpl();
+		Univers univers = (Univers)session.getAttribute("univers");
+		
+		Campagne campagne = new Campagne();
+		campagne.setContenu(univers.getContenu());
+		campagne.setRegle(univers.getRegle());
+		campagne.setJoueurs(new ArrayList<>());
+		campagne.setDescription("- Vide -");
+		campagne.setNomCampagne("Nouvelle Campagne");
+		campagne.setUnivers(univers);
+		
+		campagneBO.creerCampagne(campagne);
+		
+		session.setAttribute("campagne", campagne);
 			
-			CampagneBOImpl campagneBO = new CampagneBOImpl();
-			ArrayList<Campagne> listeCampagne = campagneBO.getListeCampagneByUnivers(univers);
-			session.setAttribute("listeCampagne", listeCampagne);
-			
-			response.sendRedirect("/Critical-PFE/site/Masterisation/modificationUnivers.jsp");
-		}else{
-			response.sendRedirect("/Critical-PFE/AffichageListeUnivers");
-		}
+		response.sendRedirect("/Critical-PFE/AfficherCampagne");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
