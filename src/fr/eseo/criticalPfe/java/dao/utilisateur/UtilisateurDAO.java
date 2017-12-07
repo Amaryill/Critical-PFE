@@ -16,6 +16,7 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 	private final String REQUEST_DLT = "DELETE FROM Utilisateur WHERE login=?";
 	private final String REQUEST_UPD = "UPDATE Utilisateur SET Pseudo=?, Login=?, Password=?, Mail=?, presentation=? WHERE Login=?";
 	private final String REQUEST_SLT = "SELECT Pseudo, Login, Password, Mail, presentation FROM Race WHERE";
+	private final String REQUEST_CON = "SELECT Password FROM Utilisateur WHERE Login=?";
 	private final String CLAUSE_ID = " Login=?";
 	
 	
@@ -59,7 +60,30 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 		}
 		return true;
 	}
-
+	
+	public Utilisateur connexion(Utilisateur obj){
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_CON);
+			preparedStatement.setString(1, obj.getLogin());
+			
+			ResultSet result = preparedStatement.executeQuery();
+			if(result.next()) {
+				obj.setPassword(result.getString("password"));				
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+		
+		return obj;
+		
+	}
+	
+	
 	@Override
 	public Utilisateur trouver(Utilisateur obj) {
 		Connection connexion = null;

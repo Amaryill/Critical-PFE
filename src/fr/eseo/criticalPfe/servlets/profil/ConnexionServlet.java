@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.criticalPfe.bdd.BddBo;
+import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
+import fr.eseo.criticalPfe.java.dao.utilisateur.UtilisateurDAO;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 /**
  * Servlet implementation class ConnexionServlet
@@ -41,59 +44,40 @@ public class ConnexionServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		BddBo bddBo = new BddBo();
-		Boolean erreur = false;
-		String msgErreur = "";
-		
+	
 		HttpSession session = request.getSession();
-		
-		//initilisation des variables
+		UtilisateurBOImpl boUtilisateur = null;
+		Utilisateur utilisateur = null;
+		//initilisation des variables pour la session
 		String userLogin = null;
 		String userPassword = null;
-		String mail = null;
 		String presentation = null;
-		
-		userLogin = (String)request.getParameter("login");
-		userPassword = (String) request.getParameter("mdp");
-		try {
-			String[] result = bddBo.getUser(userLogin, userPassword);
-			result[3]= bddBo.getPres(userLogin);
-			if (result[0] != null){
-				userLogin = result[0];
-				userPassword = result[1];
-				mail = result[2];
-				presentation = result[3];
-				
-				//attribution des variables session
-				session.setAttribute(ATT_SESSION_USER, userLogin);
-				session.setAttribute(ATT_USER, userLogin);
-				session.setAttribute(ATT_PRES, presentation);
-				
-				
-				response.sendRedirect("site/index.jsp");
-			
-			} else {//si l'utilisateur n'est pas valide
-				session.invalidate();
-				erreur = true;
-				msgErreur ="Utilisateur invalide";
-				response.sendRedirect("login.jsp");
-			}
-			
-			bddBo.close();
-			doGet(request, response);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-
-		
+		//Recuperation des informations du formulaire signup.jsp
+		userLogin = (String) request.getParameter("login");
+	    userPassword = (String) request.getParameter("mdp");
+	    
+	    
+	    utilisateur = new Utilisateur(null,userLogin,userPassword,null,null,null,null,null);
+	    boUtilisateur = new UtilisateurBOImpl(new UtilisateurDAO());
+	    
+	    Utilisateur utilisateurConnexion = boUtilisateur.connexion(utilisateur);
+	    
+	    if (utilisateurConnexion.getPassword().contentEquals(userPassword)){
+	    	//attribution des variables session
+			session.setAttribute(ATT_SESSION_USER, userLogin);
+			session.setAttribute(ATT_USER, userLogin);
+			session.setAttribute(ATT_PRES, presentation);
+	    	response.sendRedirect("site/index.jsp");
+	    } else {
+	    	response.sendRedirect("site/login.jsp");
+	    }
+	    
+	    
 	}
 
 }

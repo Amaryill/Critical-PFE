@@ -68,34 +68,4 @@ public class SignUpServlet extends HttpServlet {
 	    
 	}
 	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		
-//		BddBo bddBo = new BddBo();
-//		Boolean erreur = false;
-//		String msgErreur = "";
-//		
-//		HttpSession session = request.getSession();
-//		
-//		//R�cup�ration des informations du formulaire signup.jsp
-//		String login = (String) request.getParameter("login");
-//		String pseudo = (String) request.getParameter("pseudo");
-//		String email = (String) request.getParameter("email");
-//	    String mdp = (String) request.getParameter("mdp");
-//	    String mdpconfirme = request.getParameter("mdpconfirme");
-//		
-//	    
-//		if (mdp.contentEquals(mdpconfirme)){
-//			bddBo.signUp(pseudo,login, mdp, email);
-//			response.sendRedirect("/Critical-PFE/site/login.jsp");
-//		}
-//		
-//		bddBo.close();
-//		doGet(request,response);
-//		
-//	}
-
 }

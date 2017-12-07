@@ -22,6 +22,10 @@ public class UtilisateurBOImpl implements UtilisateurBO {
 		return dao.modifier(utilisateur);
 	}
 
+	public Utilisateur connexion(Utilisateur utilisateur){
+		return dao.connexion(utilisateur);
+	}
+	
 	@Override
 	public Utilisateur pullUtilisateur(Utilisateur utilisateur) {
 		return dao.trouver(utilisateur);
