@@ -1,4 +1,4 @@
-package fr.eseo.criticalPfe.servlets;
+package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
 import java.sql.Connection;

@@ -9,38 +9,85 @@ import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 public class Utilisateur extends Model {
 
+	Utilisateur utilisateur;
 	String pseudo;
-	String description;
+	String login;
+	String password;
+	String mail;
+	String presentation;
 	Statistique statistique;
 	List<Personnage> personnages;
 	List<Univers> listUnivers;
 
-	public Utilisateur(String pseudo, String description, Statistique statistique, List<Personnage> personnages,
+	public Utilisateur(String pseudo, String login, String password, String mail, String presentation, Statistique statistique, List<Personnage> personnages,
 			List<Univers> listUnivers) {
 		this.pseudo = pseudo;
-		this.description = description;
+		this.login = login;
+		this.password = password;
+		this.mail = mail;
+		this.presentation = presentation;
 		this.statistique = statistique;
 		this.personnages = personnages;
 		this.listUnivers = listUnivers;
 	}
 
 	public Utilisateur() {
-		this(null, null, new Statistique(), new ArrayList<Personnage>(), new ArrayList<Univers>());
+		this(null, null, null, null, null, new Statistique(), new ArrayList<Personnage>(), new ArrayList<Univers>());
 	}
 
 	/************** ACCESSEURS ET MUTATEURS *************/
+	
+	public Utilisateur getUtilisateur() {
+		return this.utilisateur;
+	}
 
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 
 	public String getPseudo() {
-		return pseudo;
+		return this.pseudo;
 	}
 
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
-	}	
+	}
+	
+	public String getLogin() {
+		return this.login;
+	}
 
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getMail() {
+		return this.mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	
+	public String getPresentation() {
+		return this.presentation;
+	}
+
+	public void setPresentation(String presentation) {
+		this.presentation = presentation;
+	}
+
+	
 	public Statistique getStatistique() {
-		return statistique;
+		return this.statistique;
 	}
 
 	public void setStatistique(Statistique statistique) {
@@ -48,7 +95,7 @@ public class Utilisateur extends Model {
 	}
 
 	public List<Personnage> getPersonnages() {
-		return personnages;
+		return this.personnages;
 	}
 
 	public void setPersonnages(List<Personnage> personnages) {
@@ -56,7 +103,7 @@ public class Utilisateur extends Model {
 	}
 
 	public List<Univers> getUnivers() {
-		return listUnivers;
+		return this.listUnivers;
 	}
 
 	public void setUnivers(List<Univers> univers) {

@@ -1,9 +1,6 @@
-package fr.eseo.criticalPfe.servlets;
+package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
-import java.sql.*;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +11,21 @@ import javax.servlet.http.HttpSession;
 import fr.eseo.criticalPfe.bdd.BddBo;
 
 /**
- * Servlet implementation class SignUpServlet
+ * Servlet implementation class ModifPresentation
  */
-@WebServlet("/SignUpServlet")
-public class SignUpServlet extends HttpServlet {
+@WebServlet("/ModifPresentation")
+public class ModifPresentation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String ATT_USER         = "utilisateur";
+    public static final String ATT_FORM         = "form";
+    public static final String ATT_SESSION_USER = "sessionUtilisateur";
+    public static final String ATT_PRES         = "presentation";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignUpServlet() {
+    public ModifPresentation() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,29 +43,20 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		BddBo bddBo = new BddBo();
-		Boolean erreur = false;
-		String msgErreur = "";
-		
 		HttpSession session = request.getSession();
 		
-		//R�cup�ration des informations du formulaire signup.jsp
-		String login = (String) request.getParameter("login");
-		String pseudo = (String) request.getParameter("pseudo");
-		String email = (String) request.getParameter("email");
-	    String mdp = (String) request.getParameter("mdp");
-	    String mdpconfirme = request.getParameter("mdpconfirme");
+		String presentation = (String) request.getParameter("presentation");
+		String pseudo_session = (String)request.getSession().getAttribute("utilisateur");
 		
-	    
-		if (mdp.contentEquals(mdpconfirme)){
-			bddBo.signUp(pseudo,login, mdp, email);
-			response.sendRedirect("/Critical-PFE/site/login.jsp");
-		}
+		bddBo.modifPres(pseudo_session, presentation);
 		
-		bddBo.close();
-		doGet(request,response);
+		session.setAttribute(ATT_PRES, presentation);
+		String presentationSession = (String)request.getSession().getAttribute("presentation");
+		response.sendRedirect("/Critical-PFE/site/Profil/profil.jsp");
 		
+		
+		doGet(request, response);
 	}
 
 }

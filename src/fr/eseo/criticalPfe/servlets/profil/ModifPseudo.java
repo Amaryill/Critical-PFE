@@ -1,6 +1,11 @@
-package fr.eseo.criticalPfe.servlets;
+package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,21 +16,19 @@ import javax.servlet.http.HttpSession;
 import fr.eseo.criticalPfe.bdd.BddBo;
 
 /**
- * Servlet implementation class ModifPresentation
+ * Servlet implementation class ModifPseudo
  */
-@WebServlet("/ModifPresentation")
-public class ModifPresentation extends HttpServlet {
+@WebServlet("/ModifPseudo")
+public class ModifPseudo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 	public static final String ATT_USER         = "utilisateur";
     public static final String ATT_FORM         = "form";
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
-    public static final String ATT_PRES         = "presentation";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModifPresentation() {
+    public ModifPseudo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,17 +47,23 @@ public class ModifPresentation extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		BddBo bddBo = new BddBo();
-		HttpSession session = request.getSession();
+		Boolean erreur = false;
+		String msgErreur = "";
 		
-		String presentation = (String) request.getParameter("presentation");
+		HttpSession session = request.getSession();
+
+		String pseudo_ancien = (String) request.getParameter("pseudo_ancien");
+		String pseudo_nouveau = (String) request.getParameter("pseudo_nouveau");
 		String pseudo_session = (String)request.getSession().getAttribute("utilisateur");
 		
-		bddBo.modifPres(pseudo_session, presentation);
-		
-		session.setAttribute(ATT_PRES, presentation);
-		String presentationSession = (String)request.getSession().getAttribute("presentation");
-		response.sendRedirect("/Critical-PFE/site/Profil/profil.jsp");
-		
+		if (pseudo_session.contentEquals(pseudo_ancien)){
+			bddBo.modifPseudo(pseudo_ancien, pseudo_nouveau);
+			session.setAttribute(ATT_SESSION_USER, pseudo_nouveau);
+			session.setAttribute(ATT_USER, pseudo_nouveau);
+			response.sendRedirect("/Critical-PFE/site/options.jsp");
+		} else {
+			response.sendRedirect("/Critical-PFE/site/options.jsp");
+		}
 		
 		doGet(request, response);
 	}
