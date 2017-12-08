@@ -8,14 +8,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eseo.criticalPfe.java.bo.entite.PersonnageBO;
 import fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl;
+import fr.eseo.criticalPfe.java.bo.scenario.UniversBOImpl;
 import fr.eseo.criticalPfe.java.dao.entite.PersonnageDAO;
 import fr.eseo.criticalPfe.java.model.entite.Caracteristique;
 import fr.eseo.criticalPfe.java.model.entite.Classe;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
 import fr.eseo.criticalPfe.java.model.entite.Race;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 @WebServlet("/CreationPersonnageServlet")
 public class CreationPersonnageServlet extends HttpServlet {
@@ -59,7 +62,10 @@ public class CreationPersonnageServlet extends HttpServlet {
 		int charisme = Integer.parseInt((String) request.getParameter("cha"));
 
 		PersonnageBO personnageBO = new PersonnageBOImpl();
+		HttpSession session = request.getSession();
+		String pseudo = (String)session.getAttribute("utilisateur");
 		Personnage personnage = new Personnage();
+		Utilisateur utilisateur = new Utilisateur();
 		Caracteristique caracteristique = new Caracteristique();
 		HashMap<String, Integer> caracs = new HashMap<String, Integer>();
 		Race race = new Race();
@@ -82,6 +88,9 @@ public class CreationPersonnageServlet extends HttpServlet {
 		classe.setNiveau(1);
 		personnage.ajouterClasse(classe);
 
+		utilisateur.setPseudo(pseudo);
+		personnage.setUtilisateur(utilisateur);
+		
 		personnage.setNiveauPersonnage(1);
 		personnage.setAge(age);
 		personnage.setNom(nomPersonnage);
@@ -93,7 +102,7 @@ public class CreationPersonnageServlet extends HttpServlet {
 		personnage.setCouleurYeux(couleurYeux);
 		personnage.setSexe(sexe);
 		personnage.setDieu(dieu);
-
+		
 		personnageBO.creerPersonnage(personnage);
 		
 		response.sendRedirect("/Critical-PFE/site/index.jsp");

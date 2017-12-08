@@ -14,11 +14,11 @@ import fr.eseo.criticalPfe.java.model.scenario.Univers;
 public class PersonnageDAO implements DAO<Personnage> {
 
 	// TODO Changer Table par le nom de la Univers
-	private final String REQUEST_ADD = "INSERT INTO Personnage(Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entite) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private final String REQUEST_ADD = "INSERT INTO Personnage(Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entite, pseudo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 	private final String REQUEST_LIEN_CLASSE = "INSERT INTO EstClasse(niveau, id, Nom) VALUES(?,?,?)"; // TODO
 	private final String REQUEST_DLT = "DELETE FROM Personnage WHERE Id=?";
-	private final String REQUEST_UPD = "UPDATE Personnage SET Alignement=?, Dieu=?, Sexe=?, CouleurYeux=?, CouleurCheveux=?, taille=?, poids=?, age=?, nom=?, Id_Compendium=?, Id_Entite=? WHERE id=?"; // TODO
-	private final String REQUEST_SLT = "SELECT Id, Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entite FROM Personnage WHERE";
+	private final String REQUEST_UPD = "UPDATE Personnage SET Alignement=?, Dieu=?, Sexe=?, CouleurYeux=?, CouleurCheveux=?, taille=?, poids=?, age=?, nom=?, Id_Compendium=?, Id_Entite=?, pseudo=? WHERE id=?"; // TODO
+	private final String REQUEST_SLT = "SELECT Id, Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entite, pseudo FROM Personnage WHERE";
 	private final String CLAUSE_ID = " id=?";
 
 	public Personnage creer(Personnage obj) {
@@ -42,6 +42,7 @@ public class PersonnageDAO implements DAO<Personnage> {
 			// A décommenter quand compendium implenter
 			preparedStatement.setInt(10, 1);
 			preparedStatement.setInt(11, obj.getIdEntitee());
+			preparedStatement.setString(12, obj.getUtilisateur().getPseudo());
 			preparedStatement.executeUpdate();
 			obj.setId(ConnexionBDD.getLastId("Personnage"));
 
@@ -119,6 +120,7 @@ public class PersonnageDAO implements DAO<Personnage> {
 			preparedStatement.setString(9, obj.getNom());
 			preparedStatement.setInt(10, obj.getCompendium().getId());
 			preparedStatement.setInt(11, obj.getIdEntitee());
+			preparedStatement.setString(11, obj.getUtilisateur().getPseudo());
 			preparedStatement.setInt(12, obj.getId());
 
 			preparedStatement.executeUpdate();
@@ -143,7 +145,8 @@ public class PersonnageDAO implements DAO<Personnage> {
 		personnage.setTaille(result.getInt("taille"));
 		personnage.setNom(result.getString("nom"));
 		personnage.getCompendium().setId(result.getInt("Id_Compendium"));
-		personnage.setIdEntitee(result.getInt("Id_Entitee"));
+		personnage.setIdEntitee(result.getInt("Id_Entitee"));		
+		personnage.getUtilisateur().setPseudo(result.getString("pseudo"));
 		
 		return personnage;
 	}

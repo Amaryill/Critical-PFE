@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.model.attributs.Compendium;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 public class Personnage extends Entitee {
 
 	String nom;
 
+	Utilisateur utilisateur;
+	
 	List<Classe> classes = new ArrayList<Classe>();
 	Race race;
 	String alignement;
@@ -136,4 +139,15 @@ public class Personnage extends Entitee {
 	public void ajouterClasse(Classe classe){
 		this.classes.add(classe);
 	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+	
+	
+	
 }
