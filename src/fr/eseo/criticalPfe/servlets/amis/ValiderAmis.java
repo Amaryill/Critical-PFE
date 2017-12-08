@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eseo.criticalPfe.bdd.BddBoAmi;
+import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBO;
+import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 /**
  * Servlet implementation class ModifPseudo
@@ -30,7 +32,16 @@ public class ValiderAmis extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		UtilisateurBO utilisateurBO = new UtilisateurBOImpl();
 
+		String pseudoValide = (String) request.getParameter("pseudo");
+		String pseudo_session = (String) request.getSession().getAttribute("utilisateur");
+		Utilisateur user = new Utilisateur();
+		user.setPseudo(pseudo_session);
+		
+		utilisateurBO.validerAmi(user, pseudoValide);
+
+		response.sendRedirect("AfficherAmis");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -40,16 +51,7 @@ public class ValiderAmis extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		BddBoAmi bddBo = new BddBoAmi();
-
-		String pseudoDemandeAccepte = (String) request.getParameter("pseudo");
-
-		String pseudo_session = "";
-		pseudo_session = (String) request.getSession().getAttribute("utilisateur");
-
-		bddBo.validerAmi(pseudo_session, pseudoDemandeAccepte);
-
-		response.sendRedirect("AfficherAmis");
+		
 		doGet(request, response);
 	}
 

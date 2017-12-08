@@ -13,14 +13,14 @@ import fr.eseo.criticalPfe.bdd.BddBoAmi;
 /**
  * Servlet implementation class ModifPseudo
  */
-@WebServlet("/RefuserAmis")
-public class RefuserAmis extends HttpServlet {
+@WebServlet("/RefuserAmis2")
+public class RefuserAmis2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public RefuserAmis() {
+	public RefuserAmis2() {
 		super();
 	}
 

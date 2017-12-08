@@ -36,7 +36,7 @@ public class ContenuDAO implements DAO<Contenu>{
 			preparedStatement = connexion.prepareStatement(ADD_CONTENU);
 			preparedStatement.executeUpdate();
 
-			obj.setId(ConnexionBDD.getLastId("CONTENUE"));
+			obj.setId(ConnexionBDD.getLastId("CONTENU"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

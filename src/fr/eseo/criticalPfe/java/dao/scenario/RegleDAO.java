@@ -34,7 +34,6 @@ public class RegleDAO implements DAO<Regle>{
 			preparedStatement.executeUpdate();
 
 			obj.setId(ConnexionBDD.getLastId("REGLE"));
-			System.out.println(obj.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

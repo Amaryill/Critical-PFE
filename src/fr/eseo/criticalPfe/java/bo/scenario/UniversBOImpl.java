@@ -48,7 +48,6 @@ public class UniversBOImpl implements UniversBO {
 	
 	public void editDescriptionUnivers(int idUnivers, String nouvelleDescription){
 		Univers univers = this.getUnivers(idUnivers);
-		System.out.println(univers.getContenu().getId());
 		univers.setDescription(nouvelleDescription);
 		modifierUnivers(univers);
 	}

@@ -1,45 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+	<head>
 		<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta name="description" content="">
 	    <meta name="author" content="Dashboard">
 	    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-	
-	    <jsp:include page="include/import_dashgum.jsp" />
-
-<!-- Verification de la variable session -->
-<% if (request.getSession().getAttribute("utilisateur") == null) {
+		<jsp:include page="include/import_dashgum.jsp" />
+		
+		<%@ page import="java.util.ArrayList"%>
+		
+		<!-- Verification de la variable session -->
+		<% if (request.getSession().getAttribute("utilisateur") == null) {
 			response.sendRedirect("login.jsp");
 		}
-%>
-
-
-<%@ page import="java.util.ArrayList"%>
-
-
-<title>Amis</title>
-</head>
-<body class="bg-image"
+		%>
+		
+		<title>Amis</title>
+	</head>
+	
+	<body class="bg-image"
 	style="background-image: url('../assets/img/login-bg.jpg');">
 	
 	<!--  Header et aside -->
-	<section id="container">
-		
+		<section id="container">
 			
-			<jsp:include page="include/import_header.jsp" />
+			<jsp:include page="include/import_header.jsp" />	
 			<jsp:include page="include/import_aside.jsp"/>	
-	
-	</section>	
-		 
-
-
-
-	<h1>
+			
+			<section id = "main-content" class="wrapper">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<h1>
 
 		rechercher des amis : <br>
 	</h1>
@@ -91,7 +93,7 @@
 			type="submit" id="submit_validerDemande" value="Modifier">valider
 			la demande</button>
 	</form>
-	<form method="post" action="/Critical-PFE/RefuserAmis">
+	<form method="post" action="/Critical-PFE/SupprimerAmis">
 		<button type="hidden" name="pseudo" value=<%=demandesRecues.get(i)%>
 			type="submit" id="submit_refuserDemande" value="Modifier">refuser
 			la demande</button>
@@ -105,7 +107,7 @@
 			for (int i = 0; i < demandesEnvoyees.size(); i++) {
 				out.println("<br>" + demandesEnvoyees.get(i) + "<br>");
 	%>
-	<form method="post" action="/Critical-PFE/AnnulerDemandeAmis">
+	<form method="post" action="/Critical-PFE/SupprimerAmis">
 		<button type="hidden" name="pseudo" value=<%=demandesEnvoyees.get(i)%>
 			type="submit" id="submit_annulerDemande" value="Modifier">annuler
 			la demande</button>
@@ -116,11 +118,19 @@
 
 		
 	%>
-
-<!-- js placed at the end of the document so the pages load faster -->
-		<jsp:include page="include/import_script.jsp"/>
-	
-
-</body>
-
+			
+			
+			
+			
+			
+			
+			
+			
+			</section>
+		</section>	
+			 
+		<jsp:include  page="include/import_script.jsp" />
+		
+		</div>
+	</body>
 </html>

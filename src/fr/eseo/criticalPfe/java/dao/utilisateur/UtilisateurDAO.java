@@ -10,31 +10,32 @@ import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
-public class UtilisateurDAO implements DAO<Utilisateur>{
+public class UtilisateurDAO implements DAO<Utilisateur> {
 	private static UtilisateurDAO dao;
-	
+
 	private final String REQUEST_ADD = "INSERT INTO Utilisateur(Pseudo, Login, Password, Mail, presentation) VALUES (?,?,?,?,?)";
 	private final String REQUEST_DLT = "DELETE FROM Utilisateur WHERE login=?";
 	private final String REQUEST_UPD = "UPDATE Utilisateur SET Pseudo=?, Login=?, Password=?, Mail=?, presentation=? WHERE Login=?";
 	private final String REQUEST_SLT = "SELECT Pseudo, Login, Password, Mail, presentation FROM Utilisateur WHERE";
 	private final String REQUEST_CON = "SELECT Password FROM Utilisateur WHERE Login=?";
 	private final String CLAUSE_ID = " Login=?";
-	
-	//TODO verifier que l'amitié n'existe pas dans le sens inverse
+
+	// TODO verifier que l'amitié n'existe pas dans le sens inverse
 	private final String REQUEST_ADD_AMI = "INSERT INTO `ami`(`Etat`, `Pseudo`, `Pseudo_Utilisateur`) VALUES (?,?,?)";
 	private final String REQUEST_DLT_AMI = "DELETE FROM ami` WHERE (Pseudo=? and Pseudo_Utilisateur=?) OR (Pseudo=? and Pseudo_Utilisateur=?)";
 	private final String REQUEST_UPDATE_AMI = "UPDATE `ami` SET `Etat`=? WHERE Pseudo=? and Pseudo_Utilisateur=?";
 	private final String REQUEST_SLT_AMI = "SELECT `Etat`, `Pseudo`, `Pseudo_Utilisateur` FROM `ami` where Pseudo=? OR Pseudo_Utilisateur=?";
 
-	private UtilisateurDAO(){};
-	
-	public static UtilisateurDAO getUtilisateurDAO(){
-		if(dao == null){
+	private UtilisateurDAO() {
+	};
+
+	public static UtilisateurDAO getUtilisateurDAO() {
+		if (dao == null) {
 			dao = new UtilisateurDAO();
 		}
 		return dao;
 	}
-	
+
 	@Override
 	public Utilisateur creer(Utilisateur obj) {
 		Connection connexion = null;
@@ -49,7 +50,7 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 			preparedStatement.setString(3, obj.getPassword());
 			preparedStatement.setString(4, obj.getMail());
 			preparedStatement.setString(5, obj.getPresentation());
-			
+
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,33 +75,32 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 		}
 		return true;
 	}
-	
-	public Utilisateur connexion(Utilisateur obj){
+
+	public Utilisateur connexion(Utilisateur obj) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
 			connexion = ConnexionBDD.getConnexion();
-			preparedStatement = connexion.prepareStatement(REQUEST_SLT+CLAUSE_ID);
+			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
 			preparedStatement.setString(1, obj.getLogin());
-			
+
 			ResultSet result = preparedStatement.executeQuery();
-			if(result.next()) {
+			if (result.next()) {
 				obj.setPassword(result.getString("password"));
 				obj.setPseudo(result.getString("pseudo"));
 			} else {
 				obj.setPassword("");
 			}
-		} catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		
+
 		return obj;
-		
+
 	}
-	
-	
+
 	@Override
 	public Utilisateur trouver(Utilisateur obj) {
 		Connection connexion = null;
@@ -137,7 +137,7 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 			preparedStatement.setString(4, obj.getMail());
 			preparedStatement.setString(5, obj.getPresentation());
 			preparedStatement.setString(6, obj.getLogin());
-			
+
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -158,7 +158,7 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 
 		return utilisateur;
 	}
-	
+
 	public Boolean creerAmi(Utilisateur user1, Utilisateur user2) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
@@ -177,7 +177,7 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 		}
 		return true;
 	}
-	
+
 	public boolean supprimerAmi(Utilisateur user1, Utilisateur user2) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
@@ -196,7 +196,7 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 		}
 		return true;
 	}
-	
+
 	public boolean validerAmi(Utilisateur user1, Utilisateur user2) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
@@ -214,11 +214,11 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 		}
 		return true;
 	}
-	
-	public Utilisateur getAmis(Utilisateur user){
+
+	public Utilisateur getAmis(Utilisateur user) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
-		HashMap<String,String> listeAmis = new HashMap<>();
+		HashMap<String, String> listeAmis = new HashMap<>();
 
 		try {
 			connexion = ConnexionBDD.getConnexion();
@@ -226,18 +226,26 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 			preparedStatement.setString(1, user.getPseudo());
 			preparedStatement.setString(2, user.getPseudo());
 			ResultSet result = preparedStatement.executeQuery();
-			if (result.next()) {
-				if(!result.getString("pseudo").equals(user.getPseudo())){
-					listeAmis.put(result.getString("Pseudo"), result.getString("Etat"));
-				}else{
-					listeAmis.put(result.getString("Pseudo_Utilisateur"), result.getString("Etat"));
+			while (result.next()) {
+				if (result.getString("Etat").equals("VALIDE")) {
+					if (!result.getString("Pseudo").equals(user.getPseudo())) {
+						listeAmis.put(result.getString("Pseudo"), "VALIDE");
+					} else {
+						listeAmis.put(result.getString("Pseudo_Utilisateur"), "VALIDE");
+					}
+				} else {
+					if (!result.getString("Pseudo").equals(user.getPseudo())) {
+						listeAmis.put(result.getString("Pseudo"), "DEMANDE_RECUE");
+					} else {
+						listeAmis.put(result.getString("Pseudo_Utilisateur"), "DEMANDE_ENVOYEE");
+					}
 				}
 			}
 			user.setAmis(listeAmis);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return user;
 	}
 
