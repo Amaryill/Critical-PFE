@@ -1,6 +1,7 @@
 package fr.eseo.criticalPfe.java.model.utilisateur;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.model.Model;
@@ -9,7 +10,6 @@ import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 public class Utilisateur extends Model {
 
-	Utilisateur utilisateur;
 	String pseudo;
 	String login;
 	String password;
@@ -18,6 +18,7 @@ public class Utilisateur extends Model {
 	Statistique statistique;
 	List<Personnage> personnages;
 	List<Univers> listUnivers;
+	HashMap<String,String> amis;
 
 	public Utilisateur(String pseudo, String login, String password, String mail, String presentation, Statistique statistique, List<Personnage> personnages,
 			List<Univers> listUnivers) {
@@ -37,12 +38,21 @@ public class Utilisateur extends Model {
 
 	/************** ACCESSEURS ET MUTATEURS *************/
 	
-	public Utilisateur getUtilisateur() {
-		return this.utilisateur;
+
+	public List<Univers> getListUnivers() {
+		return listUnivers;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setListUnivers(List<Univers> listUnivers) {
+		this.listUnivers = listUnivers;
+	}
+
+	public HashMap<String, String> getAmis() {
+		return amis;
+	}
+
+	public void setAmis(HashMap<String, String> amis) {
+		this.amis = amis;
 	}
 
 	public String getPseudo() {

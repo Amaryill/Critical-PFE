@@ -1,9 +1,7 @@
 package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
-import java.sql.*;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,11 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.bdd.BddBo;
-import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
-import fr.eseo.criticalPfe.java.dao.utilisateur.UtilisateurDAO;
-import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 /**
  * Servlet implementation class SignUpServlet
  */
@@ -58,7 +53,7 @@ public class SignUpServlet extends HttpServlet {
 	    
 	    if(mdp.contentEquals(mdpconfirme)){
 	    	utilisateur = new Utilisateur(pseudo,login,mdp,email,null,null,null,null);
-	    	boUtilisateur = new UtilisateurBOImpl(new UtilisateurDAO());
+	    	boUtilisateur = new UtilisateurBOImpl();
 	    	response.sendRedirect("/Critical-PFE/site/login.jsp");
 	    }
 	    

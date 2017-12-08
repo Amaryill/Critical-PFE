@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
-import fr.eseo.criticalPfe.java.model.entite.Race;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 public class UtilisateurDAO implements DAO<Utilisateur>{
+	private static UtilisateurDAO dao;
 	
 	private final String REQUEST_ADD = "INSERT INTO Utilisateur(Pseudo, Login, Password, Mail, presentation) VALUES (?,?,?,?,?)";
 	private final String REQUEST_DLT = "DELETE FROM Utilisateur WHERE login=?";
@@ -19,6 +20,20 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 	private final String REQUEST_CON = "SELECT Password FROM Utilisateur WHERE Login=?";
 	private final String CLAUSE_ID = " Login=?";
 	
+	//TODO verifier que l'amitié n'existe pas dans le sens inverse
+	private final String REQUEST_ADD_AMI = "INSERT INTO `demandeami`(`Etat`, `Pseudo`, `Pseudo_Utilisateur`) VALUES (?,?,?)";
+	private final String REQUEST_DLT_AMI = "DELETE FROM `demandeami` WHERE (Pseudo=? and Pseudo_Utilisateur=?) OR (Pseudo=? and Pseudo_Utilisateur=?)";
+	private final String REQUEST_UPDATE_AMI = "UPDATE `demandeami` SET `Etat`=? WHERE Pseudo=? and Pseudo_Utilisateur=?";
+	private final String REQUEST_SLT_AMI = "SELECT `Etat`, `Pseudo`, `Pseudo_Utilisateur` FROM `demandeami` where Pseudo=? OR Pseudo_Utilisateur=?";
+
+	private UtilisateurDAO(){};
+	
+	public static UtilisateurDAO getUtilisateurDAO(){
+		if(dao == null){
+			dao = new UtilisateurDAO();
+		}
+		return dao;
+	}
 	
 	@Override
 	public Utilisateur creer(Utilisateur obj) {
@@ -140,6 +155,88 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 		utilisateur.setPresentation(result.getString("presentation"));
 
 		return utilisateur;
+	}
+	
+	public Boolean creerAmi(Utilisateur user1, Utilisateur user2) {
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_ADD_AMI);
+			preparedStatement.setString(1, "EN_ATTENTE");
+			preparedStatement.setString(2, user1.getPseudo());
+			preparedStatement.setString(3, user2.getPseudo());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean supprimerAmi(Utilisateur user1, Utilisateur user2) {
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_DLT_AMI);
+			preparedStatement.setString(1, user1.getPseudo());
+			preparedStatement.setString(2, user2.getPseudo());
+			preparedStatement.setString(3, user2.getPseudo());
+			preparedStatement.setString(4, user1.getPseudo());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean validerAmi(Utilisateur user1, Utilisateur user2) {
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_UPDATE_AMI);
+			preparedStatement.setString(1, "VALIDE");
+			preparedStatement.setString(2, user2.getPseudo());
+			preparedStatement.setString(3, user1.getPseudo());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public Utilisateur getAmis(Utilisateur user){
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		HashMap<String,String> listeAmis = new HashMap<>();
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_SLT_AMI);
+			preparedStatement.setString(1, user.getPseudo());
+			preparedStatement.setString(2, user.getPseudo());
+			ResultSet result = preparedStatement.executeQuery();
+			if (result.next()) {
+				if(!result.getString("pseudo").equals(user.getPseudo())){
+					listeAmis.put(result.getString("Pseudo"), result.getString("Etat"));
+				}else{
+					listeAmis.put(result.getString("Pseudo_Utilisateur"), result.getString("Etat"));
+				}
+			}
+			user.setAmis(listeAmis);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return user;
 	}
 
 }

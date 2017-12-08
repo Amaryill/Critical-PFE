@@ -1,11 +1,6 @@
 package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.bdd.BddBo;
 import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
-import fr.eseo.criticalPfe.java.dao.utilisateur.UtilisateurDAO;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 /**
@@ -63,7 +56,7 @@ public class ConnexionServlet extends HttpServlet {
 	    
 	    
 	    utilisateur = new Utilisateur(null,userLogin,userPassword,null,null,null,null,null);
-	    boUtilisateur = new UtilisateurBOImpl(new UtilisateurDAO());
+	    boUtilisateur = new UtilisateurBOImpl();
 	    
 	    Utilisateur utilisateurConnexion = boUtilisateur.connexion(utilisateur);
 	    

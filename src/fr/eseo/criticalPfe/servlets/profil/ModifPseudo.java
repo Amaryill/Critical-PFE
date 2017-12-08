@@ -1,10 +1,6 @@
 package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.bdd.BddBo;
 import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
-import fr.eseo.criticalPfe.java.dao.utilisateur.UtilisateurDAO;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 /**
@@ -58,7 +52,7 @@ public class ModifPseudo extends HttpServlet {
 		String pseudo_session = (String) request.getSession().getAttribute("utilisateur");
 		
 		if (pseudo_session.contentEquals(pseudo_ancien)){
-			boUtilisateur = new UtilisateurBOImpl(new UtilisateurDAO());
+			boUtilisateur = new UtilisateurBOImpl();
 			utilisateur = new Utilisateur();
 			utilisateur.setLogin((String) session.getAttribute("utilisateur"));
 			utilisateur = boUtilisateur.pullUtilisateur(utilisateur);
