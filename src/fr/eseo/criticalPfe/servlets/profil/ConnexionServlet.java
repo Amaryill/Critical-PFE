@@ -58,12 +58,11 @@ public class ConnexionServlet extends HttpServlet {
 	    utilisateur = new Utilisateur(null,userLogin,userPassword,null,null,null,null,null);
 	    boUtilisateur = new UtilisateurBOImpl();
 	    
-	    Utilisateur utilisateurConnexion = boUtilisateur.connexion(utilisateur);
-	    
-	    if (utilisateurConnexion.getPassword().contentEquals(userPassword)){
+	    boUtilisateur.connexion(utilisateur);
+	    if (utilisateur.getPassword().contentEquals(userPassword)){
 	    	//attribution des variables session
-			session.setAttribute(ATT_SESSION_USER, userLogin);
-			session.setAttribute(ATT_USER, userLogin);
+			session.setAttribute(ATT_SESSION_USER, utilisateur.getPseudo());
+			session.setAttribute(ATT_USER, utilisateur.getPseudo());
 			session.setAttribute(ATT_PRES, presentation);
 	    	response.sendRedirect("site/index.jsp");
 	    } else {

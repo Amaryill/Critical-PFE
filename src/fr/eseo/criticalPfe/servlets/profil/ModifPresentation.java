@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.criticalPfe.bdd.BddBo;
+import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
+import fr.eseo.criticalPfe.java.dao.utilisateur.UtilisateurDAO;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 /**
  * Servlet implementation class ModifPresentation
@@ -43,13 +46,21 @@ public class ModifPresentation extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BddBo bddBo = new BddBo();
 		HttpSession session = request.getSession();
+		UtilisateurBOImpl boUtilisateur = null;
+		Utilisateur utilisateur = null;
 		
 		String presentation = (String) request.getParameter("presentation");
 		String pseudo_session = (String)request.getSession().getAttribute("utilisateur");
 		
-		bddBo.modifPres(pseudo_session, presentation);
+		boUtilisateur = new UtilisateurBOImpl();
+		utilisateur = new Utilisateur();
+		utilisateur.setLogin((String) session.getAttribute("utilisateur"));
+		utilisateur = boUtilisateur.pullUtilisateur(utilisateur);
+		
+		utilisateur.setPresentation(presentation);
+		boUtilisateur.modifUtilisateur(utilisateur);
+		
 		
 		session.setAttribute(ATT_PRES, presentation);
 		String presentationSession = (String)request.getSession().getAttribute("presentation");

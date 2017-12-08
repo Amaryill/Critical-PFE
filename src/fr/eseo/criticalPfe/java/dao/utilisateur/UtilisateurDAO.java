@@ -81,12 +81,15 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 		
 		try {
 			connexion = ConnexionBDD.getConnexion();
-			preparedStatement = connexion.prepareStatement(REQUEST_CON);
+			preparedStatement = connexion.prepareStatement(REQUEST_SLT+CLAUSE_ID);
 			preparedStatement.setString(1, obj.getLogin());
 			
 			ResultSet result = preparedStatement.executeQuery();
 			if(result.next()) {
-				obj.setPassword(result.getString("password"));				
+				obj.setPassword(result.getString("password"));
+				obj.setPseudo(result.getString("pseudo"));
+			} else {
+				obj.setPassword("");
 			}
 		} catch (SQLException e){
 			e.printStackTrace();
