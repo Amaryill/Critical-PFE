@@ -16,11 +16,11 @@ import fr.eseo.criticalPfe.java.model.scenario.Univers;
 public class CampagneDAO implements DAO<Campagne> {
 	private static CampagneDAO dao;
 
-	private final String ADD_CAMPAGNE = "INSERT INTO Campagne(Nom, description, Id_Univers, Id_Contenue, Id_Regle) VALUES (?,?,?,?,?)";
+	private final String ADD_CAMPAGNE = "INSERT INTO Campagne(Nom, description, Id_Univers, Id_Contenu, Id_Regle) VALUES (?,?,?,?,?)";
 	private final String DLT_CAMPAGNE = "DELETE FROM Campagne WHERE Id = ?";
-	private final String CHG_CAMPAGNE = "UPDATE Campagne SET Nom=?, Description=?,Id_Univers = ?, Id_Contenue=?, Id_Regle=? WHERE id=?";
-	private final String SLT_CAMPAGNE = "SELECT Id, Nom, Description,Id_Univers, Id_Contenue, Id_Regle FROM Campagne WHERE id=?";
-	private final String SLT_CAMPAGNE_BY_UNIVERS = "SELECT Id, Nom, Description,Id_Univers, Id_Contenue, Id_Regle FROM Campagne WHERE Id_Univers=?";
+	private final String CHG_CAMPAGNE = "UPDATE Campagne SET Nom=?, Description=?,Id_Univers = ?, Id_Contenu=?, Id_Regle=? WHERE id=?";
+	private final String SLT_CAMPAGNE = "SELECT Id, Nom, Description,Id_Univers, Id_Contenu, Id_Regle FROM Campagne WHERE id=?";
+	private final String SLT_CAMPAGNE_BY_UNIVERS = "SELECT Id, Nom, Description,Id_Univers, Id_Contenu, Id_Regle FROM Campagne WHERE Id_Univers=?";
 	
 	private CampagneDAO (){
 	}
@@ -149,7 +149,7 @@ public class CampagneDAO implements DAO<Campagne> {
 		univers.setId(result.getInt("Id_Univers"));
 		campagne.setUnivers(univers);
 		campagne.setContenu(new Contenu());
-		campagne.getContenu().setId(result.getInt("Id_Contenue"));
+		campagne.getContenu().setId(result.getInt("Id_Contenu"));
 		campagne.setRegle(new Regle());
 		campagne.getRegle().setId(result.getInt("Id_Regle"));
 

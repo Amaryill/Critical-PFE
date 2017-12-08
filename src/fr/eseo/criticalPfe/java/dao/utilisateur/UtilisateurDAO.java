@@ -51,7 +51,6 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 			preparedStatement.setString(5, obj.getPresentation());
 			
 			preparedStatement.executeUpdate();
-			connexion.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

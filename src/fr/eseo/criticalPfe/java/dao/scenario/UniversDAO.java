@@ -5,25 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
-import fr.eseo.criticalPfe.java.model.scenario.Campagne;
-import fr.eseo.criticalPfe.java.model.scenario.Contenu;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
-import fr.eseo.criticalPfe.java.utils.Log;
 
 public class UniversDAO implements DAO<Univers> {
 	
 	private static UniversDAO dao;
 
-	private final String ADD_UNIVERS = "INSERT INTO Univers(Nom, description, Pseudo, Id_Contenue, Id_Regle) VALUES (?,?,?,?,?)";
+	private final String ADD_UNIVERS = "INSERT INTO Univers(Nom, description, Pseudo, Id_Contenu, Id_Regle) VALUES (?,?,?,?,?)";
 	private final String DLT_UNIVERS = "DELETE FROM Univers WHERE Id = ?";
-	private final String CHG_UNIVERS = "UPDATE Univers SET Nom=?, Description=?,Pseudo = ?, Id_Contenue=?, Id_Regle=? WHERE id=?";
-	private final String SLT_UNIVERS = "SELECT Id, Nom, Description,Pseudo, Id_Contenue, Id_Regle FROM Univers WHERE id=?";
-	private final String SLT_UNIVERS_BY_PSEUDO = "SELECT Id, Nom, Description,pseudo, Id_Contenue, Id_Regle FROM Univers WHERE pseudo=?";
+	private final String CHG_UNIVERS = "UPDATE Univers SET Nom=?, Description=?,Pseudo = ?, Id_Contenu=?, Id_Regle=? WHERE id=?";
+	private final String SLT_UNIVERS = "SELECT Id, Nom, Description,Pseudo, Id_Contenu, Id_Regle FROM Univers WHERE id=?";
+	private final String SLT_UNIVERS_BY_PSEUDO = "SELECT Id, Nom, Description,pseudo, Id_Contenu, Id_Regle FROM Univers WHERE pseudo=?";
 
 	
 	private UniversDAO (){
@@ -149,7 +145,7 @@ public class UniversDAO implements DAO<Univers> {
 		Utilisateur user = new Utilisateur();
 		user.setPseudo(result.getString("Pseudo"));
 		univers.setUser(user);
-		univers.getContenu().setId(result.getInt("Id_Contenue"));
+		univers.getContenu().setId(result.getInt("Id_Contenu"));
 		univers.getRegle().setId(result.getInt("Id_Regle"));
 
 		return univers;
