@@ -18,10 +18,12 @@ public class ClasseDAO implements DAO<Classe>{
 		private final String REQUEST_SLT = "SELECT Nom, deDeVie, alignementPossible, ptsCompParNiveau, Description FROM Classe WHERE";
 		private final String CLAUSE_ID = " Nom=?";
 
+		
 		public Classe creer(Classe obj) {
 			Connection connexion = null;
 			PreparedStatement preparedStatement = null;
 
+			
 			try {
 				connexion = ConnexionBDD.getConnexion();
 				preparedStatement = connexion.prepareStatement(REQUEST_ADD);
@@ -105,15 +107,15 @@ public class ClasseDAO implements DAO<Classe>{
 
 		@Override
 		public Classe map(ResultSet result) throws SQLException {
-			Classe race = new Classe();
+			Classe classe = new Classe();
 
-			race.setNom(result.getString("Nom"));
-			race.setDeDeVie(result.getInt("deDeVie"));
-			race.setAlignement(result.getString("alignementPossible"));
-			race.setPointCompetenceNiveau(result.getInt("ptsCompParNiveau"));
-			race.setDescription(result.getString("Description"));
-
-			return race;
+			classe.setNom(result.getString("Nom"));
+			classe.setDeDeVie(result.getInt("deDeVie"));
+			classe.setAlignement(result.getString("alignementPossible"));
+			classe.setPointCompetenceNiveau(result.getInt("ptsCompParNiveau"));
+			classe.setDescription(result.getString("Description"));
+			
+			return classe;
 
 		}
 	}

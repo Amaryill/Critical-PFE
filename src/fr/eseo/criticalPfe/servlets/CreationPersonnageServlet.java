@@ -1,20 +1,21 @@
 package fr.eseo.criticalPfe.servlets;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.java.model.scenario.Session;
+import fr.eseo.criticalPfe.java.bo.entite.PersonnageBO;
+import fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl;
+import fr.eseo.criticalPfe.java.dao.entite.PersonnageDAO;
+import fr.eseo.criticalPfe.java.model.entite.Caracteristique;
+import fr.eseo.criticalPfe.java.model.entite.Classe;
+import fr.eseo.criticalPfe.java.model.entite.Personnage;
+import fr.eseo.criticalPfe.java.model.entite.Race;
 
 @WebServlet("/CreationPersonnageServlet")
 public class CreationPersonnageServlet extends HttpServlet {
@@ -23,12 +24,7 @@ public class CreationPersonnageServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String ATT_FOR = "Force_";
-	private static final String ATT_DEX = "Dexterite";
-	private static final String ATT_CON = "Constitution";
-	private static final String ATT_INT = "Intelligence";
-	private static final String ATT_SAG = "Sagesse";
-	private static final String ATT_CHA = "Charisme";
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,30 +37,12 @@ public class CreationPersonnageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPostCreationPersonnage(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			/* Gérer les éventuelles erreurs ici. */
-			System.out.println(e.toString());
-		}
-
-		/* Connexion à la base de données */
-		String url = "jdbc:mysql://localhost:3306/criticalpfe"; // à changer en
-																// fonction du
-																// nom de votre
-																// bdd
-
-		/* informations de connexion à la bdd */
-		String utilisateur = "Critical";
-		String motDePasse = "Lco950921";
-		Connection connexion = null;
 
 		String nomPersonnage = (String) request.getParameter("nom");
-		String race = (String) request.getParameter("race");
-		String classe = (String) request.getParameter("classe");
+		String nomRace = (String) request.getParameter("race");
+		String nomClasse = (String) request.getParameter("classe");
 		String alignement = (String) request.getParameter("alignement");
 		String dieu = (String) request.getParameter("dieu");
 		String sexe = (String) request.getParameter("sexe");
@@ -80,61 +58,49 @@ public class CreationPersonnageServlet extends HttpServlet {
 		int sagesse = Integer.parseInt((String) request.getParameter("sag"));
 		int charisme = Integer.parseInt((String) request.getParameter("cha"));
 
-		try {
-			connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
-			/* Ici, nous placerons nos requêtes vers la BDD */
-			/* Création de l'objet gérant les requêtes */
-			Statement statement = connexion.createStatement();
-			// Requete sql
+		PersonnageBO personnageBO = new PersonnageBOImpl();
+		Personnage personnage = new Personnage();
+		Caracteristique caracteristique = new Caracteristique();
+		HashMap<String, Integer> caracs = new HashMap<String, Integer>();
+		Race race = new Race();
+		Classe classe = new Classe();
 
-			
-			
-			
-			
-			
-			HttpSession session = request.getSession();
-			String pseudo = (String) session.getAttribute("pseudo");
-			
-			
-			
-			
-			statement.executeUpdate(
-					"INSERT INTO Caracteristiques(Force_, Dexterite, Constitution, Intelligence, Sagesse, Charisme) "
-							+ "VALUES (" + force + "," + dexterite + "," + constitution + "," + intelligence + ","
-							+ sagesse + "," + charisme + ");");
+		caracs.put("for", force);
+		caracs.put("dex", dexterite);
+		caracs.put("con", constitution);
+		caracs.put("int", intelligence);
+		caracs.put("sag", sagesse);
+		caracs.put("cha", charisme);
+		caracteristique.setCaracs(caracs);
+		caracteristique.setPointDeVieMax(20);
+		personnage.setCaracteristique(caracteristique);
 
-			statement.executeUpdate(
-					"INSERT INTO Personnage(Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, Age, Taille, Poids) "
-							+ "VALUES(" + alignement + "," + dieu + "," + sexe + "," + couleurYeux + ","
-							+ couleurCheveux + "," + age + "," + taille + "," + poids + ");");
-			
-			
-			
-			statement.executeUpdate(
-					"INSERT INTO EstClasse(niveau, Id, Nom) VALUES(1," + classe + "," + "VALEUR_ID_PERSONNAGE" );
-			
-			statement.executeUpdate("");
+		race.setNom(nomRace);
+		personnage.setRace(race);
 
-			
+		classe.setNom(nomClasse);
+		classe.setNiveau(1);
+		personnage.ajouterClasse(classe);
 
-		} catch (SQLException e) {
-			/* Gérer les éventuelles erreurs ici */
-			System.out.println(e.toString());
-		} finally {
-			if (connexion != null)
-				try {
-					/* Fermeture de la connexion */
-					connexion.close();
-				} catch (SQLException ignore) {
-					/*
-					 * Si une erreur survient lors de la fermeture, il suffit de
-					 * l'ignorer.
-					 */
-				}
+		personnage.setNiveauPersonnage(1);
+		personnage.setAge(age);
+		personnage.setNom(nomPersonnage);
+		personnage.setAlignement(alignement);
+		personnage.setLangues("Commun");
+		personnage.setTaille(taille);
+		personnage.setPoids(poids);
+		personnage.setCouleurCheveux(couleurCheveux);
+		personnage.setCouleurYeux(couleurYeux);
+		personnage.setSexe(sexe);
+		personnage.setDieu(dieu);
 
-		}
-
-		doGet(request, response);
+		personnageBO.creerPersonnage(personnage);
+		
+		response.sendRedirect("/Critical-PFE/site/index.jsp");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 }

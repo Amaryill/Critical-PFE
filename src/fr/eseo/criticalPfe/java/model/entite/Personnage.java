@@ -1,6 +1,6 @@
 package fr.eseo.criticalPfe.java.model.entite;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.model.attributs.Compendium;
@@ -9,7 +9,7 @@ public class Personnage extends Entitee {
 
 	String nom;
 
-	List<Classe> classes;
+	List<Classe> classes = new ArrayList<Classe>();
 	Race race;
 	String alignement;
 	String dieu;
@@ -133,6 +133,7 @@ public class Personnage extends Entitee {
 		this.compendium = compendium;
 	}
 	
-	
-
+	public void ajouterClasse(Classe classe){
+		this.classes.add(classe);
+	}
 }

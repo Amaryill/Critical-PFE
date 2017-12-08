@@ -30,7 +30,7 @@
 				<br><br>
 				<h1 style="color:black;">Creation Personnage</h1>
 			
-				<form class="form-horizontal" action="../../CreationPersonnageServlet"
+				<form class="form-horizontal" action="/Critical-PFE/CreationPersonnageServlet"
 					method="post">
 					<div class="form-group">
 						<div class="container">

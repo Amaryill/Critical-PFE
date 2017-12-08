@@ -8,12 +8,12 @@ public class EntiteeBOImpl implements EntiteeBO{
 
 	EntiteeDAO dao;
 	
-	public EntiteeBOImpl(EntiteeDAO dao) {
-		this.dao = dao;
+	public EntiteeBOImpl() {
+		this.dao = new EntiteeDAO();
 	}
 
 	public Entitee creerEntitee(Entitee entitee) {
-		CaracteristiqueBO boCaracteristique = new CaracteristiqueBO(new CaracteristiqueDAO());
+		CaracteristiqueBO boCaracteristique = new CaracteristiqueBOImpl();
 		
 		entitee.setCaracteristique(boCaracteristique.creerCaracteristique(entitee.getCaracteristique()));
 		

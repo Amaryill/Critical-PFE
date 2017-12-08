@@ -26,10 +26,6 @@ public class EntiteeDAO implements DAO<Entitee> {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 
-		if (obj.getClass().getSimpleName().equals("Personnage")) {
-
-		}
-
 		try {
 			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(REQUEST_ADD);
@@ -42,7 +38,7 @@ public class EntiteeDAO implements DAO<Entitee> {
 			
 			preparedStatement.executeUpdate();
 
-			obj.setId(ConnexionBDD.getLastId("Entitee"));
+			obj.setIdEntitee(ConnexionBDD.getLastId("Entitee"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
