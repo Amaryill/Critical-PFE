@@ -14,7 +14,7 @@ public class ContenuDAO implements DAO<Contenu>{
 	
 	//TODO changer Contenue en Contenu dans la BDD
 	
-	private final String ADD_CONTENU = "INSERT INTO CONTENUE () VALUES()";
+	private final String ADD_CONTENU = "INSERT INTO CONTENU () VALUES()";
 
 	
 	private ContenuDAO(){};

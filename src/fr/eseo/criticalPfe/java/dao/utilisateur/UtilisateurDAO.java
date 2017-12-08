@@ -21,10 +21,10 @@ public class UtilisateurDAO implements DAO<Utilisateur>{
 	private final String CLAUSE_ID = " Login=?";
 	
 	//TODO verifier que l'amitié n'existe pas dans le sens inverse
-	private final String REQUEST_ADD_AMI = "INSERT INTO `demandeami`(`Etat`, `Pseudo`, `Pseudo_Utilisateur`) VALUES (?,?,?)";
-	private final String REQUEST_DLT_AMI = "DELETE FROM `demandeami` WHERE (Pseudo=? and Pseudo_Utilisateur=?) OR (Pseudo=? and Pseudo_Utilisateur=?)";
-	private final String REQUEST_UPDATE_AMI = "UPDATE `demandeami` SET `Etat`=? WHERE Pseudo=? and Pseudo_Utilisateur=?";
-	private final String REQUEST_SLT_AMI = "SELECT `Etat`, `Pseudo`, `Pseudo_Utilisateur` FROM `demandeami` where Pseudo=? OR Pseudo_Utilisateur=?";
+	private final String REQUEST_ADD_AMI = "INSERT INTO `ami`(`Etat`, `Pseudo`, `Pseudo_Utilisateur`) VALUES (?,?,?)";
+	private final String REQUEST_DLT_AMI = "DELETE FROM ami` WHERE (Pseudo=? and Pseudo_Utilisateur=?) OR (Pseudo=? and Pseudo_Utilisateur=?)";
+	private final String REQUEST_UPDATE_AMI = "UPDATE `ami` SET `Etat`=? WHERE Pseudo=? and Pseudo_Utilisateur=?";
+	private final String REQUEST_SLT_AMI = "SELECT `Etat`, `Pseudo`, `Pseudo_Utilisateur` FROM `ami` where Pseudo=? OR Pseudo_Utilisateur=?";
 
 	private UtilisateurDAO(){};
 	
