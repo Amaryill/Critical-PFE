@@ -17,7 +17,7 @@ public abstract class Entitee extends Model {
 
 	String nom;
 	
-	Caracteristique caracteristique;
+	Caracteristique caracteristique = new Caracteristique();
 	List<Competence> comptence;
 	List<Don> dons;
 	List<Sort> sorts;

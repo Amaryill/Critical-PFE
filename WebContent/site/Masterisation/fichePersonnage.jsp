@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,6 +9,18 @@
 <meta name="author" content="Dashboard">
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+<%@ page import="fr.eseo.criticalPfe.java.bo.entite.PersonnageBO"%>
+<%@ page import="fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl"%>
+<%@ page import="fr.eseo.criticalPfe.java.model.entite.Personnage"%>
+<%@ page import="fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur"%>
+<%
+	Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
+	PersonnageBO boPersonnage = new PersonnageBOImpl();
+	Personnage personnage = new Personnage();
+	personnage.setId(Integer.parseInt(request.getParameter("id")));
+	personnage = boPersonnage.trouverPersonnage(personnage); %>
+
 
 
 <jsp:include page="../include/import_dashgum.jsp" />
@@ -30,8 +42,7 @@
 		<div class="form-group col-xs-12" style="background-color:rgba(0, 0, 0, 0);">
 			<div class="panel panel-default" style="background-color:rgba(0, 0, 0, 0);">
 				<div class="panel-heading" style="background-color:rgba(66, 74, 93, 1);">
-					<h4 style="color:white">Fiche Personnage</h4> 
-				
+					<h4 style="color:white">Fiche Personnage : <%=personnage.getNom()%>, niv <%=personnage.getNiveau()%></h4> 
 				</div> 
 				<div class="panel-body" style="background-color:rgba(255, 255, 255, 0.7);">
 					<ul class="nav nav-tabs navbar-default nav-justified container-fluid">
@@ -44,16 +55,10 @@
 					<div class="tab-content">
 						<div id="home" class="tab-pane fade in active"
 							style="margin-top: 30px">
-							<div class="row">
-								<label class="control-label col-xs-2" for="pseudo_ancien">Nom
-									personnage :</label> <input type="text" id="nom" name="nom"
-									class="control-label col-xs-2 champLecture" value="a" readonly />
-							</div>
 							<div class="row" style="margin-top: 15px">
-
 								<label class="control-label col-xs-2" for="pseudo_ancien">Race
 									:</label> <input type="text" id="nom" name="nom"
-									class="control-label col-xs-2 champLecture" value="a" readonly />
+									class="control-label col-xs-2 champLecture" value='<%=personnage.getRace().getNom() %>' readonly />
 								<label class="control-label col-xs-2" for="pseudo_ancien">Classe
 									:</label> <input type="text " id="nom" name="nom"
 									class="control-label col-xs-2 champLecture" value="a" readonly />
@@ -62,10 +67,10 @@
 
 								<label class="control-label col-xs-2" for="pseudo_ancien">Alignement
 									:</label> <input type="text" id="nom" name="nom"
-									class="control-label col-xs-2 champLecture" value="a" readonly />
+									class="control-label col-xs-2 champLecture" value='<%=personnage.getAlignement()%>' readonly />
 								<label class="control-label col-xs-2" for="pseudo_ancien">Dieu
 									:</label> <input type="text" id="nom" name="nom"
-									class="control-label col-xs-2 champLecture" value="a" readonly />
+									class="control-label col-xs-2 champLecture" value='<%=personnage.getDieu()%>' readonly />
 							</div>
 						</div>
 
@@ -79,11 +84,11 @@
 									out.println("<label class=\"control-label col-xs-2\" for=\"pseudo_ancien\">" + caracNomComplet[i]
 											+ " :</label>");
 									out.println("<input type=\"text\" name=\"" + carac[i] + "\" id=\"" + carac[i]
-											+ "\" class=\"control-label col-xs-2 champLecture\" value=\"a\" readonly/>");
+											+ "\" class=\"control-label col-xs-2 champLecture\" value='"+personnage.getCaracteristique().getCaracs().get(carac[i])+"' readonly/>");
 									out.println("<label class=\"control-label col-xs-2\" for=\"pseudo_ancien\">" + caracNomComplet[i + 1]
 											+ " :</label>");
 									out.println("<input type=\"text\" name=\"" + carac[i + 1] + "\" id=\"" + carac[i + 1]
-											+ "\" class=\"control-label col-xs-2 champLecture\" value=\"a\" readonly/>");
+											+ "\" class=\"control-label col-xs-2 champLecture\" value='"+personnage.getCaracteristique().getCaracs().get(carac[i+1])+"' readonly/>");
 									out.println("</div>");
 								}
 							%>

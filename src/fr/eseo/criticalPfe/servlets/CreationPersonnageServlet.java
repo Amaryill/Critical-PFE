@@ -91,7 +91,7 @@ public class CreationPersonnageServlet extends HttpServlet {
 		utilisateur.setPseudo(pseudo);
 		personnage.setUtilisateur(utilisateur);
 		
-		personnage.setNiveauPersonnage(1);
+		personnage.setFacteurPuissance(1);
 		personnage.setAge(age);
 		personnage.setNom(nomPersonnage);
 		personnage.setAlignement(alignement);

@@ -16,7 +16,7 @@ public class Utilisateur extends Model {
 	String mail;
 	String presentation;
 	Statistique statistique;
-	List<Personnage> personnages;
+	List<Personnage> personnages = new ArrayList<Personnage>();
 	List<Univers> listUnivers;
 	HashMap<String,String> amis;
 

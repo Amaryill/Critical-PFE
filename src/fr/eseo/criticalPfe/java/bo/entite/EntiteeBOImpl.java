@@ -12,12 +12,25 @@ public class EntiteeBOImpl implements EntiteeBO{
 		this.dao = new EntiteeDAO();
 	}
 
+	@Override
 	public Entitee creerEntitee(Entitee entitee) {
 		CaracteristiqueBO boCaracteristique = new CaracteristiqueBOImpl();
 		
 		entitee.setCaracteristique(boCaracteristique.creerCaracteristique(entitee.getCaracteristique()));
 		
 		return this.dao.creer(entitee);
+	}
+
+	@Override
+	public Entitee trouverEntitee(Entitee entitee) {
+		CaracteristiqueBO boCaracteristique = new CaracteristiqueBOImpl();
+
+		entitee = this.dao.trouver(entitee);		
+		entitee.setCaracteristique(boCaracteristique.trouverCaracteristique(entitee.getCaracteristique()));
+
+		System.out.println(entitee.getCaracteristique().getCaracs().get("for"));
+		
+		return entitee;
 	}
 
 }

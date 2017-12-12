@@ -16,7 +16,7 @@ import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
  */
 @WebServlet("/ModifMdp")
 public class ModifMdp extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVerwsionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()

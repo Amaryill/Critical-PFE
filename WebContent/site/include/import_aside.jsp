@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 		
-			
 
 		<!-- **********************************************************************************************************************************************************
 	      MAIN SIDEBAR MENU
@@ -27,7 +26,7 @@
 		                        <ul class="sub"> 
 		                        	<li><a href="/Critical-PFE/AffichageListeUnivers">Portail de MJ</a></li>
 		                        	<li><a href="/Critical-PFE/site/Masterisation/creationPersonnage.jsp">Créer un personnage</a></li>
-		                        	<li><a href="/Critical-PFE/site/Masterisation/fichePersonnage.jsp">Voir mes personnages</a></li>
+		                        	<li><a href="/Critical-PFE/site/Masterisation/listePersonnages.jsp">Voir mes personnages</a></li>
 		                        	
 		                        </ul>
 	              	  	</li>

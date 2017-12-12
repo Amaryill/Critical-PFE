@@ -4,24 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.model.attributs.Compendium;
+import fr.eseo.criticalPfe.java.model.scenario.Univers;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 public class Personnage extends Entitee {
 
 	String nom;
 
-	Utilisateur utilisateur;
+	Utilisateur utilisateur = new Utilisateur();
+	Univers univers = new Univers();
 	
 	List<Classe> classes = new ArrayList<Classe>();
-	Race race;
+	Race race = new Race();
 	String alignement;
 	String dieu;
 	String sexe;
 	String couleurYeux;
 	String couleurCheveux;
 
-	Compendium compendium;
-	int niveauPersonnage;
+	Compendium compendium = new Compendium();
 
 	int taille;
 	int age;
@@ -96,14 +97,6 @@ public class Personnage extends Entitee {
 		this.couleurCheveux = couleurCheveux;
 	}
 
-	public int getNiveauPersonnage() {
-		return niveauPersonnage;
-	}
-
-	public void setNiveauPersonnage(int niveauPersonnage) {
-		this.niveauPersonnage = niveauPersonnage;
-	}
-
 	public int getTaille() {
 		return taille;
 	}
@@ -148,6 +141,19 @@ public class Personnage extends Entitee {
 		this.utilisateur = utilisateur;
 	}
 	
+	public Univers getUnivers(){
+		return this.univers;
+	}
 	
+	public void setUnivers(Univers univers){
+		this.univers = univers;
+	}
 	
+	public int getNiveau(){
+		return (int) this.getFacteurPuissance();
+	}
+	
+	public String toString(){
+		return ("Personnage : " + nom + " ; couleur : " + couleurCheveux);
+	}	
 }

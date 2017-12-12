@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
@@ -14,12 +16,13 @@ import fr.eseo.criticalPfe.java.model.scenario.Univers;
 public class PersonnageDAO implements DAO<Personnage> {
 
 	// TODO Changer Table par le nom de la Univers
-	private final String REQUEST_ADD = "INSERT INTO Personnage(Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entite, pseudo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+	private final String REQUEST_ADD = "INSERT INTO Personnage(Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entitee, pseudo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 	private final String REQUEST_LIEN_CLASSE = "INSERT INTO EstClasse(niveau, id, Nom) VALUES(?,?,?)"; // TODO
 	private final String REQUEST_DLT = "DELETE FROM Personnage WHERE Id=?";
-	private final String REQUEST_UPD = "UPDATE Personnage SET Alignement=?, Dieu=?, Sexe=?, CouleurYeux=?, CouleurCheveux=?, taille=?, poids=?, age=?, nom=?, Id_Compendium=?, Id_Entite=?, pseudo=? WHERE id=?"; // TODO
-	private final String REQUEST_SLT = "SELECT Id, Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entite, pseudo FROM Personnage WHERE";
+	private final String REQUEST_UPD = "UPDATE Personnage SET Alignement=?, Dieu=?, Sexe=?, CouleurYeux=?, CouleurCheveux=?, taille=?, poids=?, age=?, nom=?, Id_Compendium=?, Id_Entitee=?, pseudo=? WHERE id=?"; // TODO
+	private final String REQUEST_SLT = "SELECT Id, Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entitee, pseudo FROM Personnage WHERE";
 	private final String CLAUSE_ID = " id=?";
+	private final String CLAUSE_PSEUDO = " pseudo=?";
 
 	public Personnage creer(Personnage obj) {
 		Connection connexion = null;
@@ -48,7 +51,6 @@ public class PersonnageDAO implements DAO<Personnage> {
 
 			preparedStatement = connexion.prepareStatement(REQUEST_LIEN_CLASSE);
 			for(Classe classe : obj.getClasses()){
-				System.out.println(classe.getNiveau());
 				preparedStatement.setInt(1, classe.getNiveau());
 				preparedStatement.setInt(2, obj.getId());
 				preparedStatement.setString(3, classe.getNom());
@@ -131,7 +133,7 @@ public class PersonnageDAO implements DAO<Personnage> {
 		return obj;
 	}
 
-	@Override
+	@Override	
 	public Personnage map(ResultSet result) throws SQLException {
 		Personnage personnage = new Personnage();
 
@@ -143,11 +145,34 @@ public class PersonnageDAO implements DAO<Personnage> {
 		personnage.setCouleurYeux(result.getString("CouleurYeux"));
 		personnage.setCouleurCheveux(result.getString("CouleurCheveux"));
 		personnage.setTaille(result.getInt("taille"));
-		personnage.setNom(result.getString("nom"));
+		personnage.setPoids(result.getInt("poids"));
+		personnage.setAge(result.getInt("age"));
+		personnage.getRace().setNom(result.getString("nom"));
 		personnage.getCompendium().setId(result.getInt("Id_Compendium"));
 		personnage.setIdEntitee(result.getInt("Id_Entitee"));		
 		personnage.getUtilisateur().setPseudo(result.getString("pseudo"));
-		
 		return personnage;
+	}
+
+	public List<Personnage> trouverParUtilisateur(String pseudo) {
+		List<Personnage> personnages = new ArrayList<Personnage>();
+		
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_PSEUDO);
+			preparedStatement.setString(1, pseudo);
+			
+			ResultSet result = preparedStatement.executeQuery();
+			while (result.next()) {
+				personnages.add(map(result));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return personnages;
 	}
 }

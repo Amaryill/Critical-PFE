@@ -14,4 +14,8 @@ public class CaracteristiqueBOImpl implements CaracteristiqueBO{
 	public Caracteristique creerCaracteristique(Caracteristique caracteristique) {
 		return this.dao.creer(caracteristique);
 	}
+	
+	public Caracteristique trouverCaracteristique(Caracteristique caracteristique) {
+		return this.dao.trouver(caracteristique);
+	}
 }

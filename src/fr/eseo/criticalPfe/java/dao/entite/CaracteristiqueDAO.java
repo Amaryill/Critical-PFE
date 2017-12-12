@@ -127,6 +127,8 @@ public class CaracteristiqueDAO implements DAO<Caracteristique>{
 			caracteristique.setPointDeVieMax(result.getInt("PDVMax"));
 			caracteristique.setId(result.getInt("Id"));
 			
+			System.out.println(caracs.get("for"));
+			
 			return caracteristique;
 		}
 

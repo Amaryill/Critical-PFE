@@ -1,13 +1,8 @@
 package fr.eseo.criticalPfe.java.bo.entite;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import fr.eseo.criticalPfe.java.dao.entite.ClasseDAO;
-import fr.eseo.criticalPfe.java.dao.entite.EntiteeDAO;
 import fr.eseo.criticalPfe.java.dao.entite.PersonnageDAO;
-import fr.eseo.criticalPfe.java.dao.entite.RaceDAO;
-import fr.eseo.criticalPfe.java.model.entite.Classe;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
 
 // On dit que TrucBOImpl implements TrucBO
@@ -19,6 +14,22 @@ public class PersonnageBOImpl implements PersonnageBO{
 	
 	public PersonnageBOImpl(){
 		this.dao = new PersonnageDAO();
+	}
+	
+	public List<Personnage> trouverPersonnageParUtilisateur(String pseudo){
+		List<Personnage> personnages = this.dao.trouverParUtilisateur(pseudo);
+		EntiteeBO boEntitee = new EntiteeBOImpl();
+		for(Personnage personnage : personnages){
+			personnage = (Personnage) boEntitee.trouverEntitee(personnage);
+		}
+		
+		return personnages;
+	}
+	
+	public Personnage trouverPersonnage(Personnage personnage){
+		EntiteeBO boEntitee = new EntiteeBOImpl();
+		personnage = (Personnage) boEntitee.trouverEntitee(this.dao.trouver(personnage));
+		return personnage;
 	}
 	
 	public Personnage creerPersonnage(Personnage personnage){
@@ -33,11 +44,8 @@ public class PersonnageBOImpl implements PersonnageBO{
 		personnage.setRace(boRace.trouverRace(personnage.getRace()));
 //		personnage.setCompendium();
 		
-		System.out.println(personnage.getIdEntitee());
-		System.out.println(personnage.getClasses().get(0).getNom());
-		System.out.println(personnage.getRace().getNom());
 		
 		return dao.creer(personnage);
 //		return null;
-	}
+}
 }

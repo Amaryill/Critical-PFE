@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.criticalPfe.java.bo.entite.PersonnageBO;
+import fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl;
 import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
@@ -57,10 +59,14 @@ public class ConnexionServlet extends HttpServlet {
 	    
 	    utilisateur = new Utilisateur(null,userLogin,userPassword,null,null,null,null,null);
 	    boUtilisateur = new UtilisateurBOImpl();
+	    PersonnageBO boPersonnage = new PersonnageBOImpl();
 	    
-	    boUtilisateur.connexion(utilisateur);
+	    utilisateur = boUtilisateur.pullUtilisateur(utilisateur);
+	    utilisateur.setPersonnages(boPersonnage.trouverPersonnageParUtilisateur(utilisateur.getPseudo()));
 	    if (utilisateur.getPassword().contentEquals(userPassword)){
-	    	//attribution des variables session
+	    	//attribution des variables session	
+	    
+	    	session.setAttribute("user", utilisateur);
 			session.setAttribute(ATT_SESSION_USER, utilisateur.getPseudo());
 			session.setAttribute(ATT_USER, utilisateur.getPseudo());
 			session.setAttribute(ATT_PRES, presentation);

@@ -21,6 +21,8 @@ public class EntiteeDAO implements DAO<Entitee> {
 	private final String CLAUSE_ID = " id=?";
 
 	private String classe;
+	private Personnage personnage;
+	private Monstre monstre;
 
 	public Entitee creer(Entitee obj) {
 		Connection connexion = null;
@@ -69,10 +71,16 @@ public class EntiteeDAO implements DAO<Entitee> {
 		PreparedStatement preparedStatement = null;
 		classe = obj.getClass().getSimpleName();
 
+		if(classe.equals("Personnage")){
+			personnage = (Personnage) obj;// Entitee personnage = new Entitee();
+		} else if(classe.equals("Monstre")){
+			monstre = (Monstre) obj;
+		}	
+		
 		try {
 			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
-			preparedStatement.setInt(1, obj.getId());
+			preparedStatement.setInt(1, obj.getIdEntitee());
 
 			ResultSet result = preparedStatement.executeQuery();
 			if (result.next()) {
@@ -98,7 +106,7 @@ public class EntiteeDAO implements DAO<Entitee> {
 			preparedStatement.setString(2, obj.getLangues());
 			preparedStatement.setDouble(3, obj.getFacteurPuissance());
 			preparedStatement.setInt(4, obj.getCaracteristique().getId());
-			preparedStatement.setInt(5, obj.getId());
+			preparedStatement.setInt(5, obj.getIdEntitee());
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -110,24 +118,20 @@ public class EntiteeDAO implements DAO<Entitee> {
 
 	@Override
 	public Entitee map(ResultSet result) throws SQLException {
-		if(classe.equals("Personnage")){
-			Personnage entitee = new Personnage();// Entitee personnage = new Entitee();
-		
-			entitee.setNom(result.getString("nom"));
-			entitee.setLangues(result.getString("Langue"));
-			entitee.setFacteurPuissance(result.getDouble("FacteurPuissance"));
-			entitee.getCaracteristique().setId(result.getInt("Id_Caracteristique"));
+		if(classe.equals("Personnage")){		
+			personnage.setNom(result.getString("nom"));
+			personnage.setLangues(result.getString("Langue"));
+			personnage.setFacteurPuissance(result.getDouble("FacteurPuissance"));
+			personnage.getCaracteristique().setId(result.getInt("Id_Caracteristique"));
 			
-			return entitee;
-		} else if(classe.equals("Monstre")){
-			Monstre entitee = new Monstre();
+			return personnage;
+		} else if(classe.equals("Monstre")){			
+			monstre.setNom(result.getString("nom"));
+			monstre.setLangues(result.getString("Langue"));
+			monstre.setFacteurPuissance(result.getDouble("FacteurPuissance"));
+			monstre.getCaracteristique().setId(result.getInt("Id_Caracteristique"));
 			
-			entitee.setNom(result.getString("nom"));
-			entitee.setLangues(result.getString("Langue"));
-			entitee.setFacteurPuissance(result.getDouble("FacteurPuissance"));
-			entitee.getCaracteristique().setId(result.getInt("Id_Caracteristique"));
-			
-			return entitee;
+			return monstre;
 		} else {
 			return null;
 		}

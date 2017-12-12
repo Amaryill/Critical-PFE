@@ -41,7 +41,7 @@ public class Main {
 		personnage.ajouterClasse(classe);
 		
 		
-		personnage.setNiveauPersonnage(1);
+		personnage.setFacteurPuissance(1);
 		personnage.setAge(18);
 		personnage.setNom("Suly GOD MODE !!!");
 		personnage.setAlignement("Loyal Bon");
