@@ -11,14 +11,10 @@
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
 <%@ page import="java.util.*"%>
-<%@ page import="fr.eseo.criticalPfe.java.bo.entite.PersonnageBO"%>
-<%@ page import="fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl"%>
 <%@ page import="fr.eseo.criticalPfe.java.model.entite.Personnage"%>
 <%@ page import="fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur"%>
-<%
-	Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
-	PersonnageBO boPersonnage = new PersonnageBOImpl();
-	user.setPersonnages(boPersonnage.trouverPersonnageParUtilisateur(user.getPseudo())); %>
+
+<%	Utilisateur user = (Utilisateur) session.getAttribute("user"); %>
 
 <jsp:include page="../include/import_dashgum.jsp" />
 
@@ -60,6 +56,7 @@
 						<thead>
 							<tr>
 								<th>Personnage</th>
+								
 								<th>Niveau</th>
 								<th>Univers</th>
 							</tr>
@@ -71,7 +68,7 @@
 										out.println("<tr onclick=\"location.href='fichePersonnage.jsp?id="
 												+ user.getPersonnages().get(i).getId()
 												+ "'\">");
-										out.println("<td>" + user.getPersonnages().get(i).getNom() + "</td>");
+										out.println("<td><input id='id' name='id' type='hidden' value='"+ user.getPersonnages().get(i).getId() +"'>" + user.getPersonnages().get(i).getNom() + "</td>");
 										out.println("<td>" + (int)user.getPersonnages().get(i).getFacteurPuissance() + "</td>");
 										out.println("<td>" + (user.getPersonnages().get(i).getUnivers().getNomUnivers()==null?"Non affecté":user.getPersonnages().get(i).getUnivers().getNomUnivers()) + "</td>");
 										out.println("</tr>");

@@ -112,6 +112,8 @@
 
 	<!-- js placed at the end of the document so the pages load faster -->
 	<jsp:include page="../include/import_script.jsp" />
+	
+	<form method="post" action="../DemandeAmis"></form>
 
 </body>
 </html>
