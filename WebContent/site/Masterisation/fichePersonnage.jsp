@@ -81,14 +81,14 @@
 								String[] carac = new String[] { "for", "dex", "con", "int", "sag", "cha" };
 								for (int i = 0; i < 6; i += 2) {
 									out.println("<div class=\"row\" style=\"margin-top: 10px\">");
-									out.println("<label class=\"control-label col-xs-2\" for=\"pseudo_ancien\">" + caracNomComplet[i]
+									out.println("<label class=\"control-label col-xs-2 col-xs-offset-1\" for=\"pseudo_ancien\">" + caracNomComplet[i]
 											+ " :</label>");
 									out.println("<input type=\"text\" name=\"" + carac[i] + "\" id=\"" + carac[i]
-											+ "\" class=\"control-label col-xs-2 champLecture\" value='"+personnage.getCaracteristique().getCaracs().get(carac[i])+"' readonly/>");
-									out.println("<label class=\"control-label col-xs-2\" for=\"pseudo_ancien\">" + caracNomComplet[i + 1]
+											+ "\" class=\"control-label col-xs-1 champLecture\" value='"+personnage.getCaracteristique().getCaracs().get(carac[i])+"' readonly/>");
+									out.println("<label class=\"control-label col-xs-2 col-xs-offset-2\" for=\"pseudo_ancien\">" + caracNomComplet[i + 1]
 											+ " :</label>");
 									out.println("<input type=\"text\" name=\"" + carac[i + 1] + "\" id=\"" + carac[i + 1]
-											+ "\" class=\"control-label col-xs-2 champLecture\" value='"+personnage.getCaracteristique().getCaracs().get(carac[i+1])+"' readonly/>");
+											+ "\" class=\"control-label col-xs-1 champLecture\" value='"+personnage.getCaracteristique().getCaracs().get(carac[i+1])+"' readonly/>");
 									out.println("</div>");
 								}
 							%>
