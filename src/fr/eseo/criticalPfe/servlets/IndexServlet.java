@@ -31,7 +31,6 @@ public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    HttpSession session = request.getSession();
 	    RequestDispatcher dispat = null;
-        System.out.println("Index");
 	    
 	    if (session.getAttribute("user") != null){
 	        // Créer un servlet qui redirige vers le profil?

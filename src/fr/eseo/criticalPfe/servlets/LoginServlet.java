@@ -31,7 +31,6 @@ public class LoginServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    HttpSession session = request.getSession();
         RequestDispatcher dispat = null;
-        System.out.println("LoginServlet");
 	    
 	    if (session.getAttribute("user") != null){
             dispat = request.getRequestDispatcher("/site/index.jsp");
