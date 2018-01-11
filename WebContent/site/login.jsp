@@ -30,7 +30,7 @@
 				<div class="text-center">
 							<img src="assets/img/Critical_logo_mini.png"/>
 				</div>
-				<form class="form-login" action="../ConnexionServlet" method="post">
+				<form class="form-login" action="ConnexionServlet" method="post">
 					<h2 class="form-login-heading">Connexion</h2>
 					<div class="login-wrap">
 						<input type="text" class="form-control" placeholder="Entrer login" name="login" autofocus>
