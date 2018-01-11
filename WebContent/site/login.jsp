@@ -42,7 +42,7 @@
 						
 						<div class="registration">
 			                Pas encore inscrit ?<br/>
-			                <a class="" href="Inscription_Connexion_Deco/signup.jsp">
+			                <a class="" href="site/Inscription_Connexion_Deco/signup.jsp">
 			                    Créer un compte
 			                </a>
 			            </div>						      	      			
