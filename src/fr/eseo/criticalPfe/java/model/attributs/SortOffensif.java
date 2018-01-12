@@ -11,11 +11,11 @@ public class SortOffensif extends Sort {
 	int degatBase;
 	List<De> degatDes;
 	
-	public SortOffensif(int degatBase, List<De> degatDes, String nom, HashMap<Classe, Integer> levelSort, String ecole, String tempsIncantation,
-			String composantes, int portee, int duree, String jetDeSauvegarde, String resistanceMagie,
+	public SortOffensif(int degatBase, List<De> degatDes, String nom, String reference, HashMap<Classe, Integer> levelSort, String ecole, String tempsIncantation,
+			String composantes, String portee, String cible, int duree, String jetDeSauvegarde, String resistanceMagie,
 			String description) {
 		
-		super(nom, levelSort, ecole, tempsIncantation, composantes, portee, duree, jetDeSauvegarde, resistanceMagie,
+		super(nom, reference, levelSort, ecole, tempsIncantation, composantes, portee, cible, duree, jetDeSauvegarde, resistanceMagie,
 				description);
 		this.degatBase = degatBase;
 		this.degatDes = degatDes;

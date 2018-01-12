@@ -10,14 +10,15 @@ public class Sort extends Model {
 	/********************* ATTRIBUTS *************************/
 
 	String nom;
-
+	String reference;
 	HashMap<Classe, Integer> levelSort;
 
 	String ecole;
 	String tempsIncantation;
 	String composantes;
-
-	int portee;
+	String portee;
+	String cible;
+	
 	int duree;
 
 	String jetDeSauvegarde;
@@ -26,17 +27,23 @@ public class Sort extends Model {
 
 	
 	/******************* CONSTRUCTEURS ***********************/
-
-	public Sort(String nom, HashMap<Classe, Integer> levelSort, String ecole, String tempsIncantation,
-			String composantes, int portee, int duree, String jetDeSauvegarde, String resistanceMagie,
+	
+	public Sort(){
+		
+	}
+	
+	public Sort(String nom, String reference,HashMap<Classe, Integer> levelSort, String ecole, String tempsIncantation,
+			String composantes, String portee, String cible,int duree, String jetDeSauvegarde, String resistanceMagie,
 			String description) {
 		this.nom = nom;
+		this.reference = reference;
 		this.levelSort = levelSort;
 		this.ecole = ecole;
 		this.tempsIncantation = tempsIncantation;
 		this.composantes = composantes;
 		this.duree = duree;
 		this.portee = portee;
+		this.cible = cible;
 		this.jetDeSauvegarde = jetDeSauvegarde;
 		this.resistanceMagie = resistanceMagie;
 		this.description = description;
@@ -52,7 +59,15 @@ public class Sort extends Model {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public String getReference() {
+		return reference;
+	}
 
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
+	
 	public HashMap<Classe, Integer> getLevelSort() {
 		return levelSort;
 	}
@@ -85,14 +100,22 @@ public class Sort extends Model {
 		this.composantes = composantes;
 	}
 
-	public int getPortee() {
+	public String getPortee() {
 		return portee;
 	}
 
-	public void setPortee(int portee) {
+	public void setPortee(String portee) {
 		this.portee = portee;
 	}
 
+	public String getCible() {
+		return cible;
+	}
+
+	public void setCible(String cible) {
+		this.cible = cible;
+	}
+	
 	public int getDuree() {
 		return duree;
 	}
