@@ -36,9 +36,15 @@
 		     <!--main content start-->
 			<section id="main-content">
 				<section class="wrapper">
-				
-				
-					<h2 style="color:black;">Modifier mon pseudo</h2>
+				<div class="col-xs-12">
+				<div class="panel panel-default"
+				style="background-color: rgba(0, 0, 0, 0);">
+				<div class="panel-heading"
+					style="background-color: rgba(66, 74, 93, 1);">
+					<h4 style="color:white;">Modifier mon pseudo</h4>
+				</div>
+				<div class="panel-body"
+					style="background-color: rgba(255, 255, 255, 0.7);">
 					<form class="form-horizontal" action="../ModifPseudo" method="post">
 						<div class="form-group">
 							<div class="col-xs-6 col-xs-offset-2">
@@ -64,10 +70,21 @@
 							</div>
 						</div>
 					</form>
-					<h2 style="color:black;">Modifier son mot de passe</h2>
+					</div>
+					</div>
+					
+					<div class="panel panel-default"
+						style="background-color: rgba(0, 0, 0, 0);">
+					<div class="panel-heading"
+						style="background-color: rgba(66, 74, 93, 1);">
+					<h4 style="color:white;">Modifier son mot de passe</h4>
+					</div>
+					<div class="panel-body"
+					style="background-color: rgba(255, 255, 255, 0.7);">
 					<form class="form-horizontal" action="../ModifMdp" method="post">
-				
 						<div class="form-group">
+						
+							
 							<div class="col-xs-6 col-xs-offset-2">
 								<div class="form-material form-material-primary">
 									<label class="control-label" for="mdp" style="color:black;">Ancien mot de passe:</label>
@@ -99,6 +116,9 @@
 							</div>
 						</div>
 					</form>
+					</div>
+					</div>
+					</div>
 				</section>
 			</section>
 	</section>	

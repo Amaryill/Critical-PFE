@@ -50,6 +50,7 @@
 						<li><a data-toggle="tab" href="#menu1">Caractéristiques</a></li>
 						<li><a data-toggle="tab" href="#menu2">Inventaire</a></li>
 						<li><a data-toggle="tab" href="#menu3">Compétences</a></li>
+						<li><a data-toggle="tab" href="#menu4">Sorts</a></li>
 					</ul>
 
 					<div class="tab-content">
@@ -102,6 +103,10 @@
 						<div id="menu3" class="tab-pane fade col-xs-offset-1"
 							style="margin-top: 30px">
 							<p>menu3</p>
+						</div>
+						<div id="menu4" class="tab-pane fade col-xs-offset-1"
+							style="margin-top: 30px">
+							<p>menu4</p>
 						</div>
 					</div>
 				</div>
