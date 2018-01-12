@@ -65,7 +65,7 @@ public class ConnexionServlet extends HttpServlet {
 			session.setAttribute(ATT_SESSION_USER, utilisateur.getPseudo());
 			session.setAttribute(ATT_USER, utilisateur.getPseudo());
 			session.setAttribute(ATT_PRES, presentation);
-			dispat = request.getRequestDispatcher("site/index.jsp");
+			dispat = request.getRequestDispatcher("/AccueilProfil");
 			dispat.forward(request, response);
 	    } else {
 	        dispat = request.getRequestDispatcher("/Login");
