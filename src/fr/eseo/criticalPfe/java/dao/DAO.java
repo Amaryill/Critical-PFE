@@ -2,6 +2,7 @@ package fr.eseo.criticalPfe.java.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public interface DAO<T> {
 
@@ -10,6 +11,8 @@ public interface DAO<T> {
 	public boolean supprimer(T obj);
 
 	public T trouver(T obj);
+	
+	public ArrayList<T> trouverTous();
 
 	public T modifier (T obj);
 
