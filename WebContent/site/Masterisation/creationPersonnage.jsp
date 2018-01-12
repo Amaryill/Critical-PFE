@@ -40,7 +40,7 @@
 					<form class="form-horizontal"
 						action="/Critical-PFE/CreationPersonnageServlet" method="post">
 						<div class="form-group">
-							<div class="container">
+							<div class="container-fluid">
 								<div class=" panel-group content content-boxed overflow-hidden">
 
 									<!-- Personnage -->
