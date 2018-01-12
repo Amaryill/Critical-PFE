@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface DAO<T> {
+public interface DAO<T>{
 
 	public T creer(T obj);
 
