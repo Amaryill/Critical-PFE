@@ -61,7 +61,6 @@ public class ConnexionServlet extends HttpServlet {
 	        // attribution des personnages de l'utilisateur
 	        utilisateur.setPersonnages(boPersonnage.trouverPersonnageParUtilisateur(utilisateur.getPseudo()));
 	        //attribution des variables session	
-	    
 	    	session.setAttribute("user", utilisateur);
 			session.setAttribute(ATT_SESSION_USER, utilisateur.getPseudo());
 			session.setAttribute(ATT_USER, utilisateur.getPseudo());
