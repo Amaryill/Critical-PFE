@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Index
  */
-@WebServlet("/IndexServlet")
+@WebServlet("/Index")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,10 +34,10 @@ public class IndexServlet extends HttpServlet {
 	    
 	    if (session.getAttribute("user") != null){
 	        // Créer un servlet qui redirige vers le profil?
-	        dispat = request.getRequestDispatcher("/site/index.jsp");
+	        dispat = request.getRequestDispatcher("/AccueilProfil");
 	        dispat.forward(request, response);
 	    } else {
-	        dispat = request.getRequestDispatcher("/LoginServlet");
+	        dispat = request.getRequestDispatcher("/Login");
 	        dispat.forward(request, response);
 	    }
 	}

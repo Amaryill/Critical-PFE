@@ -20,7 +20,7 @@
 					String login = request.getSession().getAttribute("utilisateur").toString();
 				%><%=login%></h5>
 
-			<li class="mt"><a href="/Critical-PFE/site/index.jsp"
+			<li class="mt"><a href="/Critical-PFE/AccueilProfil"
 				id="index"> <i class="fa fa-dashboard"></i> <span>Home</span>
 			</a></li>
 			<li class="sub-menu"><a href="#" id="masterisation"> <i

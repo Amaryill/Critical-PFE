@@ -56,9 +56,8 @@ public class SignUpServlet extends HttpServlet {
 	    if(mdp.contentEquals(mdpconfirme)){
 	    	utilisateur = new Utilisateur(pseudo,login,mdp,email,null,null,null,null);
 	    	boUtilisateur = new UtilisateurBOImpl();
-	    	dispat = request.getRequestDispatcher("/LoginServlet");
+	    	dispat = request.getRequestDispatcher("/Login");
 	    	dispat.forward(request, response);
-	    	//response.sendRedirect("");
 	    }
 	    
 	    boUtilisateur.creerUtilisateur(utilisateur);

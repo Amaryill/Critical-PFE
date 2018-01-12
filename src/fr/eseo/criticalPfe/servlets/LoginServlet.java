@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
+@WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher dispat = null;
 	    
 	    if (session.getAttribute("user") != null){
-            dispat = request.getRequestDispatcher("/site/index.jsp");
+            dispat = request.getRequestDispatcher("/AccueilProfil");
             dispat.forward(request, response);
         } else {
             dispat = request.getRequestDispatcher("/site/login.jsp");

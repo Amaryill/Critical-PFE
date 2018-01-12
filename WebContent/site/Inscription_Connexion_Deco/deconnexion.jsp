@@ -5,6 +5,6 @@
 HttpSession varSession = request.getSession();
 varSession.invalidate(); 
 
-response.sendRedirect("/Critical-PFE/IndexServlet");
+response.sendRedirect("/Critical-PFE/Index");
 
 %>

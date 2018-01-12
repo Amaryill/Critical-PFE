@@ -2,6 +2,7 @@ package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +40,7 @@ public class ConnexionServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session = request.getSession();
+		RequestDispatcher dispat = null;
 		UtilisateurBOImpl boUtilisateur = null;
 		Utilisateur utilisateur = null;
 		//initilisation des variables pour la session
@@ -63,9 +65,11 @@ public class ConnexionServlet extends HttpServlet {
 			session.setAttribute(ATT_SESSION_USER, utilisateur.getPseudo());
 			session.setAttribute(ATT_USER, utilisateur.getPseudo());
 			session.setAttribute(ATT_PRES, presentation);
-	    	response.sendRedirect("site/index.jsp");
+			dispat = request.getRequestDispatcher("site/index.jsp");
+			dispat.forward(request, response);
 	    } else {
-	    	response.sendRedirect("site/login.jsp");
+	        dispat = request.getRequestDispatcher("/LoginServlet");
+            dispat.forward(request, response);
 	    }
 	    
 	    
