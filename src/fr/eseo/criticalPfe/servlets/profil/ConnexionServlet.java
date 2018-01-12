@@ -68,7 +68,7 @@ public class ConnexionServlet extends HttpServlet {
 			dispat = request.getRequestDispatcher("site/index.jsp");
 			dispat.forward(request, response);
 	    } else {
-	        dispat = request.getRequestDispatcher("/LoginServlet");
+	        dispat = request.getRequestDispatcher("/Login");
             dispat.forward(request, response);
 	    }
 	    
