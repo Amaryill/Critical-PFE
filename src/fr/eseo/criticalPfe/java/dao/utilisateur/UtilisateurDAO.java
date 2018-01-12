@@ -105,6 +105,7 @@ public class UtilisateurDAO implements DAO<Utilisateur> {
 	public Utilisateur trouver(Utilisateur obj) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
+		Utilisateur utilisateur = null;
 
 		try {
 			connexion = ConnexionBDD.getConnexion();
@@ -113,13 +114,13 @@ public class UtilisateurDAO implements DAO<Utilisateur> {
 
 			ResultSet result = preparedStatement.executeQuery();
 			if (result.next()) {
-				obj = map(result);
+				utilisateur = map(result);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return obj;
+		return utilisateur;
 	}
 
 	@Override
