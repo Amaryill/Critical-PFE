@@ -28,7 +28,7 @@
 			</a>
 				<ul class="sub">
 					<li><a href="/Critical-PFE/AffichageListeUnivers">Portail de MJ</a></li>
-					<li><a href="/Critical-PFE/site/Masterisation/creationPersonnage.jsp">Créer un personnage</a></li>
+					<li><a href="/Critical-PFE/CreationPersonnage">Créer un personnage</a></li>
 					<li>
 						<form name="afficherListePersonnages" method="post"	action="/Critical-PFE/AfficherListePersonnages">
 							<a href="#"	onclick="afficherListePersonnages.submit();">Voir mes personnages</a>
