@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
@@ -16,6 +17,7 @@ public class RaceDAO implements DAO<Race> {
 	private final String REQUEST_DLT = "DELETE FROM Race WHERE nom=?";
 	private final String REQUEST_UPD = "UPDATE Race SET nom=?, Description=?, Taille=?, Vitesse=? WHERE nom=?";
 	private final String REQUEST_SLT = "SELECT nom, Description, Taille, Vitesse FROM Race WHERE";
+	private final String REQUEST_SLT_ALL = "SELECT nom, Description, Taille, Vitesse FROM Race";
 	private final String CLAUSE_ID = " nom=?";
 
 	public Race creer(Race obj) {
@@ -60,7 +62,8 @@ public class RaceDAO implements DAO<Race> {
 	public Race trouver(Race obj) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
-
+		Race raceTrouvee = null;
+		
 		try {
 			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
@@ -68,13 +71,35 @@ public class RaceDAO implements DAO<Race> {
 
 			ResultSet result = preparedStatement.executeQuery();
 			if (result.next()) {
-				obj = map(result);
+				raceTrouvee = map(result);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return obj;
+		return raceTrouvee;
+	}
+	
+	@Override
+	public ArrayList<Race> trouverTous(){
+	       Connection connexion = null;
+	        PreparedStatement preparedStatement = null;
+	        ArrayList<Race> racesTrouvees = new ArrayList<>();
+	        
+	        try {
+	            connexion = ConnexionBDD.getConnexion();
+	            preparedStatement = connexion.prepareStatement(REQUEST_SLT_ALL);
+
+	            ResultSet result = preparedStatement.executeQuery();
+	            
+	            while (result.next()) {
+	                racesTrouvees.add( map(result) );
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	        return racesTrouvees;
 	}
 
 	@Override
