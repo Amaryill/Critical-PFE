@@ -84,27 +84,26 @@ public class ClasseDAO implements DAO<Classe>{
 			return classeTrouvee;
 		}
 		
-		  @Override
-		    public ArrayList<Classe> trouverTous(){
-		           Connection connexion = null;
-		            PreparedStatement preparedStatement = null;
-		            ArrayList<Classe> classesTrouvees = new ArrayList<>();
-		            
-		            try {
-		                connexion = ConnexionBDD.getConnexion();
-		                preparedStatement = connexion.prepareStatement(REQUEST_SLT_ALL);
+	    public ArrayList<Classe> trouverTous(){
+	           Connection connexion = null;
+	            PreparedStatement preparedStatement = null;
+	            ArrayList<Classe> classesTrouvees = new ArrayList<>();
+	            
+	            try {
+	                connexion = ConnexionBDD.getConnexion();
+	                preparedStatement = connexion.prepareStatement(REQUEST_SLT_ALL);
 
-		                ResultSet result = preparedStatement.executeQuery();
-		                
-		                while (result.next()) {
-		                    classesTrouvees.add( map(result) );
-		                }
-		            } catch (SQLException e) {
-		                e.printStackTrace();
-		                return null;
-		            }
-		            return classesTrouvees;
-		    }
+	                ResultSet result = preparedStatement.executeQuery();
+	                
+	                while (result.next()) {
+	                    classesTrouvees.add( map(result) );
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	                return null;
+	            }
+	            return classesTrouvees;
+	    }
 
 		@Override
 		public Classe modifier(Classe obj) {

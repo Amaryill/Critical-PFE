@@ -11,8 +11,6 @@ public interface DAO<T> {
 	public boolean supprimer(T obj);
 
 	public T trouver(T obj);
-	
-	public ArrayList<T> trouverTous();
 
 	public T modifier (T obj);
 
