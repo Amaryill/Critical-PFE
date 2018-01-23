@@ -2,6 +2,7 @@ package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +41,7 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	    RequestDispatcher dispat = null;
 		HttpSession session = request.getSession();
 		UtilisateurBOImpl boUtilisateur = null;
 		Utilisateur utilisateur = null;
@@ -54,11 +56,11 @@ public class SignUpServlet extends HttpServlet {
 	    if(mdp.contentEquals(mdpconfirme)){
 	    	utilisateur = new Utilisateur(pseudo,login,mdp,email,null,null,null,null);
 	    	boUtilisateur = new UtilisateurBOImpl();
-	    	response.sendRedirect("/Critical-PFE/site/login.jsp");
+	    	dispat = request.getRequestDispatcher("/Login");
+	    	dispat.forward(request, response);
 	    }
 	    
 	    boUtilisateur.creerUtilisateur(utilisateur);
-	    doGet(request,response);
 	      
 	    
 	}

@@ -22,7 +22,7 @@ public class UtilisateurDAO implements DAO<Utilisateur> {
 
 	// TODO verifier que l'amitié n'existe pas dans le sens inverse
 	private final String REQUEST_ADD_AMI = "INSERT INTO `ami`(`Etat`, `Pseudo`, `Pseudo_Utilisateur`) VALUES (?,?,?)";
-	private final String REQUEST_DLT_AMI = "DELETE FROM ami` WHERE (Pseudo=? and Pseudo_Utilisateur=?) OR (Pseudo=? and Pseudo_Utilisateur=?)";
+	private final String REQUEST_DLT_AMI = "DELETE FROM `ami` WHERE (Pseudo=? and Pseudo_Utilisateur=?) OR (Pseudo=? and Pseudo_Utilisateur=?)";
 	private final String REQUEST_UPDATE_AMI = "UPDATE `ami` SET `Etat`=? WHERE Pseudo=? and Pseudo_Utilisateur=?";
 	private final String REQUEST_SLT_AMI = "SELECT `Etat`, `Pseudo`, `Pseudo_Utilisateur` FROM `ami` where Pseudo=? OR Pseudo_Utilisateur=?";
 
@@ -105,6 +105,7 @@ public class UtilisateurDAO implements DAO<Utilisateur> {
 	public Utilisateur trouver(Utilisateur obj) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
+		Utilisateur utilisateur = null;
 
 		try {
 			connexion = ConnexionBDD.getConnexion();
@@ -113,13 +114,13 @@ public class UtilisateurDAO implements DAO<Utilisateur> {
 
 			ResultSet result = preparedStatement.executeQuery();
 			if (result.next()) {
-				obj = map(result);
+				utilisateur = map(result);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return obj;
+		return utilisateur;
 	}
 
 	@Override

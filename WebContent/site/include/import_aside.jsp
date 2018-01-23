@@ -11,7 +11,7 @@
 	<div id="sidebar" class="nav-collapse">
 		<ul class="sidebar-menu" id="nav-accordion">
 			<p class="centered">
-				<a href="profile.html"><img
+				<a href="/Critical-PFE/site/Profil/profil.jsp"><img
 					src="/Critical-PFE/assets/img/Critical_dice_logo_large.png"
 					class="img-circle" width="60"></a>
 			</p>
@@ -20,7 +20,7 @@
 					String login = request.getSession().getAttribute("utilisateur").toString();
 				%><%=login%></h5>
 
-			<li class="mt"><a href="/Critical-PFE/site/index.jsp"
+			<li class="mt"><a href="/Critical-PFE/AccueilProfil"
 				id="index"> <i class="fa fa-dashboard"></i> <span>Home</span>
 			</a></li>
 			<li class="sub-menu"><a href="#" id="masterisation"> <i
@@ -28,7 +28,7 @@
 			</a>
 				<ul class="sub">
 					<li><a href="/Critical-PFE/AffichageListeUnivers">Portail de MJ</a></li>
-					<li><a href="/Critical-PFE/site/Masterisation/creationPersonnage.jsp">Créer un personnage</a></li>
+					<li><a href="/Critical-PFE/CreationPersonnage">Créer un personnage</a></li>
 					<li>
 						<form name="afficherListePersonnages" method="post"	action="/Critical-PFE/AfficherListePersonnages">
 							<a href="#"	onclick="afficherListePersonnages.submit();">Voir mes personnages</a>

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="fr.eseo.criticalPfe.java.model.entite.Classe" %>
+<%@ page import="fr.eseo.criticalPfe.java.model.entite.Race" %>
+<% ArrayList<Race> races = (ArrayList<Race>) session.getAttribute("races"); %>
+<% ArrayList<Classe> classes = (ArrayList<Classe>) session.getAttribute("classes"); %>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -40,7 +46,7 @@
 					<form class="form-horizontal"
 						action="/Critical-PFE/CreationPersonnageServlet" method="post">
 						<div class="form-group">
-							<div class="container">
+							<div class="container-fluid">
 								<div class=" panel-group content content-boxed overflow-hidden">
 
 									<!-- Personnage -->
@@ -66,27 +72,15 @@
 													<label class="control-label col-xs-2" for="pseudo_ancien">Race
 														:</label> <select name="race" id="race"
 														class="control-label col-xs-2">
-														<option value="DemiElfe">Demi-elfe</option>
-														<option value="DemiOrque">Demi-orque</option>
-														<option value="Elfe">Elfe</option>
-														<option value="Gnome">Gnome</option>
-														<option value="Halfelin">Halfelin</option>
-														<option value="Humain">Humain</option>
-														<option value="Nain">Nain</option>
+														<% for(Race r : races){ %>
+															<option value=<%= r.getNom() %>><%= r.getNom() %></option>
+														<%} %>
 													</select> <label class="control-label col-xs-2" for="pseudo_ancien">Classe
 														:</label> <select name="classe" id="classe"
 														class="control-label col-xs-2		">
-														<option value="Barbare">Barbare</option>
-														<option value="Barde">Barde</option>
-														<option value="Druide">Druide</option>
-														<option value="Ensorceleur">Ensorceleur</option>
-														<option value="Guerrier">Guerrier</option>
-														<option value="Magicien">Magicien</option>
-														<option value="Moine">Moine</option>
-														<option value="Paladin">Paladin</option>
-														<option value="Prêtre">Prêtre</option>
-														<option value="Rodeur">Rodeur</option>
-														<option value="Roublard">Roublard</option>
+														<% for(Classe c : classes){ %>
+															<option value=<%= c.getNom() %>><%= c.getNom() %></option>
+														<%} %>
 													</select>
 												</div>
 
@@ -97,6 +91,7 @@
 														class="control-label col-xs-2" for="pseudo_ancien">Dieu
 														:</label> <select name="dieu" id="dieu"
 														class="control-label col-xs-2">
+														<!-- ATTENTION : Dieux codés en dur - à implémenter sur la BDD+BO+DAO -->
 														<option value=""></option>
 														<optgroup label="Dieux majeurs">
 															<option value="Abadar">Abadar</option>

@@ -9,4 +9,6 @@ public interface ClasseBO {
 	public Classe trouverClasse(Classe classe);
 
 	public List<Classe> trouverClasses(List<Classe> classes);
+	
+	public List<Classe> trouverToutesClasses();
 }

@@ -65,7 +65,7 @@
 				</form>
 				<br>
 				
-				<h1 style="color:black;">
+				<h1 style="color:black">
 					<%= univers.getNomUnivers() %>
 				</h1>
 				<br>

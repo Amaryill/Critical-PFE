@@ -27,4 +27,8 @@ public class ClasseBOImpl implements ClasseBO {
 		}
 		return classes;
 	}
+	
+	public List<Classe> trouverToutesClasses(){
+	    return this.dao.trouverTous();
+	}
 }

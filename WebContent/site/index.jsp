@@ -21,17 +21,17 @@
 	</head>
 	
 	<body class="bg-image"
-	style="background-image: url('../assets/img/login-bg.jpg');">
+	style="background-image: url('assets/img/login-bg.jpg');">
 	
 	<!--  Header et aside -->
 		<section id="container">
 			
-			<jsp:include page="include/import_header.jsp" />	
-			<jsp:include page="include/import_aside.jsp"/>	
+			<jsp:include page="include/import_header.jsp" />
+			<jsp:include page="include/import_aside.jsp"/>
 		
 		</section>	
 			 
-		
+
 		<jsp:include  page="include/import_script.jsp" />
 		
 	

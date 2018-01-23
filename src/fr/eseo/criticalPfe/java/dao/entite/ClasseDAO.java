@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
@@ -16,6 +17,7 @@ public class ClasseDAO implements DAO<Classe>{
 		private final String REQUEST_DLT = "DELETE FROM Classe WHERE Nom=?";
 		private final String REQUEST_UPD = "UPDATE Classe SET Nom=?, deDeVie=?, alignementPossible=?, ptsCompParNiveau=?, Description=? WHERE Nom=?";
 		private final String REQUEST_SLT = "SELECT Nom, deDeVie, alignementPossible, ptsCompParNiveau, Description FROM Classe WHERE";
+		private final String REQUEST_SLT_ALL = "SELECT Nom, deDeVie, alignementPossible, ptsCompParNiveau, Description FROM Classe";
 		private final String CLAUSE_ID = " Nom=?";
 
 		
@@ -64,6 +66,7 @@ public class ClasseDAO implements DAO<Classe>{
 		public Classe trouver(Classe obj) {
 			Connection connexion = null;
 			PreparedStatement preparedStatement = null;
+			Classe classeTrouvee = null;
 
 			try {
 				connexion = ConnexionBDD.getConnexion();
@@ -72,14 +75,35 @@ public class ClasseDAO implements DAO<Classe>{
 
 				ResultSet result = preparedStatement.executeQuery();
 				if (result.next()) {
-					obj = map(result);
+					classeTrouvee = map(result);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
 			}
-			return obj;
+			return classeTrouvee;
 		}
+		
+	    public ArrayList<Classe> trouverTous(){
+	           Connection connexion = null;
+	            PreparedStatement preparedStatement = null;
+	            ArrayList<Classe> classesTrouvees = new ArrayList<>();
+	            
+	            try {
+	                connexion = ConnexionBDD.getConnexion();
+	                preparedStatement = connexion.prepareStatement(REQUEST_SLT_ALL);
+
+	                ResultSet result = preparedStatement.executeQuery();
+	                
+	                while (result.next()) {
+	                    classesTrouvees.add( map(result) );
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	                return null;
+	            }
+	            return classesTrouvees;
+	    }
 
 		@Override
 		public Classe modifier(Classe obj) {
