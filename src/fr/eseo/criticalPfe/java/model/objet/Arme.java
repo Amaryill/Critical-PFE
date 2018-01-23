@@ -9,24 +9,17 @@ public class Arme extends Objet {
 
 	De deDegat;
 	int multiplicateurCoupCritique;
-	List<Integer> valeurCoupCritique;
+	int valeurCoupCritique;
 	int portee;
 
-	public Arme(String nom, De deDegat, int multiplicateurCoupCritique, List<Integer> valeurCoupCritique, int portee,
-			int valeur, String description, Image image) {
+	public Arme(String nom, De deDegat, int multiplicateurCoupCritique, int valeurCoupCritique, int portee,
+			int valeur, String description) {
 		this.nom = nom;
 		this.deDegat = deDegat;
 		this.multiplicateurCoupCritique = multiplicateurCoupCritique;
 		this.valeurCoupCritique = valeurCoupCritique;
 		this.portee = portee;
 		this.valeur = valeur;
-		this.description = description;
-		this.image = image;
-	}
-
-	public Arme(String nom, De deDegat, int multiplicateurCoupCritique, List<Integer> valeurCoupCritique, int portee,
-			int valeur, String description) {
-		this(nom, deDegat, multiplicateurCoupCritique, valeurCoupCritique, portee, valeur, description, null);
 	}
 
 	public De getDeDegat() {
@@ -45,11 +38,11 @@ public class Arme extends Objet {
 		this.multiplicateurCoupCritique = multiplicateurCoupCritique;
 	}
 
-	public List<Integer> getValeurCoupCritique() {
+	public int getValeurCoupCritique() {
 		return valeurCoupCritique;
 	}
 
-	public void setValeurCoupCritique(List<Integer> valeurCoupCritique) {
+	public void setValeurCoupCritique(int valeurCoupCritique) {
 		this.valeurCoupCritique = valeurCoupCritique;
 	}
 

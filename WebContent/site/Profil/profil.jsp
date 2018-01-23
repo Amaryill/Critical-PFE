@@ -60,7 +60,7 @@
 			          	<form class="form-horizontal" action="../../ModifPresentation" method="post">
 				          	<div class="form-group">
 				          		<div class="col-xs-12 col-xs-offset-0">
-					          		<textarea class="form-control" rows="2" id="presentation" placeholder="Entrez votre présentation" name="presentation"></textarea>
+					          		<textarea style="resize:none;height:200px" class="form-control" rows="2" id="presentation" placeholder="Entrez votre présentation" name="presentation" ></textarea>
 				          		</div>
 				          	</div>
 				          	<div class="form-group">

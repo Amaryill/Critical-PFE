@@ -27,8 +27,6 @@ public class EntiteeBOImpl implements EntiteeBO{
 
 		entitee = this.dao.trouver(entitee);		
 		entitee.setCaracteristique(boCaracteristique.trouverCaracteristique(entitee.getCaracteristique()));
-
-		System.out.println(entitee.getCaracteristique().getCaracs().get("for"));
 		
 		return entitee;
 	}

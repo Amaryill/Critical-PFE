@@ -1,6 +1,7 @@
 package fr.eseo.criticalPfe.java.dao.entite;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -126,8 +127,6 @@ public class CaracteristiqueDAO implements DAO<Caracteristique>{
 			caracteristique.setCaracs(caracs);
 			caracteristique.setPointDeVieMax(result.getInt("PDVMax"));
 			caracteristique.setId(result.getInt("Id"));
-			
-			System.out.println(caracs.get("for"));
 			
 			return caracteristique;
 		}

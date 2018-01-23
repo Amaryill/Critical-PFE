@@ -11,7 +11,7 @@ public class Armure extends Objet {
 	int vitesse;
 
 	public Armure(String nom, int bonusArmure, int bonusDexteriteMaximal, int malusArmureTest, double risqueEchecSort,
-			int vitesse, int valeur, String description, Image image) {
+			int vitesse, int valeur, String description) {
 		this.nom = nom;
 		this.bonusArmure = bonusArmure;
 		this.bonusDexteriteMaximal = bonusDexteriteMaximal;
@@ -20,15 +20,8 @@ public class Armure extends Objet {
 		this.vitesse = vitesse;
 		this.valeur = valeur;
 		this.description = description;
-		this.image = image;
 	}
-
-	public Armure(String nom, int bonusArmure, int bonusDexteriteMaximal, int malusArmureTest, double risqueEchecSort,
-			int vitesse, int valeur, String description) {
-		this(nom, bonusArmure, bonusDexteriteMaximal, malusArmureTest, risqueEchecSort, vitesse, valeur, description,
-				null);
-	}
-
+	
 	public int getBonusArmure() {
 		return bonusArmure;
 	}
