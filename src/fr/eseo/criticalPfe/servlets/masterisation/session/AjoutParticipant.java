@@ -16,7 +16,7 @@ import fr.eseo.criticalPfe.java.model.scenario.Session;
 /**
  * Servlet implementation class CreationUnivers
  */
-@WebServlet("/CreationSession")
+@WebServlet("/AjoutParticipant")
 public class AjoutParticipant extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

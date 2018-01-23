@@ -1,3 +1,6 @@
+
+
+
 package fr.eseo.criticalPfe.servlets.amis;
 
 import java.io.IOException;
@@ -5,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +44,9 @@ public class AfficherAmis extends HttpServlet {
 		UtilisateurBO utilisateurBO = new UtilisateurBOImpl();
 
 		HttpSession session = request.getSession();
+		RequestDispatcher dispat = null;
+
+
 		String pseudo_session = (String) session.getAttribute("utilisateur");
 		Utilisateur user = new Utilisateur();
 		user.setPseudo(pseudo_session);
@@ -63,14 +70,11 @@ public class AfficherAmis extends HttpServlet {
 				demandeEnvoye.add(pseudo);
 			}
 		}
-		
 		session.setAttribute("demandesEnvoyees", demandeEnvoye);
 		session.setAttribute("demandesRecues", demandeRecu);
 		session.setAttribute("amis", ami);
-		
-
-		response.sendRedirect("/Critical-PFE/site/amis.jsp");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		dispat = request.getRequestDispatcher("site/amis.jsp");
+		dispat.forward(request, response);
 	}
 
 	/**

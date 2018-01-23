@@ -50,7 +50,7 @@ public class CreationPersonnageServlet extends HttpServlet {
 		session.setAttribute("races", races);
 		session.setAttribute("classes", classes);
 		
-		dispat = request.getRequestDispatcher("/site/Masterisation/creationPersonnage.jsp");
+		dispat = request.getRequestDispatcher("site/Masterisation/creationPersonnage.jsp");
 		dispat.forward(request, response);
 	}
 
