@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="fr.eseo.criticalPfe.java.model.entite.Classe" %>
 <%@ page import="fr.eseo.criticalPfe.java.model.entite.Race" %>
-<% ArrayList<Race> races = (ArrayList<Race>) session.getAttribute("races"); %>
-<% ArrayList<Classe> classes = (ArrayList<Classe>) session.getAttribute("classes"); %>
+<% List<Race> races = (ArrayList<Race>) session.getAttribute("races"); %>
+<% List<Classe> classes = (ArrayList<Classe>) session.getAttribute("classes"); %>
 
 <html>
 <head>
