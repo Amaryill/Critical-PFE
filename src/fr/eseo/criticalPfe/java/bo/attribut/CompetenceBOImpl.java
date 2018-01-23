@@ -1,25 +1,16 @@
 package fr.eseo.criticalPfe.java.bo.attribut;
 
-import fr.eseo.criticalPfe.java.dao.attribut.CompetenceDAO;
+import java.util.List;
+
 import fr.eseo.criticalPfe.java.dao.attribut.CompetenceDAOImpl;
 import fr.eseo.criticalPfe.java.model.attributs.Competence;
 
 public class CompetenceBOImpl implements CompetenceBO {
 
-    private static CompetenceBO compBO;
-    private static CompetenceDAO compDAO;
+    private static CompetenceDAOImpl compDAO;
 
-    private CompetenceBOImpl() {
-    }
-
-    public synchronized CompetenceDAO getInstance () {
-        if (compBO == null) {
-            compBO = new CompetenceBOImpl();
-        }
-        if (compBO == null) {
-            compDAO = CompetenceDAOImpl.getDAO();
-        }
-        return CompetenceBOImpl.compDAO;
+    public CompetenceBOImpl() {
+        compDAO = new CompetenceDAOImpl();
     }
 
     @Override
@@ -64,6 +55,15 @@ public class CompetenceBOImpl implements CompetenceBO {
     @Override
     public boolean deleteCompetence (Competence comp) {
         return compDAO.supprimer(comp);
+    }
+    
+    public List<Competence> getAllCompetences (){
+        return compDAO.trouverTous();
+    }
+
+    @Override
+    public List<Competence> getAllCompetencesBut (List<Competence> competencesExclues) {
+        return compDAO.trouverTousSauf(competencesExclues);
     }
 
 }

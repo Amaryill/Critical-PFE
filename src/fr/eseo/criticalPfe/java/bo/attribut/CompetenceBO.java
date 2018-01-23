@@ -1,5 +1,7 @@
 package fr.eseo.criticalPfe.java.bo.attribut;
 
+import java.util.List;
+
 import fr.eseo.criticalPfe.java.model.attributs.Competence;
 
 public interface CompetenceBO {
@@ -31,6 +33,10 @@ public interface CompetenceBO {
     public Competence getCompetence(String nomCompetence);
     
     public Competence getCompetence(Competence comp);
+    
+    public List<Competence> getAllCompetences();
+    
+    public List<Competence> getAllCompetencesBut(List<Competence> competencesExclues);
     
     /**
      * Appelle la DAO pour supprimer une Compétence en BDD (recherche par nom)
