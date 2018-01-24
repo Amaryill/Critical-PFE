@@ -13,13 +13,29 @@
 <%@ page import="fr.eseo.criticalPfe.java.bo.entite.PersonnageBO"%>
 <%@ page import="fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl"%>
 <%@ page import="fr.eseo.criticalPfe.java.model.entite.Personnage"%>
+<%@ page import="fr.eseo.criticalPfe.java.model.attributs.Competence"%>
 <%@ page import="fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 <%
-	Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
+	/* Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
 	PersonnageBO boPersonnage = new PersonnageBOImpl();
 	Personnage personnage = new Personnage();
 	personnage.setId(Integer.parseInt(request.getParameter("id")));
-	personnage = boPersonnage.trouverPersonnage(personnage); %>
+	personnage = boPersonnage.trouverPersonnage(personnage); */
+	
+	//TODO Mettre tout ceci dans un servlet et appeler session.getAttribute(<nomAttribut>),
+	//     on ne fait pas de recherche sur la bdd dans une vue!
+	
+	
+%>
+
+<% Utilisateur user = (Utilisateur) request.getSession().getAttribute("user"); %>
+<% Personnage personnage = (Personnage) session.getAttribute("personnageCourant"); %>
+
+<% List<Competence> competencesAcquises = (List<Competence>) session.getAttribute("competencesAcquises"); %>
+<% List<Competence> competencesNonAcquises = (List<Competence>) session.getAttribute("competencesNonAcquises"); %>
+<% int pointsCompetenceMax = (Integer) session.getAttribute("pointsCompRestants"); %>
 
 
 
@@ -28,7 +44,7 @@
 <title>Critical</title>
 </head>
 <body class="bg-image"
-	style="background-image: url('../../assets/img/login-bg.jpg');">
+	style="background-image: url('assets/img/login-bg.jpg');">
 
 	<!--  Header et aside -->
 	<section id="container"> <jsp:include
@@ -99,10 +115,114 @@
 							style="margin-top: 30px">
 							<p>menu2</p>
 						</div>
-
+						
+						<!-- MENU COMPETENCES -->
 						<div id="menu3" class="tab-pane fade col-xs-offset-1"
 							style="margin-top: 30px">
-							<p>menu3</p>
+							<div class="row">
+								<!-- COMPETENCES NON ACQUISES -->
+								<div class="form-group col-xs-12 col-md-6">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<strong>Compétences Non Acquises</strong>
+										</div>
+										<div class="panel-body">
+											<table class="table table-hover">
+												<thead>
+													<th>Nom</th>
+													<th>Carac. Assoc.</th>
+													<th>Niveau</th>
+												</thead>
+												<tbody>
+													<%
+													    for (Competence c : competencesNonAcquises) {
+													%>
+													<tr data-toggle="modal" data-target="#<%=c.getNom().replace(' ', '_')%>">
+														<td><%=c.getNom()%></td>
+														<td><%=c.getCaracAssociee()%></td>
+														<td><p class="col-xs-4 col-sm-3 col-md-4"><%=c.getNiveauCompetence()%> </p></td>
+													</tr>
+													<!-- Modal -->
+													<div class="modal fade" id=<%=c.getNom().replace(' ', '_')%>>
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close" data-dismiss="modal">&times;</button>
+																	<h4 class="modal-title"><%=c.getNom()%>
+																		: Description
+																	</h4>
+																</div>
+																<div class="modal-body">
+																	<p><%=c.getDescription()%></p>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-default"
+																		data-dismiss="modal">Fermer</button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<%
+													    }
+													%>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<!-- COMPETENCES ACQUISES -->
+								<div class="form-group col-xs-12 col-md-6">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<strong>Compétences Acquises</strong>
+										</div>
+										<div class="panel-body">
+										<%if( competencesAcquises.size() > 0) {%>
+											<table class="table table-hover">
+												<thead>
+													<th>Nom</th>
+													<th>Carac. Assoc.</th>
+													<th>Niveau</th>
+												</thead>
+												<tbody>
+													<%
+													    for (Competence c : competencesAcquises) {
+													%>
+													<tr data-toggle="modal" data-target="#<%=c.getNom().replace(' ', '_')%>">
+														<td><%=c.getNom()%></td>
+														<td><%=c.getCaracAssociee()%></td>
+														<td><p class="col-xs-4 col-sm-3 col-md-4"><%=c.getNiveauCompetence()%></p></td>
+													</tr>
+													<!-- Modal -->
+													<div class="modal fade" id=<%=c.getNom().replace(' ', '_')%>>
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close" data-dismiss="modal">&times;</button>
+																	<h4 class="modal-title"><%=c.getNom()%>
+																		: Description
+																	</h4>
+																</div>
+																<div class="modal-body">
+																	<p><%=c.getDescription()%></p>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-default"
+																		data-dismiss="modal">Fermer</button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<% } %>
+												</tbody>
+											</table>
+										<%} else { %>
+											    <h3>Aucune Compétence Acquise...</h3>
+										<%	} %>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div id="menu4" class="tab-pane fade col-xs-offset-1"
 							style="margin-top: 30px">

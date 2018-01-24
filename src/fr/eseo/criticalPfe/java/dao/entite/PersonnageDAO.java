@@ -11,7 +11,6 @@ import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Classe;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
-import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 public class PersonnageDAO implements DAO<Personnage> {
 
@@ -85,21 +84,23 @@ public class PersonnageDAO implements DAO<Personnage> {
 	public Personnage trouver(Personnage obj) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
+		Personnage persoTrouve = null;
 
 		try {
 			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
+			System.out.println(obj.getId());
 			preparedStatement.setInt(1, obj.getId());
-
+			
 			ResultSet result = preparedStatement.executeQuery();
 			if (result.next()) {
-				obj = map(result);
+			    persoTrouve = map(result);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return obj;
+		return persoTrouve;
 	}
 
 	@Override

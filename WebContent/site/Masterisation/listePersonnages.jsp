@@ -21,12 +21,12 @@
 <title>Critical</title>
 </head>
 <body class="bg-image"
-	style="background-image: url('assets/img/assets/img/login-bg.jpg');">
+	style="background-image: url('assets/img/login-bg.jpg');">
 
 	<!--  Header et aside -->
 	<section id="container"> <jsp:include
-		page="../include/import_header.jsp" /> <jsp:include
-		page="../include/import_aside.jsp" /> <section id="main-content">
+		page="/site/include/import_header.jsp" /> <jsp:include
+		page="/site/include/import_aside.jsp" /> <section id="main-content">
 	<section class="wrapper"> <!-- CONTENU PAGE ICI -->
 
 
@@ -65,7 +65,7 @@
 						<tbody>
 							<%
 								for (int i = 0; i < user.getPersonnages().size(); ++i) {
-										out.println("<tr onclick=\"location.href='fichePersonnage.jsp?id="
+										out.println("<tr onclick=\"location.href='/Critical-PFE/AfficherFichePersonnage?id="
 												+ user.getPersonnages().get(i).getId()
 												+ "'\">");
 										out.println("<td><input id='id' name='id' type='hidden' value='"+ user.getPersonnages().get(i).getId() +"'>" + user.getPersonnages().get(i).getNom() + "</td>");

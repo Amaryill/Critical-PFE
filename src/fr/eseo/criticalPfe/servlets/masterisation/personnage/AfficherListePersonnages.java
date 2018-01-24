@@ -48,7 +48,6 @@ public class AfficherListePersonnages extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("SERVLET");
 		doGet(request, response);
 	}
 

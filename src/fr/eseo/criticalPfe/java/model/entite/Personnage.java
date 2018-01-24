@@ -32,6 +32,10 @@ public class Personnage extends Entitee {
     public Personnage() {
         // TODO Auto-generated constructor stub
     }
+    
+    public Personnage(int id) {
+        this.idEntitee = id;
+    }
 
     public String getNom () {
         return nom;
