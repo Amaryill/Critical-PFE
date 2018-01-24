@@ -46,7 +46,7 @@
 					style="background-color: rgba(255, 255, 255, 0.7);">
 
 					<form class="form-horizontal"
-						action="/Critical-PFE/CreationPersonnageServlet" method="post">
+						action="/Critical-PFE/InsertionPersonnage" method="post">
 						<div class="form-group">
 							<div class="container-fluid">
 								<div class=" panel-group content content-boxed overflow-hidden">

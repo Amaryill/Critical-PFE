@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.model.attributs.Compendium;
+import fr.eseo.criticalPfe.java.model.attributs.Competence;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
@@ -165,5 +166,27 @@ public class Personnage extends Entitee {
             result += classes.get(classes.size() - 1).getNom();
         }
         return result;
+    }
+
+    public int getPointsCompRestants () {
+        int capital = this.getMaxPointsComp();
+        if (capital > 0 && this.getComptence() != null) {
+            for (Competence c : this.getComptence()) {
+                capital -= c.getNiveauCompetence();
+            }
+        }
+
+        return capital;
+    }
+
+    public int getMaxPointsComp () {
+        int capital = 0;
+        if (this.classes != null) {
+            for (Classe c : this.classes) {
+                capital += c.getNiveau() * c.getPointCompetenceNiveau();
+            }
+        }
+
+        return capital;
     }
 }

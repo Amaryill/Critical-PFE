@@ -12,13 +12,12 @@ import fr.eseo.criticalPfe.java.model.attributs.Competence;
 import fr.eseo.criticalPfe.java.utils.Log;
 
 public class CompetenceDAOImpl implements CompetenceDAO {
-    
+
     private final String REQUEST_SLT_ALL = "SELECT * FROM Competence";
-    
-    public CompetenceDAOImpl(){
+
+    public CompetenceDAOImpl() {
     }
-    
-    
+
     public String nullToString (String s) {
         if (s == null) {
             return "";
@@ -134,20 +133,20 @@ public class CompetenceDAOImpl implements CompetenceDAO {
     public Competence trouver (Competence comp) {
         return trouver(comp.getNom());
     }
-    
-    public List<Competence> trouverTous (){
+
+    public List<Competence> trouverTous () {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ArrayList<Competence> competencesTrouvees = new ArrayList<>();
-        
+
         try {
             connexion = ConnexionBDD.getConnexion();
             preparedStatement = connexion.prepareStatement(REQUEST_SLT_ALL);
 
             ResultSet result = preparedStatement.executeQuery();
-            
+
             while (result.next()) {
-                competencesTrouvees.add( map(result) );
+                competencesTrouvees.add(map(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,20 +154,20 @@ public class CompetenceDAOImpl implements CompetenceDAO {
         }
         return competencesTrouvees;
     }
-    
+
     public List<Competence> trouverTousSauf (List<Competence> competencesExclues) {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ArrayList<Competence> competencesTrouvees = new ArrayList<>();
-        
+
         try {
             connexion = ConnexionBDD.getConnexion();
             preparedStatement = connexion.prepareStatement(getAllButTypedRequest(competencesExclues));
 
             ResultSet result = preparedStatement.executeQuery();
-            
+
             while (result.next()) {
-                competencesTrouvees.add( map(result) );
+                competencesTrouvees.add(map(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -211,14 +210,18 @@ public class CompetenceDAOImpl implements CompetenceDAO {
     public boolean supprimer (Competence obj) {
         return supprimer(obj.getNom());
     }
-    
-    private String getAllButTypedRequest(List<Competence> competencesExclues){
-        String result = "" + this.REQUEST_SLT_ALL + " WHERE ";
-        for (Competence c : competencesExclues){
-            result += "id != " + c.getId() + " AND ";
+
+    private String getAllButTypedRequest (List<Competence> competencesExclues) {
+        String result = "" + this.REQUEST_SLT_ALL ;
+        if (competencesExclues != null) {
+            result += " WHERE ";
+            for (Competence c : competencesExclues) {
+                result += "id != " + c.getId() + " AND ";
+            }
+            result += "1;";
         }
-        result += "1;";
-        
+        System.out.println(result);
+
         return result;
     }
 
