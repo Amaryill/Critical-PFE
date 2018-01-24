@@ -43,8 +43,7 @@ public class AfficherListePersonnages extends HttpServlet {
 		user.setPersonnages(boPersonnage.trouverPersonnageParUtilisateur(user.getPseudo()));
 		
 
-		response.sendRedirect("/Critical-PFE/site/Masterisation/listePersonnages.jsp");		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("site/Masterisation/listePersonnages.jsp").forward(request, response);		
 	}
 
 	/**
