@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+		<link rel="shortcut icon" href="/Critical-PFE/assets/ico/icone_site.ico">
 	    <!-- Bootstrap core CSS -->
 	    <link href="/Critical-PFE/dashgum/assets/css/bootstrap.css" rel="stylesheet">
 	    <!--external css-->
