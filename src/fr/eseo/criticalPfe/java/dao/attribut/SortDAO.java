@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
@@ -16,13 +17,13 @@ public class SortDAO implements DAO<Sort>{
 	private final String REQUEST_ADD = "INSERT INTO Sort(nom, ecole, reference, composante, portee, cible, tempsincantation,jetsauvegardecible,jetsauvegardeeffet) VALUES (?,?,?,?,?,?,?,?,?)";
 	private final String REQUEST_DLT = "DELETE FROM Sort WHERE nom=?";
 	private final String REQUEST_UPD = "UPDATE Sort SET nom=?, ecole=?, reference=?, composante=?, portee=?,cible=?,tempsincantation=?,jetsauvegardecible=?,jetsauvegardeeffet=? WHERE nom=?";
-	private final String REQUEST_SLT = "SELECT nom, ecole, reference, composante, portee, cible, tempsincantation, jetsauvegardecible, jetsauvegardeeffet FROM Race WHERE";
+	private final String REQUEST_SLT = "SELECT nom, ecole, reference, composante, portee, cible, tempsincantation, jetsauvegardecible, jetsauvegardeeffet FROM Sort WHERE";
 	private final String CLAUSE_ID = " nom=?";
 	private final String REQUEST_LS_ADD = "INSERT INTO ListeSort(nom,id) VALUES (?,?)";
 	private final String REQUEST_LS_DLT = "DELETE FROM ListeSort WHERE nom=?";
 	private final String REQUEST_LS_SLT = "SELECT nom,id FROM ListeSort WHERE";
 	private final String CLAUSE_ID_LS = " id=?";
-	private final String REQUEST_NS_SLT = "SELECT niveau,nom,nom_sort WHERE";
+	private final String REQUEST_NS_SLT = "SELECT niveau,nom,nom_sort FROM niveausort WHERE";
 	private final String CLAUSE_ID_LS_NOM = " nom=?";
 	
 	
@@ -156,7 +157,7 @@ public class SortDAO implements DAO<Sort>{
 	
 	
 	public List<Sort> trouverListeSort(Personnage obj) {
-		List<Sort> listeSort = null;
+		List<Sort> listeSort = new ArrayList<Sort>();
 		String nom = null;
 		Sort sort = new Sort();
 		try {
@@ -181,7 +182,7 @@ public class SortDAO implements DAO<Sort>{
 	}
 
 	public List<Sort> trouverSortApprenable(Personnage obj){
-		List<Sort> listeSortApprenable = null;
+		List<Sort> listeSortApprenable = new ArrayList<Sort>();
 		String nom = null;
 		Sort sort = new Sort();
 		try {

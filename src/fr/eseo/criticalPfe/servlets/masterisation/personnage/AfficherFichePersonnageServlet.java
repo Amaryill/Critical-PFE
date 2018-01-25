@@ -89,9 +89,9 @@ public class AfficherFichePersonnageServlet extends HttpServlet {
         }
         
         	//Sorts Apprenable
-
+        
         SortBOImpl sortBO = new SortBOImpl();
-        session.setAttribute("sortsApprenable", sortBO.trouverSortApprenable(personnage));
+        session.setAttribute("sortsApprenables", sortBO.trouverSortApprenable(personnage));
         
         request.getRequestDispatcher("site/Masterisation/fichePersonnage.jsp").forward(request, response);
         

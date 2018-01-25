@@ -37,7 +37,7 @@ public class PersonnageBOImpl implements PersonnageBO{
 		personnage.setClasses(classeBO.trouverClassesParPersonnage(personnage));
 		return personnage;
 	}
-	
+	 
 	public Personnage creerPersonnage(Personnage personnage){
 		// Quand on crée un BO on fait TrucBO truc = new TrucBOImpl(new TrucDAO);
 		// Cela oblige à utiliser que des méthodes implémenter dans l'interface
