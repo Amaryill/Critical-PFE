@@ -152,6 +152,7 @@ public class PersonnageDAO implements DAO<Personnage> {
 		personnage.getCompendium().setId(result.getInt("Id_Compendium"));
 		personnage.setIdEntitee(result.getInt("Id_Entitee"));		
 		personnage.getUtilisateur().setPseudo(result.getString("pseudo"));
+		
 		return personnage;
 	}
 
