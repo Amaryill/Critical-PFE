@@ -120,6 +120,20 @@
 						<div id="menu3" class="tab-pane fade col-xs-offset-1"
 							style="margin-top: 30px">
 							<div class="row">
+									<div class="panel panel-default col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+										<div class="panel-body">
+											<h3 class="text-center">Points de compétence Restants : <br/></h3>
+											<h1 class="text-center"><%=pointsCompetenceMax %></h2>
+											<% if (pointsCompetenceMax == 0) { %>
+												<form action="" method="get">
+													<input type="hidden" name="id" value="<%=personnage.getId()%>">
+    												<input class="button col-xs-6 col-xs-offset-3" type="submit" value="Gérer mes compétences" />
+												</form>
+											<% } %>
+									</div>
+								</div>
+							</div>
+							<div class="row">
 								<!-- COMPETENCES NON ACQUISES -->
 								<div class="form-group col-xs-12 col-md-6">
 									<div class="panel panel-default">
