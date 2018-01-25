@@ -9,7 +9,6 @@ import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.attributs.Sort;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
-import fr.eseo.criticalPfe.java.model.entite.Race;
 
 public class SortDAO implements DAO<Sort>{
 
@@ -19,6 +18,12 @@ public class SortDAO implements DAO<Sort>{
 	private final String REQUEST_UPD = "UPDATE Sort SET nom=?, ecole=?, reference=?, composante=?, portee=?,cible=?,tempsincantation=?,jetsauvegardecible=?,jetsauvegardeeffet=? WHERE nom=?";
 	private final String REQUEST_SLT = "SELECT nom, ecole, reference, composante, portee, cible, tempsincantation, jetsauvegardecible, jetsauvegardeeffet FROM Race WHERE";
 	private final String CLAUSE_ID = " nom=?";
+	private final String REQUEST_LS_ADD = "INSERT INTO ListeSort(nom,id) VALUES (?,?)";
+	private final String REQUEST_LS_DLT = "DELETE FROM ListeSort WHERE nom=?";
+	private final String REQUEST_LS_SLT = "SELECT nom,id FROM ListeSort WHERE";
+	private final String CLAUSE_ID_LS = " nom=?";
+
+	
 	
 	private Connection connexion;
 	private PreparedStatement preparedStatement;	
@@ -119,5 +124,52 @@ public class SortDAO implements DAO<Sort>{
 
 		return sort;
 	}
+	
 
+	public void ajoutListeSort(Sort sort, Personnage personnage) {
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_LS_ADD);
+
+			preparedStatement.setString(1, sort.getNom());
+			preparedStatement.setInt(2, personnage.getId());
+			
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	public void supprimerListeSort(Sort obj) {
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_LS_DLT);
+			preparedStatement.setString(1, obj.getNom());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Sort trouverListeSort(Sort obj) {
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			preparedStatement = connexion.prepareStatement(REQUEST_LS_SLT + CLAUSE_ID_LS);
+			preparedStatement.setString(1, obj.getNom());
+
+			ResultSet result = preparedStatement.executeQuery();
+			if (result.next()) {
+				obj = map(result);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return obj;
+	}
+
+
+	
+	
 }
