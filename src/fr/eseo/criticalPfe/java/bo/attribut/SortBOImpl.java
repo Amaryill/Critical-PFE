@@ -1,5 +1,7 @@
 package fr.eseo.criticalPfe.java.bo.attribut;
 
+import java.util.Map;
+
 import fr.eseo.criticalPfe.java.dao.attribut.SortDAO;
 import fr.eseo.criticalPfe.java.model.attributs.Sort;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
@@ -23,13 +25,16 @@ public class SortBOImpl implements SortBO {
 	}
 
 	@Override
-	public void trouverSortDuPersonnage(Sort sort) {
-		sortDAO.trouverListeSort(sort);
+	public Map<Personnage, Sort> trouverSortDuPersonnage(Personnage personnage) {
+		
+		return sortDAO.trouverListeSort(personnage);
+		
 	}
-
 	@Override
 	public Sort trouverSort(Sort sort) {
 		return sortDAO.trouver(sort);
 	}
+
+	
 
 }

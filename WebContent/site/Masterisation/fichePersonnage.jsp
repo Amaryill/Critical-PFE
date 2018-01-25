@@ -226,7 +226,14 @@
 						</div>
 						<div id="menu4" class="tab-pane fade col-xs-offset-1"
 							style="margin-top: 30px">
-							<p>menu4</p>
+							<div class="form-group col-xs-12 col-md-10">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<strong>Sorts acquis</strong>
+										</div>
+										<div class="panel-body">
+										</div>
+									</div>
 						</div>
 					</div>
 				</div>

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
@@ -21,7 +23,8 @@ public class SortDAO implements DAO<Sort>{
 	private final String REQUEST_LS_ADD = "INSERT INTO ListeSort(nom,id) VALUES (?,?)";
 	private final String REQUEST_LS_DLT = "DELETE FROM ListeSort WHERE nom=?";
 	private final String REQUEST_LS_SLT = "SELECT nom,id FROM ListeSort WHERE";
-	private final String CLAUSE_ID_LS = " nom=?";
+	private final String CLAUSE_ID_LS_NOM = " nom=?";
+	private final String CLAUSE_ID_LS = " id=?";
 
 	
 	
@@ -152,21 +155,31 @@ public class SortDAO implements DAO<Sort>{
 		}
 	}
 
-	public Sort trouverListeSort(Sort obj) {
+	
+	
+	public Map<Personnage,Sort> trouverListeSort(Personnage obj) {
+		Map<Personnage,Sort> listeSort = null;
+		String nom = null;
+		Sort sort = new Sort();
 		try {
+			
 			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(REQUEST_LS_SLT + CLAUSE_ID_LS);
-			preparedStatement.setString(1, obj.getNom());
-
+			preparedStatement.setInt(1, obj.getId());
 			ResultSet result = preparedStatement.executeQuery();
-			if (result.next()) {
-				obj = map(result);
+			
+			while (result.next()){
+				nom = result.getString("nom");
+				sort.setNom(nom);
+				sort = this.trouver(sort);
+				listeSort.put(obj, sort);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return obj;
+		return listeSort;
 	}
 
 
