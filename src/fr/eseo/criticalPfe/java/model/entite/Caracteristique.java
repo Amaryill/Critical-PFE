@@ -77,8 +77,8 @@ public class Caracteristique extends Model {
 
 		for (Classe classe : classes) {
 			this.reflexe += classe.getReflexe();
-			this.volonte += classe.getVolonte();
-			this.vigueur += classe.getVigueur();
+				this.volonte += classe.getVolonte();
+				this.vigueur += classe.getVigueur();
 			this.bba += classe.getBba();
 		}
 
