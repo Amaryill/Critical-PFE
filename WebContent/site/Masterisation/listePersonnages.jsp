@@ -64,13 +64,13 @@
 
 						<tbody>
 							<%
-								for (int i = 0; i < user.getPersonnages().size(); ++i) {
+								for (Personnage personnage : user.getPersonnages()) {
 										out.println("<tr onclick=\"location.href='/Critical-PFE/AfficherFichePersonnage?id="
-												+ user.getPersonnages().get(i).getId()
+												+ personnage.getId()
 												+ "'\">");
-										out.println("<td><input id='id' name='id' type='hidden' value='"+ user.getPersonnages().get(i).getId() +"'>" + user.getPersonnages().get(i).getNom() + "</td>");
-										out.println("<td>" + (int)user.getPersonnages().get(i).getFacteurPuissance() + "</td>");
-										out.println("<td>" + (user.getPersonnages().get(i).getUnivers().getNomUnivers()==null?"Non affecté":user.getPersonnages().get(i).getUnivers().getNomUnivers()) + "</td>");
+										out.println("<td><input id='id' name='id' type='hidden' value='"+ personnage.getId() +"'>" + personnage.getNom() + "</td>");
+										out.println("<td>" + (int)personnage.getFacteurPuissance() + "</td>");
+										out.println("<td>" + (personnage.getUnivers().getNomUnivers()==null?"Non affecté":personnage.getUnivers().getNomUnivers()) + "</td>");
 										out.println("</tr>");
 									}
 							%>

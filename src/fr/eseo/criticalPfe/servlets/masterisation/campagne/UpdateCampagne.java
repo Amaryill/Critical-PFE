@@ -39,9 +39,6 @@ public class UpdateCampagne extends HttpServlet {
 		String nomCampagne = request.getParameter("nomCampagne");
 		String descriptionCampagne = request.getParameter("descriptionCampagne");
 
-		System.out.println("request : " + nomCampagne);
-		System.out.println("Campagne : " + campagne.getNomCampagne());
-
 		if (nomCampagne != null && !nomCampagne.equals("") && !nomCampagne.isEmpty()) {
 			campagne.setNomCampagne(nomCampagne);
 		}

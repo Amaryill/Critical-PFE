@@ -184,7 +184,6 @@ public class SortDAO implements DAO<Sort>{
 		List<Sort> listeSortApprenable = null;
 		String nom = null;
 		Sort sort = new Sort();
-		System.out.println("Entrée sort apprenable");
 		try {
 			connexion = ConnexionBDD.getConnexion();
 			for (int i = 0; i<obj.getClasses().size(); i++){
@@ -192,7 +191,6 @@ public class SortDAO implements DAO<Sort>{
 				preparedStatement = connexion.prepareStatement(REQUEST_NS_SLT + CLAUSE_ID_LS_NOM);
 				preparedStatement.setString(1, obj.getClasses().get(i).getNom());
 				
-				System.out.println(obj.getClasses().get(i).getNom());
 				
 				ResultSet result = preparedStatement.executeQuery();
 				
@@ -200,7 +198,6 @@ public class SortDAO implements DAO<Sort>{
 					nom = result.getString("nom_sort");
 					sort.setNom(nom);
 					sort = this.trouver(sort);
-					System.out.println(sort.getNom());
 					listeSortApprenable.add(sort);
 				}
 				

@@ -87,13 +87,10 @@ public class PersonnageDAO implements DAO<Personnage> {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 		Personnage persoTrouve = null;
-		List<Classe> listeClasse = null;
-		ClasseBOImpl classeBO= new ClasseBOImpl();
 		
 		try {
 			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
-			System.out.println(obj.getId());
 			preparedStatement.setInt(1, obj.getId());
 			
 			ResultSet result = preparedStatement.executeQuery();

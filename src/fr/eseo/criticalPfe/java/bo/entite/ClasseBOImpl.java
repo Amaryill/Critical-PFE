@@ -35,7 +35,6 @@ public class ClasseBOImpl implements ClasseBO {
 
 	@Override
 	public List<Classe> trouverClassesParPersonnage(Personnage personnage) {
-		System.out.println("On trouve les classe du personnage");
 		return this.dao.trouverClassesParPersonnage(personnage);
 	}
 }

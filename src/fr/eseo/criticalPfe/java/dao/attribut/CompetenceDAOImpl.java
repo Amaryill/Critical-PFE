@@ -220,8 +220,6 @@ public class CompetenceDAOImpl implements CompetenceDAO {
             }
             result += "1;";
         }
-        System.out.println(result);
-
         return result;
     }
 

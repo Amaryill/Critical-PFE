@@ -15,8 +15,8 @@ public class Caracteristique extends Model {
 
 	/********************* ATTRIBUTS *************************/
 
-	HashMap<String, Integer> caracs; // OK
-	HashMap<String, Integer> modificateurs; // OK
+	HashMap<String, Integer> caracs = new HashMap<String, Integer>(); // OK
+	HashMap<String, Integer> modificateurs = new HashMap<String, Integer>(); // OK
 
 	int pointDeVie;
 	int pointDeVieMax;
@@ -102,13 +102,16 @@ public class Caracteristique extends Model {
 
 	public void setCaracs(HashMap<String, Integer> caracs) {
 		this.caracs = caracs;
+		for (String carac : caracs.keySet()) {
+			this.modificateurs.put(carac, (caracs.get(carac) / 2) - 5);
+		}
 	}
 
 	public HashMap<String, Integer> getModificateurs() {
 		return modificateurs;
 	}
 
-	public void setModificateurs(HashMap<String, Integer> modificateurs) {
+	public void setModificateurs(HashMap<String,	 Integer> modificateurs) {
 		this.modificateurs = modificateurs;
 	}
 

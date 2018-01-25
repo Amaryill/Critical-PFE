@@ -102,7 +102,6 @@ public class BddBo {
 	public void signUp(String pseudo, String login, String mdp, String mail){
 		
 		String insertUser = insert + TABLE_UTILISATEUR + values + pseudo+"','"+login+"','"+mdp+"','"+mail+"','');";
-		System.out.println(insertUser);
 		this.bdd.prepareStmt(insertUser);
 		ResultSet rset = this.bdd.executePrep();
 		

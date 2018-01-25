@@ -90,7 +90,6 @@ public class AfficherFichePersonnageServlet extends HttpServlet {
         
         	//Sorts Apprenable
 
-		System.out.println("Nombre de classes : "+personnage.getClasses().size());
         SortBOImpl sortBO = new SortBOImpl();
         session.setAttribute("sortsApprenable", sortBO.trouverSortApprenable(personnage));
         

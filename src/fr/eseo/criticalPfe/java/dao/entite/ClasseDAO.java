@@ -162,7 +162,6 @@ public class ClasseDAO implements DAO<Classe>{
 				while (result.next()) {
 					Classe classe = new Classe();
 					classe.setNom(result.getString("nom"));
-					System.out.println(result.getString("nom"));
 					classeTrouvee.add(this.trouver(classe));
 				}
 			} catch (SQLException e) {

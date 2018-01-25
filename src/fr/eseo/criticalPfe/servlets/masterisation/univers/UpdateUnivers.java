@@ -38,9 +38,6 @@ public class UpdateUnivers extends HttpServlet {
 		String nomUnivers = request.getParameter("nomUnivers");
 		String descriptionUnivers = request.getParameter("descriptionUnivers");
 
-		System.out.println("request : " + nomUnivers);
-		System.out.println("univers : " + univers.getNomUnivers());
-		
 		if (nomUnivers != null && !nomUnivers.equals("") && !nomUnivers.isEmpty()) {
 			univers.setNomUnivers(nomUnivers);
 		}

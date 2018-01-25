@@ -29,14 +29,12 @@ public class PersonnageBOImpl implements PersonnageBO{
 	}
 	
 	public Personnage trouverPersonnage(Personnage personnage){
-		System.out.println("Trouver personnage");
 		EntiteeBO boEntitee = new EntiteeBOImpl();
 		SortDAO daoSort = new SortDAO();
 		ClasseBO classeBO = new ClasseBOImpl();
 		personnage = (Personnage) boEntitee.trouverEntitee(this.dao.trouver(personnage));
 		personnage.setSorts(daoSort.trouverListeSort(personnage));
 		personnage.setClasses(classeBO.trouverClassesParPersonnage(personnage));
-		System.out.println("Classes du personnage: "+personnage.getClasses().get(0).getNom());
 		return personnage;
 	}
 	

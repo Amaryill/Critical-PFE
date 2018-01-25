@@ -36,7 +36,6 @@ public class ApplicationCompetencesServlet extends HttpServlet {
         }
         
         String actionType = (String) session.getAttribute("action");
-        System.out.println(actionType);
         request.getRequestDispatcher("/ChoixCompetences").forward(request, response);
 	}
 
