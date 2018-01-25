@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.criticalPfe.java.bo.attribut.CompetenceBOImpl;
+import fr.eseo.criticalPfe.java.bo.attribut.SortBOImpl;
 import fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl;
 import fr.eseo.criticalPfe.java.model.attributs.Competence;
 import fr.eseo.criticalPfe.java.model.attributs.Sort;
@@ -76,8 +77,10 @@ public class AfficherFichePersonnageServlet extends HttpServlet {
             // Points Compétence restants
         session.setAttribute("pointsCompRestants", personnage.getPointsCompRestants());
         
-        // Obtention Données Sorts
-        	//Sort Acquis
+        
+        
+        // Obtention Données Sorts du personnage
+        	//Sorts Acquis
         
         if(personnage.getSorts() != null){
         	session.setAttribute("sortsAcquis", personnage.getSorts());
@@ -85,6 +88,11 @@ public class AfficherFichePersonnageServlet extends HttpServlet {
         	session.setAttribute("sortsAcquis", new ArrayList<Sort>());
         }
         
+        	//Sorts Apprenable
+
+		System.out.println("Nombre de classes : "+personnage.getClasses().size());
+        SortBOImpl sortBO = new SortBOImpl();
+        session.setAttribute("sortsApprenable", sortBO.trouverSortApprenable(personnage));
         
         request.getRequestDispatcher("site/Masterisation/fichePersonnage.jsp").forward(request, response);
         

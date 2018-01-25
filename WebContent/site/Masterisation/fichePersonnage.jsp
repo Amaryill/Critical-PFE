@@ -246,6 +246,38 @@
 											<strong>Sorts acquis</strong>
 										</div>
 										<div class="panel-body">
+										<%
+											if (personnage.getSorts()!=null){
+												out.println("<p>"+personnage.getSorts().get(0)+"</p>");
+											} else {
+												out.println("<h4>Le personnage n'a appris aucun sort</h4>");
+											}
+										%>
+										<!-- Trigger the modal with a button -->
+										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Apprendre des sorts</button>
+										
+										<!-- Modal -->
+										<div id="myModal" class="modal fade" role="dialog">
+										  <div class="modal-dialog">
+										
+										    <!-- Modal content-->
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal">&times;</button>
+										        <h4 class="modal-title">Sorts</h4>
+										      </div>
+										      <div class="modal-body">
+										        <h4>Liste des sorts apprenable</h4>
+										        
+										      </div>
+										      <div class="modal-footer">
+										      	<button type="button" class="btn btn-primary" data-dismiss="modal">Sauvegarder</button>
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+										      </div>
+										    </div>
+										
+										  </div>
+										</div>
 										</div>
 									</div>
 						</div>

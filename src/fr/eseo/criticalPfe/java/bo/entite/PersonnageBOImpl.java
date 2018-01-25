@@ -2,6 +2,8 @@ package fr.eseo.criticalPfe.java.bo.entite;
 
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.dao.attribut.SortDAO;
+import fr.eseo.criticalPfe.java.dao.entite.ClasseDAO;
 import fr.eseo.criticalPfe.java.dao.entite.PersonnageDAO;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
 
@@ -27,8 +29,14 @@ public class PersonnageBOImpl implements PersonnageBO{
 	}
 	
 	public Personnage trouverPersonnage(Personnage personnage){
+		System.out.println("Trouver personnage");
 		EntiteeBO boEntitee = new EntiteeBOImpl();
+		SortDAO daoSort = new SortDAO();
+		ClasseBO classeBO = new ClasseBOImpl();
 		personnage = (Personnage) boEntitee.trouverEntitee(this.dao.trouver(personnage));
+		personnage.setSorts(daoSort.trouverListeSort(personnage));
+		personnage.setClasses(classeBO.trouverClassesParPersonnage(personnage));
+		System.out.println("Classes du personnage: "+personnage.getClasses().get(0).getNom());
 		return personnage;
 	}
 	

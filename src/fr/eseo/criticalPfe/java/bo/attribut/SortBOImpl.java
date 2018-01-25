@@ -35,6 +35,12 @@ public class SortBOImpl implements SortBO {
 		return sortDAO.trouver(sort);
 	}
 
+	@Override
+	public List<Sort> trouverSortApprenable(Personnage obj) {
+		// TODO Auto-generated method stub
+		return sortDAO.trouverSortApprenable(obj);
+	}
+
 	
 
 }

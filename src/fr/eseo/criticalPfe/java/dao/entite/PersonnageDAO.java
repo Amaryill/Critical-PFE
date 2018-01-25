@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eseo.criticalPfe.java.bo.entite.ClasseBOImpl;
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Classe;
@@ -22,6 +23,7 @@ public class PersonnageDAO implements DAO<Personnage> {
 	private final String REQUEST_SLT = "SELECT Id, Alignement, Dieu, Sexe, CouleurYeux, CouleurCheveux, taille, poids, age, nom, Id_Compendium, Id_Entitee, pseudo FROM Personnage WHERE";
 	private final String CLAUSE_ID = " id=?";
 	private final String CLAUSE_PSEUDO = " pseudo=?";
+	private final String REQUEST_LIEN_CLASSE_SLT = "SELECT niveau,id,nom WHERE";
 
 	public Personnage creer(Personnage obj) {
 		Connection connexion = null;
@@ -85,7 +87,9 @@ public class PersonnageDAO implements DAO<Personnage> {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 		Personnage persoTrouve = null;
-
+		List<Classe> listeClasse = null;
+		ClasseBOImpl classeBO= new ClasseBOImpl();
+		
 		try {
 			connexion = ConnexionBDD.getConnexion();
 			preparedStatement = connexion.prepareStatement(REQUEST_SLT + CLAUSE_ID);
@@ -96,6 +100,8 @@ public class PersonnageDAO implements DAO<Personnage> {
 			if (result.next()) {
 			    persoTrouve = map(result);
 			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -152,7 +158,6 @@ public class PersonnageDAO implements DAO<Personnage> {
 		personnage.getCompendium().setId(result.getInt("Id_Compendium"));
 		personnage.setIdEntitee(result.getInt("Id_Entitee"));		
 		personnage.getUtilisateur().setPseudo(result.getString("pseudo"));
-		
 		return personnage;
 	}
 
@@ -177,4 +182,5 @@ public class PersonnageDAO implements DAO<Personnage> {
 		}
 		return personnages;
 	}
+	
 }

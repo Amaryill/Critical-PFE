@@ -21,9 +21,9 @@ public class SortDAO implements DAO<Sort>{
 	private final String REQUEST_LS_ADD = "INSERT INTO ListeSort(nom,id) VALUES (?,?)";
 	private final String REQUEST_LS_DLT = "DELETE FROM ListeSort WHERE nom=?";
 	private final String REQUEST_LS_SLT = "SELECT nom,id FROM ListeSort WHERE";
-	private final String CLAUSE_ID_LS_NOM = " nom=?";
 	private final String CLAUSE_ID_LS = " id=?";
-
+	private final String REQUEST_NS_SLT = "SELECT niveau,nom,nom_sort WHERE";
+	private final String CLAUSE_ID_LS_NOM = " nom=?";
 	
 	
 	private Connection connexion;
@@ -180,7 +180,38 @@ public class SortDAO implements DAO<Sort>{
 		return listeSort;
 	}
 
-
+	public List<Sort> trouverSortApprenable(Personnage obj){
+		List<Sort> listeSortApprenable = null;
+		String nom = null;
+		Sort sort = new Sort();
+		System.out.println("Entrée sort apprenable");
+		try {
+			connexion = ConnexionBDD.getConnexion();
+			for (int i = 0; i<obj.getClasses().size(); i++){
+				
+				preparedStatement = connexion.prepareStatement(REQUEST_NS_SLT + CLAUSE_ID_LS_NOM);
+				preparedStatement.setString(1, obj.getClasses().get(i).getNom());
+				
+				System.out.println(obj.getClasses().get(i).getNom());
+				
+				ResultSet result = preparedStatement.executeQuery();
+				
+				while (result.next()){
+					nom = result.getString("nom_sort");
+					sort.setNom(nom);
+					sort = this.trouver(sort);
+					System.out.println(sort.getNom());
+					listeSortApprenable.add(sort);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return listeSortApprenable;
+	}
 	
 	
 }

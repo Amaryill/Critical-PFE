@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.entite.Classe;
+import fr.eseo.criticalPfe.java.model.entite.Personnage;
 
 public class ClasseDAO implements DAO<Classe>{
 
@@ -19,6 +21,9 @@ public class ClasseDAO implements DAO<Classe>{
 		private final String REQUEST_SLT = "SELECT Nom, deDeVie, alignementPossible, ptsCompParNiveau, Description FROM Classe WHERE";
 		private final String REQUEST_SLT_ALL = "SELECT Nom, deDeVie, alignementPossible, ptsCompParNiveau, Description FROM Classe";
 		private final String CLAUSE_ID = " Nom=?";
+		private final String REQUEST_CL_SLT = "SELECT niveau, id, nom FROM estClasse WHERE";
+		private final String CLAUSE_CL_ID = " id=?";
+		
 
 		
 		public Classe creer(Classe obj) {
@@ -141,5 +146,31 @@ public class ClasseDAO implements DAO<Classe>{
 			
 			return classe;
 
+		}
+		
+		public List<Classe> trouverClassesParPersonnage(Personnage personnage){
+			Connection connexion = null;
+			PreparedStatement preparedStatement = null;
+			List<Classe> classeTrouvee = new ArrayList<Classe>();
+
+			try {
+				connexion = ConnexionBDD.getConnexion();
+				preparedStatement = connexion.prepareStatement(REQUEST_CL_SLT + CLAUSE_CL_ID);
+				preparedStatement.setInt(1, personnage.getId());
+
+				ResultSet result = preparedStatement.executeQuery();
+				while (result.next()) {
+					Classe classe = new Classe();
+					classe.setNom(result.getString("nom"));
+					System.out.println(result.getString("nom"));
+					classeTrouvee.add(this.trouver(classe));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+			return classeTrouvee;
+			
+			
 		}
 	}

@@ -11,5 +11,6 @@ public interface SortBO {
 	public void supprimerSort(Sort sort);
 	public List<Sort> trouverSortDuPersonnage(Personnage personnage);
 	public Sort trouverSort(Sort sort);
+	public List<Sort> trouverSortApprenable(Personnage obj);
 	
 }
