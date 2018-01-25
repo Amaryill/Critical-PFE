@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.List;
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
 import fr.eseo.criticalPfe.java.model.attributs.Sort;
@@ -157,8 +155,8 @@ public class SortDAO implements DAO<Sort>{
 
 	
 	
-	public Map<Personnage,Sort> trouverListeSort(Personnage obj) {
-		Map<Personnage,Sort> listeSort = null;
+	public List<Sort> trouverListeSort(Personnage obj) {
+		List<Sort> listeSort = null;
 		String nom = null;
 		Sort sort = new Sort();
 		try {
@@ -172,7 +170,7 @@ public class SortDAO implements DAO<Sort>{
 				nom = result.getString("nom");
 				sort.setNom(nom);
 				sort = this.trouver(sort);
-				listeSort.put(obj, sort);
+				listeSort.add(sort);
 			}
 			
 		} catch (SQLException e) {
