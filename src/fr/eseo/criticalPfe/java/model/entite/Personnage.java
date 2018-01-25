@@ -187,7 +187,7 @@ public class Personnage extends Entitee {
         int capital = 0;
         if (this.classes != null) {
             for (Classe c : this.classes) {
-                capital += c.getNiveau() * c.getPointCompetenceNiveau();
+                capital += this.getCaracteristique().getModificateurs().get("int") + c.getNiveau() * c.getPointCompetenceNiveau();
             }
         }
 
