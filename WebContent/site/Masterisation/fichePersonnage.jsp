@@ -103,7 +103,7 @@
 									value='<%=personnage.getRace().getNom()%>' readonly /> <label
 									class="control-label col-xs-2" for="pseudo_ancien">Classe
 									:</label> <input type="text " id="nom" name="nom"
-									class="control-label col-xs-2 champLecture" value="a" readonly />
+									class="control-label col-xs-2 champLecture" value="<%=session.getAttribute("texteClasses")%>" readonly />
 							</div>
 							<div class="row" style="margin-top: 15px">
 

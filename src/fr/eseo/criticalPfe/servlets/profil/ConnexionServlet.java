@@ -60,6 +60,7 @@ public class ConnexionServlet extends HttpServlet {
 	    if (utilisateur != null && utilisateur.getPassword().contentEquals(userPassword)){
 	        // attribution des personnages de l'utilisateur
 	        utilisateur.setPersonnages(boPersonnage.trouverPersonnageParUtilisateur(utilisateur.getPseudo()));
+	        System.out.println("Description : " +utilisateur.getPresentation());
 	        //attribution des variables session	
 	    	session.setAttribute("user", utilisateur);
 			session.setAttribute(ATT_SESSION_USER, utilisateur.getPseudo());

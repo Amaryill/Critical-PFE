@@ -16,6 +16,7 @@ import fr.eseo.criticalPfe.java.bo.attribut.SortBOImpl;
 import fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl;
 import fr.eseo.criticalPfe.java.model.attributs.Competence;
 import fr.eseo.criticalPfe.java.model.attributs.Sort;
+import fr.eseo.criticalPfe.java.model.entite.Classe;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
@@ -87,6 +88,21 @@ public class AfficherFichePersonnageServlet extends HttpServlet {
         } else {
         	session.setAttribute("sortsAcquis", new ArrayList<Sort>());
         }
+        
+        
+        if(personnage.getClasses() != null){
+        	String listeClasses = "";
+        	for(Classe classe : personnage.getClasses()){
+        		System.out.println(classe);
+        		System.out.println("Classe : " + classe.getNom());
+        		listeClasses += classe.getNom() + " - ";
+        	}
+        	listeClasses = listeClasses.substring(0, listeClasses.length()-3);
+        	session.setAttribute("texteClasses", listeClasses);
+        } else {
+        	session.setAttribute("texteClasses", "Aucune classe");
+        }
+        
         
         	//Sorts Apprenable
         
