@@ -3,6 +3,7 @@ package fr.eseo.criticalPfe.java.bo.scenario;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.dao.scenario.UniversDAO;
+import fr.eseo.criticalPfe.java.model.scenario.Campagne;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
@@ -21,8 +22,11 @@ public class UniversBOImpl implements UniversBO {
 	}
 
 	public void supprimerUnivers(int idUnivers) {
-		Univers univers = new Univers();
-		univers.setId(idUnivers);
+		Univers univers = getUnivers(idUnivers);
+		CampagneBO boCampagne = new CampagneBOImpl();
+		for(Campagne campagne : univers.getCampagnes()){
+			boCampagne.supprimerCampagne(campagne);
+		}
 		UniversDAO.getUniversDAO().supprimer(univers);
 	}
 
@@ -52,7 +56,7 @@ public class UniversBOImpl implements UniversBO {
 		modifierUnivers(univers);
 	}
 
-	private void modifierUnivers(Univers univers) {
+	public void modifierUnivers(Univers univers) {
 		UniversDAO.getUniversDAO().modifier(univers);
 	}
 }

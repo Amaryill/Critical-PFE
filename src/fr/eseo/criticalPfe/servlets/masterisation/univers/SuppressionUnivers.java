@@ -32,9 +32,7 @@ public class SuppressionUnivers extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		HttpSession session = request.getSession();
 		UniversBOImpl universBO = new UniversBOImpl();
-		String utilisateur = (String)session.getAttribute("utilisateur");
 		int idUnivers = Integer.parseInt(request.getParameter("idUnivers"));
 		universBO.supprimerUnivers(idUnivers);
 		

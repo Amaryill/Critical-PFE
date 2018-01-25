@@ -15,9 +15,9 @@ public class Utilisateur extends Model {
 	String password;
 	String mail;
 	String presentation;
-	Statistique statistique;
+	Statistique statistique = new Statistique();
 	List<Personnage> personnages = new ArrayList<Personnage>();
-	List<Univers> listUnivers;
+	List<Univers> listUnivers = new ArrayList<Univers>();
 	HashMap<String,String> amis;
 
 	public Utilisateur(String pseudo, String login, String password, String mail, String presentation, Statistique statistique, List<Personnage> personnages,

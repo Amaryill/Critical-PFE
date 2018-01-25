@@ -37,7 +37,9 @@ public class AjoutParticipant extends HttpServlet {
 		HttpSession httpSession = request.getSession();
 		SessionBOImpl sessionBO = new SessionBOImpl();
 		Campagne campagne = (Campagne)httpSession.getAttribute("campagne");
-		sessionBO.creationSession(campagne);
+		Session session = new Session();
+		session.setCampagne(campagne);
+		sessionBO.creationSession(session);
 		//httpSession.setAttribute("session", session);
 		response.sendRedirect("/Critical-PFE/AfficherCampagne");
 		response.getWriter().append("Served at: ").append(request.getContextPath());

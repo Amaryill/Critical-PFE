@@ -1,8 +1,6 @@
 package fr.eseo.criticalPfe.servlets.masterisation.campagne;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +13,16 @@ import fr.eseo.criticalPfe.java.bo.scenario.CampagneBOImpl;
 import fr.eseo.criticalPfe.java.model.scenario.Campagne;
 
 /**
- * Servlet implementation class CreationUnivers
+ * Servlet implementation class UpdateCampagne
  */
-@WebServlet("/AfficherCampagne")
-public class AfficherCampagne extends HttpServlet {
+@WebServlet("/UpdateCampagne")
+public class UpdateCampagne extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AfficherCampagne() {
+	public UpdateCampagne() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,25 +33,27 @@ public class AfficherCampagne extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
-		HttpSession session = request.getSession();
 		CampagneBO boCampagne = new CampagneBOImpl();
-		Campagne campagne = new Campagne();
-		if (request.getParameter("idCampagne") != null) {
-			campagne.setId(Integer.parseInt(request.getParameter("idCampagne")));
-			campagne = boCampagne.trouverCampagne(campagne);
-			session.setAttribute("campagne", campagne);
-		} else {
-			campagne = (Campagne) session.getAttribute("campagne");
-		}
+		HttpSession session = request.getSession();
+		Campagne campagne = (Campagne) session.getAttribute("campagne");
+		String nomCampagne = request.getParameter("nomCampagne");
+		String descriptionCampagne = request.getParameter("descriptionCampagne");
 
-		if (campagne != null) {
-			session.setAttribute("campagne", campagne);
-			response.sendRedirect("/Critical-PFE/site/Masterisation/modificationCampagne.jsp");
-		} else {
-			response.sendRedirect("/Critical-PFE/AfficherUnivers");
+		System.out.println("request : " + nomCampagne);
+		System.out.println("Campagne : " + campagne.getNomCampagne());
+
+		if (nomCampagne != null && !nomCampagne.equals("") && !nomCampagne.isEmpty()) {
+			campagne.setNomCampagne(nomCampagne);
 		}
+		if (descriptionCampagne != null && !descriptionCampagne.equals("") && !descriptionCampagne.isEmpty()) {
+			campagne.setDescription(descriptionCampagne);
+		} else if (campagne.getDescription() == null) {
+			campagne.setDescription("*Insérer une description*");
+		}
+		boCampagne.modifierCampagne(campagne);
+		session.setAttribute("campagne", campagne);
+		response.sendRedirect("/Critical-PFE/AfficherCampagne");
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

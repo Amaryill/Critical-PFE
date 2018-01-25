@@ -12,12 +12,6 @@ import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 public class SessionBOImpl implements SessionBO{
 
-	public Session creationSession(Campagne campagne) {
-		Session session = new Session();
-		session.setCampagne(campagne);
-		return this.creationSession(session);
-	}
-
 	@Override
 	public Session creationSession(Session session) {
 		return SessionDAO.getSessionDAO().creer(session);

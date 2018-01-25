@@ -12,4 +12,5 @@ public interface CampagneBO {
 	public void supprimerCampagne(Campagne campagne);
 	public void modifierCampagne(Campagne campagne);
 	public void creerCampagne(Campagne campagne);
+	public Campagne trouverCampagne(Campagne campagne);
 }

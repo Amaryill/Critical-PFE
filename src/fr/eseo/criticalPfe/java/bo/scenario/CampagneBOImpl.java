@@ -25,4 +25,8 @@ public class CampagneBOImpl implements CampagneBO{
 	public void creerCampagne(Campagne campagne){
 		CampagneDAO.getCampagneDAO().creer(campagne);
 	}
+
+	public Campagne trouverCampagne(Campagne campagne) {
+		return CampagneDAO.getCampagneDAO().trouver(campagne);
+	}
 }

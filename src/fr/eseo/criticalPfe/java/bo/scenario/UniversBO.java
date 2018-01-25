@@ -12,4 +12,5 @@ public interface UniversBO {
 	public Univers getUnivers(int idUnivers);
 	public void renommerUnivers(int idUnivers, String nouveauNom);
 	public void editDescriptionUnivers(int idUnivers, String nouvelleDescription);
+	public void modifierUnivers(Univers univers);
 }

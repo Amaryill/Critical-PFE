@@ -33,11 +33,13 @@
 </head>
 <body class="bg-image"
 	style="background-image: url('assets/img/login-bg.jpg');">
-	
+
 	<!--  Header et aside -->
 	<section id="container"> <jsp:include
 		page="include/import_header.jsp" /> <jsp:include
-		page="include/import_aside.jsp" /> <section id="main-content">
+		page="include/import_aside.jsp" />
+	</section>	
+	<section id="main-content">
 	<section class="wrapper">
 
 	<div class="form-horizontal"
@@ -135,7 +137,10 @@
 										<div
 											style="margin-top: 10px; margin-bottom: 10px; margin-left: 20px">
 											<%
-												for (int i = 0; i < demandesRecues.size(); i++) {
+												if (demandesRecues.size() == 0) {
+													out.print("Tu as vraiment cru	 que quelqu'un désirait être ton ami ? *Halala ... Qu'il est naïf*");
+												} else {
+													for (int i = 0; i < demandesRecues.size(); i++) {
 											%>
 											<div class="row" style="margin-left: 10px">
 
@@ -162,6 +167,7 @@
 												</form>
 												<%
 													}
+													}
 												%>
 											</div>
 										</div>
@@ -178,7 +184,10 @@
 										<div
 											style="margin-top: 10px; margin-bottom: 10px; margin-left: 20px">
 											<%
-												for (int i = 0; i < demandesEnvoyees.size(); i++) {
+												if (demandesEnvoyees.size() == 0) {
+													out.print("Tu es sûr d'avoir assez d'amis ? Dans ce cas va donc jouer une partie !");
+												} else {
+													for (int i = 0; i < demandesEnvoyees.size(); i++) {
 											%>
 
 											<div class="row" style="margin-left: 10px">
@@ -198,6 +207,7 @@
 											</div>
 											<%
 												}
+												}
 											%>
 										</div>
 									</div>
@@ -209,7 +219,7 @@
 			</div>
 		</div>
 	</div>
-	</section> </section> </section>
+	</section> </section> 
 	<!-- js placed at the end of the document so the pages load faster -->
 	<jsp:include page="include/import_script.jsp" />
 </body>
