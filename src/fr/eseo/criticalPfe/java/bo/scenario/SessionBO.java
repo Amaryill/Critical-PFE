@@ -11,6 +11,7 @@ public interface SessionBO {
 	public void supprimerSession(Session session);
 	public List<Session> getListeSessionByCampagne(Session session);
 	public Session editSession(Session session);
+	public Session trouverSession(Session session);
 	
 	public List<Utilisateur> getParticipants(Session session);
 	public void ajouterParticipants(Session session, Utilisateur user);

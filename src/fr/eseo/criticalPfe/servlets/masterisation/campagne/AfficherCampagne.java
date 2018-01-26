@@ -42,14 +42,16 @@ public class AfficherCampagne extends HttpServlet {
 		Campagne campagne = new Campagne();
 		if (request.getParameter("idCampagne") != null) {
 			campagne.setId(Integer.parseInt(request.getParameter("idCampagne")));
-			campagne = boCampagne.trouverCampagne(campagne);
-			session.setAttribute("campagne", campagne);
 		} else {
 			campagne = (Campagne) session.getAttribute("campagne");
 		}
 
+		campagne = boCampagne.trouverCampagne(campagne);
+		
 		if (campagne != null) {
+			System.out.println("Liste Session : " + campagne.getSessions());
 			session.setAttribute("campagne", campagne);
+			session.setAttribute("listeSession", campagne.getSessions());
 			response.sendRedirect("/Critical-PFE/site/Masterisation/modificationCampagne.jsp");
 		} else {
 			response.sendRedirect("/Critical-PFE/AfficherUnivers");

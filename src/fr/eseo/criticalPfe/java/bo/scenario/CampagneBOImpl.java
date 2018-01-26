@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import fr.eseo.criticalPfe.java.dao.scenario.CampagneDAO;
 import fr.eseo.criticalPfe.java.model.scenario.Campagne;
+import fr.eseo.criticalPfe.java.model.scenario.Session;
 import fr.eseo.criticalPfe.java.model.scenario.Univers;
 
 public class CampagneBOImpl implements CampagneBO{
@@ -27,6 +28,12 @@ public class CampagneBOImpl implements CampagneBO{
 	}
 
 	public Campagne trouverCampagne(Campagne campagne) {
-		return CampagneDAO.getCampagneDAO().trouver(campagne);
+		SessionBO boSession = new SessionBOImpl();
+		
+		campagne = CampagneDAO.getCampagneDAO().trouver(campagne);
+		Session session = new Session();
+		session.setCampagne(campagne);
+		campagne.setSessions(boSession.getListeSessionByCampagne(session));
+		return campagne;
 	}
 }

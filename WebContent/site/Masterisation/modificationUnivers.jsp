@@ -150,7 +150,7 @@
 															<td>
 																<form class="form-horizontal" method="post"
 																	action="/Critical-PFE/SuppressionCampagne">
-																	<input type="hidden" name="idUnivers" id="idUnivers"
+																	<input type="hidden" name="idCampagne" id="idCampagne"
 																		value=<%=campagne.getId()%>>
 
 																	<button class="btn btn-theme btn-block" type="submit"

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import fr.eseo.criticalPfe.java.bo.scenario.SessionBOImpl;
 import fr.eseo.criticalPfe.java.model.scenario.Campagne;
 import fr.eseo.criticalPfe.java.model.scenario.Session;
+import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 /**
  * Servlet implementation class CreationUnivers
@@ -38,8 +39,14 @@ public class AjoutParticipant extends HttpServlet {
 		SessionBOImpl sessionBO = new SessionBOImpl();
 		Campagne campagne = (Campagne)httpSession.getAttribute("campagne");
 		Session session = new Session();
+		session.setId(Integer.parseInt(request.getParameter("idSession")));
+		session = sessionBO.trouverSession(session);
+		System.out.println(session.getNomSession());
+		System.out.println(session.getId());
 		session.setCampagne(campagne);
-		sessionBO.creationSession(session);
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setPseudo(request.getParameter("pseudo"));
+		sessionBO.ajouterParticipants(session, utilisateur);
 		//httpSession.setAttribute("session", session);
 		response.sendRedirect("/Critical-PFE/AfficherCampagne");
 		response.getWriter().append("Served at: ").append(request.getContextPath());

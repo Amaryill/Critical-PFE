@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import fr.eseo.criticalPfe.java.dao.ConnexionBDD;
 import fr.eseo.criticalPfe.java.dao.DAO;
@@ -22,6 +23,7 @@ public class SessionDAO implements DAO<Session>{
 	private final String SLT_SESSION = "SELECT Id, Id_Campagne FROM Session WHERE Id=?";
 	private final String SLT_SESSION_BY_CAMPAGNE = "SELECT Id,Id_Campagne FROM Session WHERE Id_Campagne=?";
 	
+	private final String SLT_PARTICIPE = "SELECT Id, Pseudo FROM Participe WHERE Id=?";
 	private final String ADD_PARTICIPE = "INSERT INTO Participe(Id, Pseudo) VALUES (?,?)";
 	private final String DLT_PARTICIPE = "DELETE FROM Participe WHERE Id = ? and Pseudo = ?";
 	private final String SLT_PARTICIPANTS_BY_SESSION = "SELECT Pseudo FROM Participe WHERE Id=?";
@@ -87,6 +89,17 @@ public class SessionDAO implements DAO<Session>{
 			if (result.next()) {
 				obj = map(result);
 			}
+			
+
+			
+			preparedStatement = connexion.prepareStatement(SLT_PARTICIPE);
+			preparedStatement.setInt(1, obj.getId());
+			ResultSet resultParticipe = preparedStatement.executeQuery();
+			while(resultParticipe.next()){
+				Utilisateur utilisateur = new Utilisateur();
+				utilisateur.setPseudo(resultParticipe.getString("Pseudo"));
+				obj.getEtatParticipant().put(utilisateur, "null");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -105,7 +118,20 @@ public class SessionDAO implements DAO<Session>{
 			preparedStatement.setInt(1, obj.getCampagne().getId());
 			ResultSet result = preparedStatement.executeQuery();
 			while (result.next()) {
-				listeSession.add(map(result));
+				Session session = map(result);
+				preparedStatement = connexion.prepareStatement(SLT_PARTICIPE);
+				preparedStatement.setInt(1, session.getId());
+				ResultSet resultParticipe = preparedStatement.executeQuery();
+				
+				HashMap<Utilisateur, String> etatParticipant = session.getEtatParticipant();
+				while(resultParticipe.next()){
+					Utilisateur utilisateur = new Utilisateur();
+					utilisateur.setPseudo(resultParticipe.getString("Pseudo"));
+					etatParticipant.put(utilisateur, "null");
+					System.out.println(session);
+				}
+				session.setEtatParticipant(etatParticipant);
+				listeSession.add(session);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -140,6 +166,8 @@ public class SessionDAO implements DAO<Session>{
 		Campagne campagne = new Campagne();
 		campagne.setId(result.getInt("Id_Campagne"));
 		session.setCampagne(campagne);
+		session.setDateSession("Vendredi 26 Janvier");
+		session.setNomSession("Démonstration du PFE");
 
 		return session;
 	}

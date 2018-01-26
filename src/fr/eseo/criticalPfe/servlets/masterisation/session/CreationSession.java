@@ -37,8 +37,13 @@ public class CreationSession extends HttpServlet {
 		HttpSession httpSession = request.getSession();
 		SessionBOImpl sessionBO = new SessionBOImpl();
 		Campagne campagne = (Campagne)httpSession.getAttribute("campagne");
+		String dateSession = request.getParameter("dateSession");
+		String nomSession = request.getParameter("nomSession");
+		
 		Session session = new Session();
 		session.setCampagne(campagne);
+		session.setDateSession(dateSession);
+		session.setNomSession(nomSession);
 		sessionBO.creationSession(session);
 		//httpSession.setAttribute("session", session);
 		response.sendRedirect("/Critical-PFE/AfficherCampagne");

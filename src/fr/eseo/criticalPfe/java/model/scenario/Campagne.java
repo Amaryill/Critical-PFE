@@ -1,18 +1,20 @@
 package fr.eseo.criticalPfe.java.model.scenario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
 
 public class Campagne {
 
-	int id;
-	Univers univers;
-	String nomCampagne;
-	String description;
-	List<Personnage> joueurs;
-	Contenu contenu;
-	Regle regle;
+	private int id;
+	private Univers univers;
+	private String nomCampagne;
+	private String description;
+	private List<Personnage> joueurs;
+	private Contenu contenu;
+	private Regle regle;
+	private List<Session> sessions = new ArrayList<Session>();
 
 	
 	public Campagne(){
@@ -86,6 +88,16 @@ public class Campagne {
 
 	public void setRegle(Regle regle) {
 		this.regle = regle;
+	}
+
+
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
 	}
 	
 }

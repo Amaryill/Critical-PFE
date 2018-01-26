@@ -47,8 +47,8 @@
 	int pointsCompetenceMax = (Integer) session.getAttribute("pointsCompRestants");
 %>
 
-<% 
-	List<Sort> sortsApprenables = (List<Sort>) session.getAttribute("sortsApprenables"); 
+<%
+	List<Sort> sortsApprenables = (List<Sort>) session.getAttribute("sortsApprenables");
 %>
 
 
@@ -59,7 +59,7 @@
 <title>Critical</title>
 </head>
 <body class="bg-image"
-	style="background-image: url('assets/img/login-bg.jpg'); background-repeat: no-repeat; background-attachment: fixed;">
+	style="background-image: url('assets/img/login-bg.jpg');">
 
 	<!--  Header et aside -->
 	<section id="container"> <jsp:include
@@ -103,7 +103,8 @@
 									value='<%=personnage.getRace().getNom()%>' readonly /> <label
 									class="control-label col-xs-2" for="pseudo_ancien">Classe
 									:</label> <input type="text " id="nom" name="nom"
-									class="control-label col-xs-2 champLecture" value="<%=session.getAttribute("texteClasses")%>" readonly />
+									class="control-label col-xs-2 champLecture"
+									value="<%=session.getAttribute("texteClasses")%>" readonly />
 							</div>
 							<div class="row" style="margin-top: 15px">
 
@@ -157,7 +158,7 @@
 										</h3>
 										<h1 class="text-center"><%=pointsCompetenceMax%></h1>
 										<%
-											if (pointsCompetenceMax >= 0) {
+											if (pointsCompetenceMax == 0) {
 										%>
 										<form action="/Critical-PFE/ChoixCompetences" method="get">
 											<input type="hidden" name="id"
@@ -294,103 +295,117 @@
 						<div id="menu4" class="tab-pane fade col-xs-offset-1"
 							style="margin-top: 30px">
 							<div class="form-group col-xs-12 col-md-10">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<strong>Sorts acquis</strong>
-										</div>
-										<div class="panel-body">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<strong>Sorts acquis</strong>
+									</div>
+									<div class="panel-body">
 										<%
-											if (personnage.getSorts()!=null){
+											if (personnage.getSorts() != null) {
 										%>
-												<h4><strong>Liste des sorts apprenable</strong></h4>
-										       
-												<table class="table table-hover">
-												<thead>
-													<th>Nom</th>
-													<th>Ecole</th>
-													<th>Composante</th>
-													<th>Portee</th>
-													<th>Cible</th>
-												</thead>
-												<tbody>
-													<%
-														List<Sort> sorts = personnage.getSorts();
-													    for (int i=0; i<sorts.size();i++) {
-													    	
-													%>
-													<tr>
-														<td><a href=<%=sorts.get(i).getReference()%> target="_blank"><%=sorts.get(i).getNom()%></a></td>
-														<td><%=sorts.get(i).getEcole() %></td>
-														<td><%=sorts.get(i).getComposantes() %></td>
-														<td><%=sorts.get(i).getPortee() %></td>
-														<td><%=sorts.get(i).getCible() %></td>
-													</tr>
-													<%} %>
-												</tbody>
-										        </table>
-										        <% } else {
-												out.println("<h4>Le personnage n'a appris aucun sort</h4>");
+										<h4>
+											<strong>Liste des sorts apprenable</strong>
+										</h4>
+
+										<table class="table table-hover">
+											<thead>
+												<th>Nom</th>
+												<th>Ecole</th>
+												<th>Composante</th>
+												<th>Portee</th>
+												<th>Cible</th>
+											</thead>
+											<tbody>
+												<%
+													List<Sort> sorts = personnage.getSorts();
+														for (int i = 0; i < sorts.size(); i++) {
+												%>
+												<tr>
+													<td><a href=<%=sorts.get(i).getReference()%>
+														target="_blank"><%=sorts.get(i).getNom()%></a></td>
+													<td><%=sorts.get(i).getEcole()%></td>
+													<td><%=sorts.get(i).getComposantes()%></td>
+													<td><%=sorts.get(i).getPortee()%></td>
+													<td><%=sorts.get(i).getCible()%></td>
+												</tr>
+												<%
 													}
 												%>
+											</tbody>
+										</table>
+										<%
+											} else {
+												out.println("<h4>Le personnage n'a appris aucun sort</h4>");
+											}
+										%>
 										<!-- Trigger the modal with a button -->
-										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Apprendre des sorts</button>
-										
+										<button type="button" class="btn btn-info btn-lg"
+											data-toggle="modal" data-target="#myModal">Apprendre
+											des sorts</button>
+
 										<!-- Modal -->
 										<div id="myModal" class="modal fade" role="dialog">
-										  <div class="modal-dialog modal-lg">
-										
-										    <!-- Modal content-->
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal">&times;</button>
-										        <h4 class="modal-title">Sorts</h4>
-										      </div>
-										      <div class="modal-body">
-										      	<form action="/Critical-PFE/ApprendreSort" method="post">
-										      	
-											        
-											        <h4><strong>Liste des sorts apprenable</strong></h4>
-											        <%if( sortsApprenables.size() > 0) {%>
-													<table class="table table-hover">
-													<thead>
-														<th>Nom</th>
-														<th>Ecole</th>
-														<th>Composante</th>
-														<th>Portee</th>
-														<th>Cible</th>
-														<th></th>
-													</thead>
-													<tbody>
-														<%
-														    for (Sort s : sortsApprenables) {
-														%>
-														<tr>
-															<td><a href=<%=s.getReference()%> target="_blank"><%=s.getNom()%></a></td>
-															<td><%=s.getEcole() %></td>
-															<td><%=s.getComposantes() %></td>
-															<td><%=s.getPortee() %></td>
-															<td><%=s.getCible() %></td>
-															<td><input type="checkbox" name="sortSelectionnes" value="<%=s.getNom()%>"></td>
-														</tr>
-														<%} %>
-													</tbody>
-											        </table>
-											        <% }%> 
-											        <input class="btn btn-primary" type="submit" value="Sauvegarder">
-											        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-										        </form>
-										      </div>
-										      <div class="modal-footer">
-										      	
-										      </div>
-										      
-										     
-										    </div>
-										
-										  </div>
-										</div>
+											<div class="modal-dialog modal-lg">
+
+												<!-- Modal content-->
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Sorts</h4>
+													</div>
+													<div class="modal-body">
+														<form action="/Critical-PFE/ApprendreSort" method="post">
+
+
+															<h4>
+																<strong>Liste des sorts apprenable</strong>
+															</h4>
+															<%
+																if (sortsApprenables.size() > 0) {
+															%>
+															<table class="table table-hover">
+																<thead>
+																	<th>Nom</th>
+																	<th>Ecole</th>
+																	<th>Composante</th>
+																	<th>Portee</th>
+																	<th>Cible</th>
+																	<th></th>
+																</thead>
+																<tbody>
+																	<%
+																		for (Sort s : sortsApprenables) {
+																	%>
+																	<tr>
+																		<td><a href=<%=s.getReference()%> target="_blank"><%=s.getNom()%></a></td>
+																		<td><%=s.getEcole()%></td>
+																		<td><%=s.getComposantes()%></td>
+																		<td><%=s.getPortee()%></td>
+																		<td><%=s.getCible()%></td>
+																		<td><input type="checkbox"
+																			name="sortSelectionnes" value="<%=s.getNom()%>"></td>
+																	</tr>
+																	<%
+																		}
+																	%>
+																</tbody>
+															</table>
+															<%
+																}
+															%>
+															<input class="btn btn-primary" type="submit"
+																value="Sauvegarder">
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Annuler</button>
+														</form>
+													</div>
+													<div class="modal-footer"></div>
+												</div>
+											</div>
 										</div>
 									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

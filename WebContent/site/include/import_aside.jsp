@@ -36,7 +36,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="sub-menu"><a href="#" id="partieEnCours"> <i
+				<li class="sub-menu"><a href="/Critical-PFE/site/demo/session.jsp" id="partieEnCours"> <i
 					class="fa"></i> <span>Partie en cours</span>
 			</a></li>
 			<li class="sub-menu"><a href="/Critical-PFE/site/options.jsp"

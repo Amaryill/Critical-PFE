@@ -1,6 +1,7 @@
 package fr.eseo.criticalPfe.servlets.profil;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.criticalPfe.bdd.BddBo;
+import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBO;
 import fr.eseo.criticalPfe.java.bo.utilisateur.UtilisateurBOImpl;
-import fr.eseo.criticalPfe.java.dao.utilisateur.UtilisateurDAO;
 import fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur;
 
 /**
@@ -47,22 +47,16 @@ public class ModifPresentation extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		UtilisateurBOImpl boUtilisateur = null;
-		Utilisateur utilisateur = null;
+		UtilisateurBO boUtilisateur = new UtilisateurBOImpl();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
 		
 		String presentation = (String) request.getParameter("presentation");
-		
-		boUtilisateur = new UtilisateurBOImpl();
-		utilisateur = new Utilisateur();
-		utilisateur.setLogin((String) session.getAttribute("utilisateur"));
-		utilisateur = boUtilisateur.pullUtilisateur(utilisateur);
 		
 		utilisateur.setPresentation(presentation);
 		boUtilisateur.modifUtilisateur(utilisateur);
 		
+		session.setAttribute("user", utilisateur);
 		
-		session.setAttribute(ATT_PRES, presentation);
-		String presentationSession = (String)request.getSession().getAttribute("presentation");
 		response.sendRedirect("/Critical-PFE/site/Profil/profil.jsp");
 		
 		

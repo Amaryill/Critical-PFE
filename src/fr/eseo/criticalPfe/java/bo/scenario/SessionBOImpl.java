@@ -52,6 +52,11 @@ public class SessionBOImpl implements SessionBO{
 		
 	}
 
+	@Override
+	public Session trouverSession(Session session) {
+		return SessionDAO.getSessionDAO().trouver(session);
+	}
+
 	
 	
 	

@@ -15,6 +15,7 @@
 <!-- importation des classes -->
 <%@page import="fr.eseo.criticalPfe.java.model.scenario.Campagne"%>
 <%@page import="fr.eseo.criticalPfe.java.model.scenario.Session"%>
+<%@page import="fr.eseo.criticalPfe.java.model.utilisateur.Utilisateur"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -25,7 +26,7 @@
 		response.sendRedirect("login.jsp");
 	}
 	Campagne campagne = (Campagne) request.getSession().getAttribute("campagne");
-	List<Session> listeSession = new ArrayList<Session>();
+	List<Session> listeSession = (List<Session>) request.getSession().getAttribute("listeSession");
 %>
 
 <title>Campagne</title>
@@ -108,7 +109,8 @@
 										</h4>
 									</div>
 									<div id="collapse1" class="panel-collapse collapse in">
-										<div style="margin-top: 10px; margin-bottom: 10px; margin-left: 20px">
+										<div
+											style="margin-top: 10px; margin-bottom: 10px; margin-left: 20px">
 											<div class="row">
 												<%
 													if (listeSession != null) {
@@ -119,7 +121,7 @@
 														<tr>
 															<th>Nom de la session</th>
 															<th>Date</th>
-															<th>Gestion</th>
+															<th>Gestion Participant</th>
 															<th>Suppression</th>
 														</tr>
 													</thead>
@@ -130,28 +132,78 @@
 														%>
 
 														<tr>
-															<td><%=sessionJeu.getId()%></td>
-															<td>
-																<form class="form-horizontal" method="post"
-																	action="/Critical-PFE/AfficherCampagne">
-																	<input type="hidden" name="idCampagne" id="idCampagne"
-																		value=<%=sessionJeu.getId()%>>
-																	<div class="form-group">
-																		<button class="btn btn-theme btn-block" type="submit"
-																			style="width: 150px;" id="submit_update_campagne"
-																			value="update">Editer</button>
+															<td><%=sessionJeu.getNomSession()%></td>
+															<td><%=sessionJeu.getDateSession()%></td>
+															<td><div>
+																	<button type="button" class="btn btn-theme btn-block"
+																		style="width: 200px" data-toggle="modal"
+																		data-target="#myModal">Gérer Participants</button>
+																	<!-- Modal -->
+																	<div id="myModal" class="modal fade" role="dialog">
+																		<div class="modal-dialog modal-lg">
+
+																			<!-- Modal content-->
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close"
+																						data-dismiss="modal">&times;</button>
+																					<h4 class="modal-title">Liste des participants</h4>
+																				</div>
+																				<div class="modal-body">
+																					<form action="/Critical-PFE/AjoutParticipant"
+																						method="post">
+
+																						<%
+																							List<Utilisateur> participants = new ArrayList<Utilisateur>(
+																												sessionJeu.getEtatParticipant().keySet());
+																										if (participants.size() > 0) {
+																						%>
+																						<table class="table table-hover">
+																							<thead>
+																								<th>Nom participant</th>
+																							</thead>
+																							<tbody>
+																								<%
+																									for (Utilisateur participant : participants) {
+																								%>
+																								<tr>
+																									<td><%=participant.getPseudo()%></td>
+																								</tr>
+																								<%
+																									}
+																								%>
+																							</tbody>
+																						</table>
+																						<%
+																							}
+																						%>
+																						<div class="col-xs-12">
+																							<input type="text" name="pseudo" id="pseudo">
+																							<input type="hidden" name="idSession"
+																								id="idSession" value=<%=sessionJeu.getId()%>>
+																							<button class="btn btn-theme" type="submit"
+																								id="submit_Creer campagne" value="Creer">Ajouter
+																								Participant</button>
+																						</div>
+																						<div class="col-xs-12">
+																							<button type="button" class="btn btn-default"
+																								data-dismiss="modal">Annuler</button>
+																						</div>
+																					</form>
+																				</div>
+																				<div class="modal-footer"></div>
+																			</div>
+																		</div>
 																	</div>
-																</form>
-															</td>
+																</div></td>
 															<td>
 																<form class="form-horizontal" method="post"
-																	action="/Critical-PFE/SuppressionCampagne">
-																	<input type="hidden" name="idUnivers" id="idUnivers"
+																	action="/Critical-PFE/SuppressionSession">
+																	<input type="hidden" name="idSession" id="idSession"
 																		value=<%=sessionJeu.getId()%>>
 
 																	<button class="btn btn-theme btn-block" type="submit"
-																		style="width: 200px;" id="afficher univers">Supprimer
-																		la campagne</button>
+																		style="width: 100px;" id="afficher univers">Supprimer</button>
 																</form>
 															</td>
 														</tr>
@@ -167,9 +219,12 @@
 
 												<div class="text-center">
 													<form class="form-horizontal" method="post"
-														action="/Critical-PFE/CreationCampagne">
+														action="/Critical-PFE/CreationSession">
 														<div class="col-xs-3 col-xs-offset-9"
 															style="padding-right: 20px">
+															<input type="hidden" name="idUnivers" id="idCampagne"
+																value=<%=campagne.getId()%>>
+
 															<button class="btn btn-theme btn-block" type="submit"
 																id="submit_Creer campagne" value="Creer">Créer
 																une nouvelle session</button>
