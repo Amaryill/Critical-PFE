@@ -66,7 +66,7 @@
 
 													<label class="control-label col-xs-2" for="pseudo_ancien">Nom
 														personnage :</label> <input type="text" id="nom" name="nom"
-														class="champSaisie control-label col-xs-2" />
+														class="champSaisie control-label col-xs-2" required />
 
 												</div>
 
@@ -89,7 +89,7 @@
 												<div class="row" style="margin-top: 10px">
 													<label class="control-label col-xs-2" for="pseudo_ancien">Alignement
 														:</label> <input type="text" id="alignement" name="alignement"
-														class="champSaisie control-label col-xs-2" /> <label
+														class="champSaisie control-label col-xs-2" required/> <label
 														class="control-label col-xs-2" for="pseudo_ancien">Dieu
 														:</label> <select name="dieu" id="dieu"
 														class="control-label col-xs-2">
@@ -160,7 +160,7 @@
 														<option value="homme">Femme</option>
 													</select> <label class="control-label col-xs-2" for="pseudo_ancien">Age
 														:</label> <input type="number" id="age" name="age"
-														style="text-align: center" class="control-label col-xs-1" />
+														style="text-align: center" class="control-label col-xs-1" required />
 
 													<div class="control-label col-xs-1">ans</div>
 												</div>
@@ -169,12 +169,12 @@
 													style="margin-top: 10px; margin-bottom: 10px">
 													<label class="control-label col-xs-2" for="pseudo_ancien">Taille
 														:</label> <input type="number" id="taille" name="taille"
-														style="text-align: center" class="control-label col-xs-1" />
+														style="text-align: center" class="control-label col-xs-1" required/>
 													<div class="control-label col-xs-1">cm</div>
 
 													<label class="control-label col-xs-2" for="pseudo_ancien">Poids
 														:</label> <input type="number" id="poids" name="poids"
-														style="text-align: center" class="control-label col-xs-1" />
+														style="text-align: center" class="control-label col-xs-1" required/>
 													<div class="control-label col-xs-1">kg</div>
 												</div>
 
@@ -182,11 +182,11 @@
 													<label class="control-label col-xs-2" for="pseudo_ancien">Couleur
 														yeux :</label> <input type="text" id="couleurYeux"
 														name="couleurYeux"
-														class="champSaisie control-label col-xs-2" /> <label
+														class="champSaisie control-label col-xs-2" required /> <label
 														class="control-label col-xs-2" for="pseudo_ancien">Couleur
 														cheveux :</label> <input type="text" id="couleurCheveux"
 														name="couleurCheveux"
-														class="champSaisie control-label col-xs-2" />
+														class="champSaisie control-label col-xs-2" required />
 												</div>
 											</div>
 										</div>
