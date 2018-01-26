@@ -205,8 +205,7 @@
 												style="margin-top: 10px; margin-bottom: 10px; margin-left: 20px">
 												<!-- Saisie des valeurs des caractéristiques au moyen d'un menu déroulant allant de 3 à 18 pour chaque carac -->
 												<%
-													String[] caracNomComplet = new String[] { "Force", "Intelligence", "Dexterite", "Sagesse", "Constitution",
-															"Charisme" };
+													String[] caracNomComplet = new String[] { "Force", "Dexterite", "Constitution", "Intelligence", "Sagesse", "Charisme" };
 													String[] carac = new String[] { "for", "dex", "con", "int", "sag", "cha" };
 													for (int i = 0; i < 6; i += 2) {
 														out.println("<div class=\"row\" style=\"margin-top: 10px\">");
