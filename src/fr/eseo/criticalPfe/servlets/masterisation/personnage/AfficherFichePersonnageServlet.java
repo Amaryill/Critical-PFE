@@ -48,7 +48,6 @@ public class AfficherFichePersonnageServlet extends HttpServlet {
             request.getRequestDispatcher("/Index").forward(request, response);
         }
         
-        // Obtention du Personnage
         Integer persoId = Integer.parseInt(request.getParameter("id"));
         Personnage personnage = new Personnage();
         personnage.setId(persoId);
