@@ -157,7 +157,7 @@
 										</h3>
 										<h1 class="text-center"><%=pointsCompetenceMax%></h1>
 										<%
-											if (pointsCompetenceMax == 0) {
+											if (pointsCompetenceMax >= 0) {
 										%>
 										<form action="/Critical-PFE/ChoixCompetences" method="get">
 											<input type="hidden" name="id"

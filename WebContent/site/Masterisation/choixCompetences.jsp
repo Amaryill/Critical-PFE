@@ -16,13 +16,7 @@
     Personnage personnage = (Personnage) session.getAttribute("personnageCourant");
     int pointsCompetenceMax = (Integer) session.getAttribute("pointsCompRestants");
 
-	HashMap<String, Integer> modificateurs = new HashMap<>();
-	modificateurs.put(Carac.INT.getAbrev(), personnage.getModificateur(Carac.INT));
-	modificateurs.put(Carac.FOR.getAbrev(), personnage.getModificateur(Carac.FOR));
-	modificateurs.put(Carac.DEX.getAbrev(), personnage.getModificateur(Carac.DEX));
-	modificateurs.put(Carac.SAG.getAbrev(), personnage.getModificateur(Carac.SAG));
-	modificateurs.put(Carac.FOR.getAbrev(), personnage.getModificateur(Carac.FOR));
-	modificateurs.put(Carac.CHA.getAbrev(), personnage.getModificateur(Carac.CHA));
+	HashMap<String, Integer> modificateurs = (HashMap<String, Integer>) session.getAttribute("modificateurs");
 	
 	
 %>
@@ -73,6 +67,7 @@
 						<div class="panel-body">
 							<div class="form-inline">
 								<div class="form-group col-xs-12 col-md-6">
+									
 									<h3 id="nom"><%=personnage.getNom()%></h3>
 								</div>
 								<div class="form-group col-xs-12 col-md-6">
@@ -119,6 +114,7 @@
 									<%
 									    for (Competence c : competencesNonAcquises) {
 									        String carac = c.getCaracAssociee();
+									        int modif = modificateurs.get(carac.toLowerCase());
 									%>
 									<tr>
 										<td><%=c.getNom()%></td>
@@ -127,7 +123,12 @@
 												<span class="glyphicon glyphicon-info-sign"></span>
 											</button>
 										</td>
-										<td><%=carac.toLowerCase()%> (+ <%=modificateurs.get(carac)%>)</td>
+										<% if (modif >= 0) { %>
+											<td><%=carac%> (+ <%=modif%>)</td>
+										<% } else { %>
+											<td><%=carac%> (<%=modif%>)</td>
+										<% } %>
+										
 										<td><p class="col-xs-4 col-sm-3 col-md-4"><%=c.getNiveauCompetence()%> -></p> <input type="text" class="col-xs-3"
 											name="<%=c.getNom()%>"
 											placeholder="<%=c.getNiveauCompetence()%>"></td>

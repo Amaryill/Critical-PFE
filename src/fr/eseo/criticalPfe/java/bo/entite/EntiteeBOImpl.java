@@ -1,6 +1,5 @@
 package fr.eseo.criticalPfe.java.bo.entite;
 
-import fr.eseo.criticalPfe.java.dao.entite.CaracteristiqueDAO;
 import fr.eseo.criticalPfe.java.dao.entite.EntiteeDAO;
 import fr.eseo.criticalPfe.java.model.entite.Entitee;
 

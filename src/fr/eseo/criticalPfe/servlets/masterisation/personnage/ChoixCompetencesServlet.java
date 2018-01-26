@@ -2,6 +2,7 @@ package fr.eseo.criticalPfe.servlets.masterisation.personnage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.criticalPfe.java.bo.attribut.CompetenceBOImpl;
+import fr.eseo.criticalPfe.java.bo.entite.PersonnageBOImpl;
 import fr.eseo.criticalPfe.java.model.attributs.Competence;
+import fr.eseo.criticalPfe.java.model.entite.Carac;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
 
 /**
@@ -44,18 +47,19 @@ public class ChoixCompetencesServlet extends HttpServlet {
         if (session.getAttribute("personnageCourant") == null) {
             request.getRequestDispatcher("/AccueilProfil").forward(request, response);
         }
-        Personnage personnage = (Personnage) session.getAttribute("personnageCourant");
+        Personnage personnageATrouver = (Personnage) session.getAttribute("personnageCourant");
+        Personnage personnageTrouve = new PersonnageBOImpl().trouverPersonnage(personnageATrouver);
 
         // Compétences Acquises
         
-        if(personnage.getComptence() != null){
-            session.setAttribute("competencesAcquises", personnage.getComptence());
+        if(personnageTrouve.getComptence() != null){
+            session.setAttribute("competencesAcquises", personnageTrouve.getComptence());
         } else {
             session.setAttribute("competencesAcquises", new ArrayList<Competence>());
         }
         // Compétences Non Acquises     
         List<Competence> competencesNonAcquises = new CompetenceBOImpl()
-                .getAllCompetencesBut(personnage.getComptence());
+                .getAllCompetencesBut(personnageTrouve.getComptence());
         if(competencesNonAcquises != null) {
             session.setAttribute("competencesNonAcquises", competencesNonAcquises);
         } else {
@@ -63,8 +67,12 @@ public class ChoixCompetencesServlet extends HttpServlet {
         }
         
         // Points Compétence restants
-        session.setAttribute("pointsCompRestants", personnage.getPointsCompRestants());
-        System.out.println("Points Comp Restants : " + personnage.getPointsCompRestants());
+        session.setAttribute("pointsCompRestants", personnageTrouve.getPointsCompRestants());
+        
+        // Modificateurs
+        HashMap<String, Integer> modificateurs = personnageTrouve.getAllModificateurs();
+        session.setAttribute("modificateurs", modificateurs);
+        
         request.getRequestDispatcher("site/Masterisation/choixCompetences.jsp").forward(request, response);
 
     }

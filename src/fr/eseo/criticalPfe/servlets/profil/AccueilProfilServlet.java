@@ -32,13 +32,13 @@ public class AccueilProfilServlet extends HttpServlet {
 	    HttpSession session = request.getSession();
         RequestDispatcher dispat = null;
         
-        if (session.getAttribute("user") != null){
-            dispat = request.getRequestDispatcher("/site/index.jsp");
-            dispat.forward(request, response);
-        } else {
+        if (session.getAttribute("user") == null){
             dispat = request.getRequestDispatcher("Index");
             dispat.forward(request, response);
         }
+        
+        dispat = request.getRequestDispatcher("site/index.jsp");
+        dispat.forward(request, response);
 	}
 
 }

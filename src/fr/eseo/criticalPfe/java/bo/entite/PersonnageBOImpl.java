@@ -3,8 +3,8 @@ package fr.eseo.criticalPfe.java.bo.entite;
 import java.util.List;
 
 import fr.eseo.criticalPfe.java.dao.attribut.SortDAO;
-import fr.eseo.criticalPfe.java.dao.entite.ClasseDAO;
 import fr.eseo.criticalPfe.java.dao.entite.PersonnageDAO;
+import fr.eseo.criticalPfe.java.model.entite.Entitee;
 import fr.eseo.criticalPfe.java.model.entite.Personnage;
 
 // On dit que TrucBOImpl implements TrucBO
@@ -32,10 +32,14 @@ public class PersonnageBOImpl implements PersonnageBO{
 		EntiteeBO boEntitee = new EntiteeBOImpl();
 		SortDAO daoSort = new SortDAO();
 		ClasseBO classeBO = new ClasseBOImpl();
-		personnage = (Personnage) boEntitee.trouverEntitee(this.dao.trouver(personnage));
-		personnage.setSorts(daoSort.trouverListeSort(personnage));
-		personnage.setClasses(classeBO.trouverClassesParPersonnage(personnage));
-		return personnage;
+		Personnage personnageTrouve = this.dao.trouver(personnage);
+		if(personnageTrouve != null){
+		    Entitee entitee = boEntitee.trouverEntitee(personnageTrouve);
+		    personnageTrouve.setCaracteristique(entitee.getCaracteristique());
+		    personnageTrouve.setSorts(daoSort.trouverListeSort(personnageTrouve));
+		    personnageTrouve.setClasses(classeBO.trouverClassesParPersonnage(personnageTrouve));
+		}
+		return personnageTrouve;
 	}
 	 
 	public Personnage creerPersonnage(Personnage personnage){

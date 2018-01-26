@@ -11,7 +11,7 @@
 	<div id="sidebar" class="nav-collapse">
 		<ul class="sidebar-menu" id="nav-accordion">
 			<p class="centered">
-				<a href="/Critical-PFE/site/Profil/profil.jsp"><img
+				<a href="/Critical-PFE/AccueilProfil"><img
 					src="/Critical-PFE/assets/img/Critical_dice_logo_large.png"
 					class="img-circle" width="60"></a>
 			</p>

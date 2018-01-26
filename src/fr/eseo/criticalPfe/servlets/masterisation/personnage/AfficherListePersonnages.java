@@ -37,6 +37,10 @@ public class AfficherListePersonnages extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
+		if(user == null){
+		    request.getRequestDispatcher("/Index").forward(request, response);
+		}
+		
 		PersonnageBO boPersonnage = new PersonnageBOImpl();
 		user.setPersonnages(boPersonnage.trouverPersonnageParUtilisateur(user.getPseudo()));
 		

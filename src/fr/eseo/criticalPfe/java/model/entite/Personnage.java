@@ -185,13 +185,12 @@ public class Personnage extends Entitee {
 
     public int getMaxPointsComp () {
         int capital = 0;
-        System.out.println("getMaxPointsComp");
         if (this.classes != null) {
             for (Classe classe : this.classes) {
-            	System.out.println(this.getCaracteristique());
-            	System.out.println(this.getCaracteristique().getModificateurs());
-            	System.out.println(this.getCaracteristique().getModificateurs().get("int"));
-            	capital += classe.getNiveau() * (this.getCaracteristique().getModificateurs().get("int") + classe.getPointCompetenceNiveau());
+                System.out.println(classe.getNiveau());
+            	System.out.println(this.getModificateur(Carac.INT));
+            	System.out.println(classe.getPointCompetenceNiveau());
+            	capital += classe.getNiveau() * (this.getModificateur(Carac.INT) + classe.getPointCompetenceNiveau());
             }
         }
 

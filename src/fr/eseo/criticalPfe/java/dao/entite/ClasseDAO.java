@@ -151,7 +151,7 @@ public class ClasseDAO implements DAO<Classe>{
 		public List<Classe> trouverClassesParPersonnage(Personnage personnage){
 			Connection connexion = null;
 			PreparedStatement preparedStatement = null;
-			List<Classe> classeTrouvee = new ArrayList<Classe>();
+			List<Classe> classesTrouvees = new ArrayList<Classe>();
 
 			try {
 				connexion = ConnexionBDD.getConnexion();
@@ -160,15 +160,18 @@ public class ClasseDAO implements DAO<Classe>{
 
 				ResultSet result = preparedStatement.executeQuery();
 				while (result.next()) {
-					Classe classe = new Classe();
-					classe.setNom(result.getString("nom"));
-					classeTrouvee.add(this.trouver(classe));
+				    Classe classe = new Classe();
+				    int niveau = result.getInt("niveau");
+		            classe.setNom(result.getString("Nom"));
+		            classe = this.trouver(classe);
+		            classe.setNiveau(niveau);
+					classesTrouvees.add(classe);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
 			}
-			return classeTrouvee;
+			return classesTrouvees;
 			
 			
 		}
