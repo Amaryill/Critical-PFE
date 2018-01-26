@@ -9,12 +9,22 @@
 <%@ page import="fr.eseo.criticalPfe.java.model.entite.Personnage"%>
 <%@ page import="fr.eseo.criticalPfe.java.model.entite.Classe"%>
 <%@ page import="fr.eseo.criticalPfe.java.model.entite.Race"%>
+<%@ page import="fr.eseo.criticalPfe.java.model.entite.Carac"%>
 <%
     List<Competence> competencesAcquises = (List<Competence>) session.getAttribute("competencesAcquises");
     List<Competence> competencesNonAcquises = (List<Competence>) session.getAttribute("competencesNonAcquises");
     Personnage personnage = (Personnage) session.getAttribute("personnageCourant");
     int pointsCompetenceMax = (Integer) session.getAttribute("pointsCompRestants");
-	HashMap<String, Integer> modificateurs = personnage.getCaracteristique().getModificateurs();
+
+	HashMap<String, Integer> modificateurs = new HashMap<>();
+	modificateurs.put(Carac.INT.getAbrev(), personnage.getModificateur(Carac.INT));
+	modificateurs.put(Carac.FOR.getAbrev(), personnage.getModificateur(Carac.FOR));
+	modificateurs.put(Carac.DEX.getAbrev(), personnage.getModificateur(Carac.DEX));
+	modificateurs.put(Carac.SAG.getAbrev(), personnage.getModificateur(Carac.SAG));
+	modificateurs.put(Carac.FOR.getAbrev(), personnage.getModificateur(Carac.FOR));
+	modificateurs.put(Carac.CHA.getAbrev(), personnage.getModificateur(Carac.CHA));
+	
+	
 %>
 
 <html>
@@ -33,7 +43,7 @@
 <title>Critical</title>
 </head>
 <body class="bg-image"
-	style="background-image: url('assets/img/CreationPerso-bg.png');">
+	style="background-image: url('assets/img/CreationPerso-bg.png'); background-repeat: no-repeat; background-attachment: fixed;">
 
 	<!-- Verification de la variable session -->
 	<%
@@ -117,7 +127,7 @@
 												<span class="glyphicon glyphicon-info-sign"></span>
 											</button>
 										</td>
-										<td><%=carac%> (+ <%=modificateurs.get(carac)%>)</td>
+										<td><%=carac.toLowerCase()%> (+ <%=modificateurs.get(carac)%>)</td>
 										<td><p class="col-xs-4 col-sm-3 col-md-4"><%=c.getNiveauCompetence()%> -></p> <input type="text" class="col-xs-3"
 											name="<%=c.getNom()%>"
 											placeholder="<%=c.getNiveauCompetence()%>"></td>

@@ -59,7 +59,7 @@
 <title>Critical</title>
 </head>
 <body class="bg-image"
-	style="background-image: url('assets/img/login-bg.jpg');">
+	style="background-image: url('assets/img/login-bg.jpg'); background-repeat: no-repeat; background-attachment: fixed;">
 
 	<!--  Header et aside -->
 	<section id="container"> <jsp:include
