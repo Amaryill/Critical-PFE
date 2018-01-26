@@ -51,7 +51,6 @@ public class ModifPresentation extends HttpServlet {
 		Utilisateur utilisateur = null;
 		
 		String presentation = (String) request.getParameter("presentation");
-		String pseudo_session = (String)request.getSession().getAttribute("utilisateur");
 		
 		boUtilisateur = new UtilisateurBOImpl();
 		utilisateur = new Utilisateur();

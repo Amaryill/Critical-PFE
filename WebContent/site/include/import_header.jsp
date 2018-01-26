@@ -9,7 +9,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
              </div>
              <!--logo start-->
-           	 <a href="index.jsp" class="logo"><b>Critical</b></a>
+           	 <a href="/Critical-PFE/AccueilProfil" class="logo"><b>Critical</b></a>
              <!--logo end-->
              <div class="top-menu">
             	<ul class="nav pull-right top-menu">
