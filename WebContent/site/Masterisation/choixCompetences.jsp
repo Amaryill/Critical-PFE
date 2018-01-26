@@ -105,8 +105,8 @@
 						<div class="panel-body">
 							<table class="table table-hover">
 								<thead>
-									<th>Nom</th>
 									<th></th>
+									<th>Nom</th>
 									<th>Carac. Assoc.</th>
 									<th>Niveau</th>
 								</thead>
@@ -117,12 +117,13 @@
 									        int modif = modificateurs.get(carac.toLowerCase());
 									%>
 									<tr>
-										<td><%=c.getNom()%></td>
-										<td><button type="button" class="button"
+										<td><button type="button" class="btn btn-default"
 											data-toggle="modal" data-target="#<%=c.getNom().replace(' ', '_')%>">
 												<span class="glyphicon glyphicon-info-sign"></span>
 											</button>
 										</td>
+										<td><%=c.getNom()%></td>
+										
 										<% if (modif >= 0) { %>
 											<td><%=carac%> (+ <%=modif%>)</td>
 										<% } else { %>
